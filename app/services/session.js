@@ -19,7 +19,7 @@ export default Ember.Service.extend({
    * @return {Boolean} true if the user is logged in, false otherwise.
    */
   isLoggedIn () {
-    return this.apiToken !== null
+    return this.get('apiToken') !== null
   },
 
   /**
@@ -29,8 +29,8 @@ export default Ember.Service.extend({
    * @return {[type]}          [description]
    */
   login (username, password) {
-    this.token = 'abc123'
-    this.username = username
+    this.set('username', username)
+    this.set('apiToken', 'abc123')
   },
 
   /**
@@ -38,7 +38,7 @@ export default Ember.Service.extend({
    * @return {[type]} [description]
    */
   logout () {
-    this.token = null
-    this.username = null
+    this.set('username', null)
+    this.set('apiToken', null)
   }
 });
