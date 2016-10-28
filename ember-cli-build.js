@@ -7,6 +7,11 @@ module.exports = function(defaults) {
     // Add options here
   });
 
+  app.import('bower_components/material-design-lite/material.min.js')
+  app.import('vendor/material-design-lite/style.css')
+  app.import('vendor/material-design-lite/icons.css')
+  app.import('vendor/fonts/roboto.css')
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
