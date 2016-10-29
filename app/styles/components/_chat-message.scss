@@ -1,0 +1,32 @@
+$image-message-margin: 16px;
+
+.app-chat-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.app-chat-message__image {
+  width: 40px;
+  height: 40px;
+}
+
+.app-chat-message__content {
+  flex: 1;
+  margin-left: $image-message-margin;
+  background-color: #f1f1f1;
+  border-radius: 0px 6px 6px 6px;
+  padding: 10px 16px;
+  margin-bottom: 13px;
+}
+
+.app-chat-message--recieved {
+  &.app-chat-message {
+    flex-direction: row-reverse;
+  }
+
+  .app-chat-message__content {
+    border-radius: 6px 0px 6px 6px;
+    margin-right: $image-message-margin;
+  }
+}
