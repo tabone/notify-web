@@ -27,14 +27,6 @@ export default Ember.Component.extend({
    */
   routing: Ember.inject.service('-routing'),
 
-  /**
-   * didInsertElement is called when the element of the view has been inserted
-   * into the DOM or after the view was re-rendered.
-   */
-  didInsertElement () {
-    componentHandler.upgradeElements(this.$('[class*="mdl-js-"]'));
-  },
-
   actions: {
     /**
      * login is used to authenticate the user with the crentials provided.
