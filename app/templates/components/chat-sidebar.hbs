@@ -1,0 +1,62 @@
+<div class="app-chat-sidebar">
+  <div class="app-chat-sidebar__user-info mdl-list">
+    <div class="mdl-list__item mdl-list__item--two-line">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-avatar">
+          <img class="app--circularize app--full-width" src="images/zara.png" alt="User profile picture"/>
+        </span>
+        <span>lucat</span>
+        <span class="mdl-list__item-sub-title">
+          Online
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="app-chat-sidebar__conversations">
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#collegues-panel" class="mdl-tabs__tab is-active">
+          <span class="mdl-badge mdl-badge--overlap">Collegues</span>
+        </a>
+        <a href="#rooms-panel" class="mdl-tabs__tab">
+          <span class="mdl-badge mdl-badge--overlap">Rooms</span>
+        </a>
+      </div>
+
+      <div class="app-chat-sidebar__conversations-panels">
+        <div class="app-chat-sidebar__conversations-panel mdl-tabs__panel is-active" id="collegues-panel">
+          <ul class="mdl-list">
+            {{chat-collegue-item}}
+            {{chat-collegue-item}}
+            {{chat-collegue-item}}
+            {{chat-collegue-item}}
+            {{chat-collegue-item}}
+            {{chat-collegue-item}}
+            {{chat-collegue-item}}
+            {{chat-collegue-item}}
+            {{chat-collegue-item}}
+            {{chat-collegue-item}}
+          </ul>
+        </div>
+
+        <div class="app-chat-sidebar__conversations-panel mdl-tabs__panel" id="rooms-panel">
+          <ul class="mdl-list">
+            {{chat-room-item}}
+            {{chat-room-item}}
+            {{chat-room-item}}
+            {{chat-room-item}}
+            {{chat-room-item}}
+            {{chat-room-item}}
+            {{chat-room-item}}
+            {{chat-room-item}}
+            {{chat-room-item}}
+            {{chat-room-item}}
+            {{chat-room-item}}
+            {{chat-room-item}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
