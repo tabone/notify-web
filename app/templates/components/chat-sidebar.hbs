@@ -5,9 +5,9 @@
         <span class="mdl-list__item-avatar">
           <img class="app--circularize app--full-width" src="images/zara.png" alt="User profile picture"/>
         </span>
-        <span>lucat</span>
+        <span>{{session.user.username}}</span>
         <span class="mdl-list__item-sub-title">
-          Online
+          {{session.user.state.name}}
         </span>
       </span>
     </div>
@@ -26,35 +26,11 @@
 
       <div class="app-chat-sidebar__conversations-panels">
         <div class="app-chat-sidebar__conversations-panel mdl-tabs__panel is-active" id="colleagues-panel">
-          <ul class="mdl-list">
-            {{chat-colleague-item}}
-            {{chat-colleague-item}}
-            {{chat-colleague-item}}
-            {{chat-colleague-item}}
-            {{chat-colleague-item}}
-            {{chat-colleague-item}}
-            {{chat-colleague-item}}
-            {{chat-colleague-item}}
-            {{chat-colleague-item}}
-            {{chat-colleague-item}}
-          </ul>
+          {{chat-sidebar-colleagues-list users=users}}
         </div>
 
         <div class="app-chat-sidebar__conversations-panel mdl-tabs__panel" id="rooms-panel">
-          <ul class="mdl-list">
-            {{chat-room-item}}
-            {{chat-room-item}}
-            {{chat-room-item}}
-            {{chat-room-item}}
-            {{chat-room-item}}
-            {{chat-room-item}}
-            {{chat-room-item}}
-            {{chat-room-item}}
-            {{chat-room-item}}
-            {{chat-room-item}}
-            {{chat-room-item}}
-            {{chat-room-item}}
-          </ul>
+          {{chat-sidebar-rooms-list rooms=rooms}}
         </div>
       </div>
     </div>
