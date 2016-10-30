@@ -7,6 +7,11 @@ export default DS.Model.extend({
   name: DS.attr('string'),
 
   /**
+   * image name.
+   */
+  image: DS.attr('string'),
+
+  /**
    * users who are inside the room.
    */
   users: DS.hasMany('user', {

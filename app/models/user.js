@@ -7,6 +7,11 @@ export default DS.Model.extend({
   username: DS.attr('string'),
 
   /**
+   * image name.
+   */
+  image: DS.attr('string'),
+
+  /**
    * rooms which the user is a member of.
    */
   rooms: DS.belongsTo('room', {
