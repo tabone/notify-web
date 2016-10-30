@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import RSVP from 'rsvp'
 
 export default Ember.Route.extend({
   /**
@@ -11,5 +12,21 @@ export default Ember.Route.extend({
     // If the user is trying to access the app while not authenticated, he
     // should be redirected to the login page.
     if (this.get('session').isLoggedIn() === false) this.transitionTo('login')
+  },
+
+  model () {
+    return RSVP.hash({
+      // Retrieve all users, the current logged in user can interact with.
+      users: this.get('store').findAll('user'),
+
+      // Retrieve all the rooms which the current logged in user is a member of.
+      rooms: this.get('store').query('room', {
+        filter: {
+          users: {
+            id: this.get('session').get('user').get('id')
+          }
+        }
+      })
+    })
   }
 });
