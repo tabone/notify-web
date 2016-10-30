@@ -9,10 +9,16 @@ export default Ember.Service.extend({
   apiToken: null,
 
   /**
-   * username of the logged in user.
+   * store used to retrieve the user object of the logged in user.
+   * @type {service:store}
+   */
+  store: Ember.inject.service(),
+
+  /**
+   * user of the logged in user.
    * @type {String}
    */
-  username: null,
+  user: null,
 
   /**
    * isLoggedIn determines whether the user is logged in or not.
@@ -23,22 +29,21 @@ export default Ember.Service.extend({
   },
 
   /**
-   * login is used to authenticate the user.
+   * login the user.
    * @param  {String} username The username of the user.
    * @param  {String} password The password of the user.
    * @return {[type]}          [description]
    */
   login (username, password) {
-    this.set('username', username)
     this.set('apiToken', 'abc123')
   },
 
   /**
-   * logout is used to logout the user.
+   * logout the user.
    * @return {[type]} [description]
    */
   logout () {
-    this.set('username', null)
+    this.set('user', null)
     this.set('apiToken', null)
   }
 });
