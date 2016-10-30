@@ -14,7 +14,7 @@ export default DS.Model.extend({
   /**
    * rooms which the user is a member of.
    */
-  rooms: DS.belongsTo('room', {
+  rooms: DS.hasMany('room', {
     inverse: 'users'
   }),
 
