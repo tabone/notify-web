@@ -35,7 +35,9 @@ export default Ember.Component.extend({
       const username = this.get('username')
       const password = this.get('password')
       this.get('session').login(username, password)
-      this.get('routing').transitionTo('index')
+        .then(() => {
+          this.get('routing').transitionTo('app')
+        })
     }
   }
 });

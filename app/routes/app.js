@@ -11,7 +11,7 @@ export default Ember.Route.extend({
   beforeModel () {
     // If the user is trying to access the app while not authenticated, he
     // should be redirected to the login page.
-    if (this.get('session').isLoggedIn() === false) this.transitionTo('login')
+    if (this.get('session').isLoggedIn() === false) this.transitionTo('index')
   },
 
   model () {

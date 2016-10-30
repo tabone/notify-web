@@ -36,6 +36,10 @@ export default Ember.Service.extend({
    */
   login (username, password) {
     this.set('apiToken', 'abc123')
+    return this.get('store').findRecord('user', '0')
+      .then(user => {
+        this.set('user', user)
+      })
   },
 
   /**
