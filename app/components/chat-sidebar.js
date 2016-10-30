@@ -2,6 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   /**
+   * session is used to get the details of the current logged in user.
+   * @type {service:session}
+   */
+  session: Ember.inject.service(),
+
+  /**
    * panelsTopPosition is the position of the HTML Element containing the tab
    * panels for the Collegues and Chat Rooms. This value will then be used to
    * resize the panels to use all the height available.
