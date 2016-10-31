@@ -1,7 +1,18 @@
 .app-chat-room {
   display: flex;
+}
+
+.app-chat-room__conversation {
+  display: flex;
   flex-direction: column;
+  flex: 1;
   justify-content: flex-end;
+}
+
+.app-chat-room__info {
+  border-left: 1px solid #e0e0e0;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  width: 240px;
 }
 
 .app-chat-room__messages {

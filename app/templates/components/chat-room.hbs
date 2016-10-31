@@ -1,22 +1,12 @@
 <div class="app-chat-room">
-  <div class="app-chat-room__messages">
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
-    {{chat-message}}
+  <div class="app-chat-room__conversation">
+    <div class="app-chat-room__messages">
+      {{chat-message}}
+    </div>
+    <div class="app-chat-room__message mdl-color--grey-50" contenteditable="true">
+    </div>
   </div>
-  <div class="app-chat-room__message mdl-color--grey-50" contenteditable="true">
+  <div class="app-chat-room__info">
+    {{chat-room-info}}
   </div>
 </div>
