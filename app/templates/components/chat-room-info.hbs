@@ -6,7 +6,7 @@
           <span class="mdl-list__item-avatar">
             <img class="app--circularize app--full-width" src="/images/zara.png" alt="User profile picture"/>
           </span>
-          <span>WARP</span>
+          <span>{{room.name}}</span>
         </span>
       </span>
     </div>
@@ -18,9 +18,9 @@
     <hr/>
 
     <ul class="mdl-list">
-      {{chat-colleague-member-item}}
-      {{chat-colleague-member-item}}
-      {{chat-colleague-member-item}}
+      {{#each room.users as |member| }}
+        {{chat-colleague-member-item member=member}}
+      {{/each}}
     </ul>
   </div>
 </div>
