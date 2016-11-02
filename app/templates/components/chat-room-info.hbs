@@ -18,8 +18,8 @@
     <hr/>
 
     <ul class="mdl-list">
-      {{#each room.users as |member| }}
-        {{chat-colleague-member-item member=member}}
+      {{#each room.users as |user| }}
+        {{chat-colleague-item user=user}}
       {{/each}}
     </ul>
   </div>
