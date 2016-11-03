@@ -7,7 +7,17 @@
         </span>
         <span>{{session.user.username}}</span>
         <span class="mdl-list__item-sub-title">
-          {{session.user.state.name}}
+          <span id="app-chat-sidebar__state">
+            {{session.user.state.name}}
+          </span>
+          
+          <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="app-chat-sidebar__state">
+            {{#each states as |state|}}
+              <li class="mdl-menu__item" onclick={{action 'changeState' state}}>
+                {{state.name}}
+              </li>
+            {{/each}}
+          </ul>
         </span>
       </span>
     </div>

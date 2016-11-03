@@ -8,6 +8,18 @@ export default Ember.Component.extend({
   session: Ember.inject.service(),
 
   /**
+   * store service to query the Ember Data Repository.
+   * @type {Store}
+   */
+  store: Ember.inject.service(),
+
+  /**
+   * states which the user can choose from.
+   * @type {Array{State}}
+   */
+  states: null,
+
+  /**
    * panelsTopPosition is the position of the HTML Element containing the tab
    * panels for the Collegues and Chat Rooms. This value will then be used to
    * resize the panels to use all the height available.
@@ -38,6 +50,9 @@ export default Ember.Component.extend({
 
   init (...args) {
     this._super(args)
+
+    // Load states.
+    this.set('states', this.get('store').peekAll('state'))
 
     // Create listener.
     this.listeners.resizePanels = this.resizePanels.bind(this)
@@ -93,5 +108,18 @@ export default Ember.Component.extend({
     // When the component is destroyed remove the listener from the window
     // global object.
     window.removeEventListener('resize', this.get('listeners.watchWindowResize'))
+  },
+
+  actions: {
+    /**
+     * changeState changes the online state of the user.
+     * @param  {State} state  The newly selected state.
+     */
+    changeState (state) {
+      this.$('.mdl-menu__container')[0].classList.remove('is-visible')
+      const user = this.get('session').get('user')
+      if (user.get('state').get('id') === state.get('id')) return
+      user.set('state', state)
+    }
   }
 });
