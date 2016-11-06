@@ -2,13 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
   /**
-   * token is provided by the API Server during autentication and it is used to
-   * authenticate the user on each HTTP Request.
-   * @type {String}
-   */
-  apiToken: null,
-
-  /**
    * store used to retrieve the user object of the logged in user.
    * @type {service:store}
    */
@@ -25,7 +18,7 @@ export default Ember.Service.extend({
    * @return {Boolean} true if the user is logged in, false otherwise.
    */
   isLoggedIn () {
-    return this.get('apiToken') !== null
+    return this.get('user') !== null
   },
 
   /**
@@ -35,11 +28,24 @@ export default Ember.Service.extend({
    * @return {[type]}          [description]
    */
   login (username, password) {
-    this.set('apiToken', 'abc123')
-    return this.get('store').findRecord('user', '0')
-      .then(user => {
-        this.set('user', user)
-      })
+    return $.ajax({
+      url: 'http://localhost:8181/auth',
+      method: 'POST',
+      dataType: 'json',
+      xhrFields: {
+        withCredentials: true
+      },
+      data: {
+        username: username,
+        password: password
+      }
+    })
+    .then((data) => {
+      return this.get('store').findRecord('user', data.id)
+    })
+    .then((user) => {
+      this.set('user', user)
+    })
   },
 
   /**

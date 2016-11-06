@@ -14,6 +14,12 @@ export default Ember.Component.extend({
   password: null,
 
   /**
+   * error message.
+   * @type {String}
+   */
+  error: null,
+
+  /**
    * session will be used to authenticate the user with the provided
    * credentials.
    * @type {service:session}
@@ -34,9 +40,26 @@ export default Ember.Component.extend({
     login () {
       const username = this.get('username')
       const password = this.get('password')
+
       this.get('session').login(username, password)
         .then(() => {
           this.get('routing').transitionTo('app')
+        })
+        .catch((err) => {
+          switch (err.status) {
+            case 401: {
+              this.set('error', "Invalid credentials")
+              break
+            }
+            case 500: {
+              this.set('error', "An unexpected error occured.")
+              break
+            }
+          }
+
+          const usernameField = this.$('#app-login-form__username-field')[0]
+          usernameField.focus()
+          usernameField.select()
         })
     }
   }

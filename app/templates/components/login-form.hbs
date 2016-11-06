@@ -6,25 +6,28 @@
   <div class="mdl-card__supporting-text">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       {{input type="text"
-        id="username"
+        id="app-login-form__username-field"
         class="mdl-textfield__input"
         value=username
       }}
 
-      <label class="mdl-textfield__label" for="username">
+      <label class="mdl-textfield__label" for="app-login-form__username-field">
         Enter your username
       </label>
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       {{input type="password"
-        id="password"
+        id="app-login-form__password-field"
         class="mdl-textfield__input"
         value=password
       }}
 
-      <label class="mdl-textfield__label" for="password">
+      <label class="mdl-textfield__label" for="app-login-form__password-field">
         Enter your password
       </label>
+    </div>
+    <div class="mdl-color-text--primary mdl-typography--text-center">
+      {{error}}
     </div>
   </div>
 
