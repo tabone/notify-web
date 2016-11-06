@@ -51,8 +51,8 @@ export default Ember.Component.extend({
               this.set('error', "Invalid credentials")
               break
             }
-            case 500: {
-              this.set('error', "An unexpected error occured.")
+            default: {
+              this.set('error', "An unexpected error occured")
               break
             }
           }
