@@ -2,6 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
   /**
+   * configuration object.
+   * @type {service:config}
+   */
+  config: Ember.inject.service(),
+
+  /**
    * store used to retrieve the user object of the logged in user.
    * @type {service:store}
    */
@@ -29,7 +35,7 @@ export default Ember.Service.extend({
    */
   login (username, password) {
     return $.ajax({
-      url: 'http://localhost:8181/auth',
+      url: this.get('config').get('auth').url,
       method: 'POST',
       dataType: 'json',
       xhrFields: {
