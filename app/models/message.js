@@ -7,6 +7,11 @@ export default DS.Model.extend({
   content: DS.attr('string'),
 
   /**
+   * deleted state.
+   */
+  deleted: DS.attr('boolean'),
+
+  /**
    * user who created the message.
    */
   user: DS.belongsTo('user', {
