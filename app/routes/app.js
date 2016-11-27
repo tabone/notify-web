@@ -25,6 +25,9 @@ export default Ember.Route.extend({
 
   model () {
     return RSVP.hash({
+      // Retrieve and cache all states.
+      states: this.get('store').findAll('state'),
+
       // Retrieve all non bot users, the current logged in user can interact
       // with.
       users: this.get('store').query('user', {
