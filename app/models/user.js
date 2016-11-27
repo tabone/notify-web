@@ -12,6 +12,11 @@ export default DS.Model.extend({
   image: DS.attr('string'),
 
   /**
+   * bot or not.
+   */
+  bot: DS.attr('boolean')
+
+  /**
    * rooms which the user is a member of.
    */
   rooms: DS.hasMany('room', {
