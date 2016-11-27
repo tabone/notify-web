@@ -8,10 +8,19 @@ export default Ember.Route.extend({
    */
   session: Ember.inject.service(),
 
+  /**
+   * socket service is used to communicate with the WebSocket server.
+   * @type {service:socket}
+   */
+  socket: Ember.inject.service(),
+
   beforeModel () {
     // If the user is trying to access the app while not authenticated, he
     // should be redirected to the login page.
     if (this.get('session').isLoggedIn() === false) this.transitionTo('index')
+
+    // Connect with WebSocket server.
+    return this.get('socket').connect()
   },
 
   model () {

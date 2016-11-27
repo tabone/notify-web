@@ -6,5 +6,8 @@ export default Ember.Service.extend({
   },
   auth: {
     url: 'http://localhost:8181/auth'
+  },
+  ws: {
+    url: 'ws://localhost:8282'
   }
 });
