@@ -14,7 +14,7 @@ export default DS.Model.extend({
   /**
    * bot or not.
    */
-  bot: DS.attr('boolean')
+  bot: DS.attr('boolean'),
 
   /**
    * rooms which the user is a member of.
