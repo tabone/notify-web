@@ -17,7 +17,7 @@ export default Ember.Component.extend({
    * states which the user can choose from.
    * @type {Array{State}}
    */
-  states: null,
+  states: {},
 
   /**
    * panelsTopPosition is the position of the HTML Element containing the tab
@@ -50,10 +50,8 @@ export default Ember.Component.extend({
 
   init (...args) {
     this._super(args)
-
-    // Load states.
-    this.set('states', this.get('store').peekAll('state'))
-
+    // Setup states
+    this.setupStates()
     // Create listener.
     this.listeners.resizePanels = this.resizePanels.bind(this)
   },
@@ -64,6 +62,23 @@ export default Ember.Component.extend({
    */
   didInsertElement () {
     this.handleTabPanelsHeight()
+  },
+
+  /**
+   * Sets up the states.
+   * @return {Promise} Resolved when the states has been configured.
+   */
+  setupStates () {
+    const stateMap = {
+      Online: 'online',
+      Away: 'away',
+      Offline: 'offline'
+    }
+
+    return this.get('store').peekAll('state')
+      .forEach(state => {
+        this.set(`states.${stateMap[state.get('name')]}`, state)
+      })
   },
 
   handleTabPanelsHeight () {
@@ -120,6 +135,7 @@ export default Ember.Component.extend({
       const user = this.get('session').get('user')
       if (user.get('state').get('id') === state.get('id')) return
       user.set('state', state)
+      user.save()
     }
   }
 });
