@@ -25,8 +25,13 @@ export default Ember.Route.extend({
 
   model () {
     return RSVP.hash({
-      // Retrieve all users, the current logged in user can interact with.
-      users: this.get('store').findAll('user'),
+      // Retrieve all non bot users, the current logged in user can interact
+      // with.
+      users: this.get('store').query('user', {
+        filter: {
+          bot: false
+        }
+      }),
 
       // Retrieve all the rooms which the current logged in user is a member of.
       rooms: this.get('store').query('room', {
