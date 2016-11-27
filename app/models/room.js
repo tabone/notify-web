@@ -14,6 +14,11 @@ export default DS.Model.extend({
   image: DS.attr('string'),
 
   /**
+   * private room or not.
+   */
+  private: DS.attr('boolean'),
+
+  /**
    * users who are inside the room.
    */
   users: DS.hasMany('user', {
