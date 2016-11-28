@@ -1,10 +1,6 @@
 <div class="app-chat-room">
   <div class="app-chat-room__conversation">
-    <div class="app-chat-room__messages">
-      {{chat-message}}
-    </div>
-    <div class="app-chat-room__message mdl-color--grey-50" contenteditable="true">
-    </div>
+    {{chat-room-conversation room=room}}
   </div>
   <div class="app-chat-room__info">
     {{chat-room-info room=room}}
