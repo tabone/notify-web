@@ -12,6 +12,11 @@ export default DS.Model.extend({
   deleted: DS.attr('boolean'),
 
   /**
+   * created until.
+   */
+  created:  DS.attr('date'),
+
+  /**
    * user who created the message.
    */
   user: DS.belongsTo('user', {
