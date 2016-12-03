@@ -4,6 +4,7 @@ $image-message-margin: 16px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  padding: 0 1em;
 }
 
 .app-chat-message__image {
@@ -13,11 +14,9 @@ $image-message-margin: 16px;
 
 .app-chat-message__content {
   flex: 1;
+  padding-top: 0.6em;
+  margin-right: 0;
   margin-left: $image-message-margin;
-  background-color: #f1f1f1;
-  border-radius: 0px 6px 6px 6px;
-  padding: 10px 16px;
-  margin-bottom: 13px;
 }
 
 .app-chat-message--recieved {
@@ -26,7 +25,7 @@ $image-message-margin: 16px;
   }
 
   .app-chat-message__content {
-    border-radius: 6px 0px 6px 6px;
+    margin-left: 0;
     margin-right: $image-message-margin;
   }
 }

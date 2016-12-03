@@ -20,13 +20,28 @@ export default Ember.Service.extend({
   store: Ember.inject.service(),
 
   /**
+   * roomCache is used to cache messages by room.
+   * @type {service:roomCache}
+   */
+  roomCache: Ember.inject.service(),
+
+  /**
    * connect to WebSocket server.
    */
   connect () {
     const socket = new WebSocket(this.get('config').get('ws').url)
     this.set('socket', socket)
     socket.onmessage = (message) => {
-      this.get('store').push(JSON.parse(message.data))
+      const model = this.get('store').push(JSON.parse(message.data))
+
+      switch (model.constructor.modelName) {
+        // If the synced record is a message, include cache it inside the room
+        // cache service.
+        case 'message': {
+          this.get('roomCache').cache(model.get('room.id'), model)
+          break
+        }
+      }
     }
   }
 });
