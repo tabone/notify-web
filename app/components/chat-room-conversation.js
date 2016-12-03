@@ -99,12 +99,20 @@ export default Ember.Component.extend({
      * @return {Promise} Resolved once the message has been submitted
      */
     submitMessage () {
+      // If the user hasn't clicked Enter without the holding shift key, the
+      // message should not be submitted.
+      if (event.keyCode !== 13 || (event.keyCode === 13 && event.shiftKey)) {
+        return
+      }
+
+      // If the user did, we should stop the browser from including the \n
+      // inside the message.
+      event.preventDefault()
+
+      // submit the message
       let content = this.get('message')
 
-      if (event.shiftKey && content != null && content.length > 0) return null
-
-      // Remove last character since it will be a new line (due to the enter).
-      content = content.slice(0, -1)
+      if (content == null || content.length === 0) return null
 
       // Create and persist message
       return this.get('store')
