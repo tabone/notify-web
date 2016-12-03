@@ -1,13 +1,13 @@
-.app-chat-room-item {
+.app-chat-room-item__link {
   position: relative;
   text-decoration: none;
   transition: background-color 0.5s ease;
 }
 
-.app-chat-room-item:hover {
+.app-chat-room-item__link:hover {
   @extend .mdl-color--grey-300;
 }
 
-.app-chat-room-item.active {
+.app-chat-room-item__link.active {
   @extend .mdl-color--accent;
 }

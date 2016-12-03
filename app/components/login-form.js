@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  className: ['app-login-form'],
   /**
    * username is binded with the Username Input Field.
    * @type {String}

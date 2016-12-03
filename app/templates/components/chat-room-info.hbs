@@ -1,46 +1,44 @@
-<div class="chat-room-info">
-  <div class="chat-room-info__section">
-    <div class="mdl-list">
-      <span class="mdl-list__item">
-        <span class="mdl-list__item-primary-content">
-          <span class="mdl-list__item-avatar">
-            <img class="app--circularize app--full-width" src="/images/{{room.uiImage}}" alt="User profile picture"/>
-          </span>
-          <span>{{room.uiName}}</span>
+<div class="chat-room-info__section">
+  <div class="mdl-list">
+    <span class="mdl-list__item">
+      <span class="mdl-list__item-primary-content">
+        <span class="mdl-list__item-avatar">
+          <img class="app--circularize app--full-width" src="/images/{{room.uiImage}}" alt="User profile picture"/>
         </span>
-        <span class="mdl-list__item-secondary-action">
-          {{#link-to 'app'}}<i class="material-icons">close</i>{{/link-to}}
-        </span>
+        <span>{{room.uiName}}</span>
       </span>
+      <span class="mdl-list__item-secondary-action">
+        {{#link-to 'app'}}<i class="material-icons">close</i>{{/link-to}}
+      </span>
+    </span>
+  </div>
+</div>
+
+<div class="chat-room-info__section">
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
+      <i class="material-icons">add</i>
+    </div>
+    <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
+      <i class="material-icons">mic</i>
+    </div>
+    <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
+      <i class="material-icons">videocam</i>
+    </div>
+    <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
+      <i class="material-icons">close</i>
     </div>
   </div>
+</div>
 
-  <div class="chat-room-info__section">
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
-        <i class="material-icons">add</i>
-      </div>
-      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
-        <i class="material-icons">mic</i>
-      </div>
-      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
-        <i class="material-icons">videocam</i>
-      </div>
-      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
-        <i class="material-icons">close</i>
-      </div>
-    </div>
-  </div>
+<div class="chat-room-info__section">
+  <h2 class="chat-room-info__section-title mdl-typography--caption mdl-typography--text-uppercase">Members</h2>
 
-  <div class="chat-room-info__section">
-    <h2 class="chat-room-info__section-title mdl-typography--caption mdl-typography--text-uppercase">Members</h2>
+  <hr/>
 
-    <hr/>
-
-    <ul class="mdl-list">
-      {{#each room.users as |user| }}
-        {{chat-colleague-item user=user}}
-      {{/each}}
-    </ul>
-  </div>
+  <ul class="mdl-list">
+    {{#each room.users as |user| }}
+      {{chat-colleague-item user=user}}
+    {{/each}}
+  </ul>
 </div>

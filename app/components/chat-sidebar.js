@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['app-chat-sidebar'],
   /**
    * session is used to get the details of the current logged in user.
    * @type {service:session}

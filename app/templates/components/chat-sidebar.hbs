@@ -1,53 +1,51 @@
-<div class="app-chat-sidebar">
-  <div class="app-chat-sidebar__user-info mdl-list">
-    <div class="mdl-list__item mdl-list__item--two-line">
-      <span class="mdl-list__item-primary-content">
-        <span class="mdl-list__item-avatar">
-          <img class="app--circularize app--full-width" src="/images/{{session.user.image}}" alt="User profile picture"/>
-        </span>
-        <span>{{session.user.username}}</span>
-        <span class="mdl-list__item-sub-title">
-          <span id="app-chat-sidebar__state">
-            {{session.user.state.name}}
-          </span>
-          
-          <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="app-chat-sidebar__state">
-            <li class="mdl-menu__item" onclick={{action 'changeState' states.online}}>
-              {{states.online.name}}
-            </li>
-
-            <li class="mdl-menu__item" onclick={{action 'changeState' states.away}}>
-              {{states.away.name}}
-            </li>
-
-            <li class="mdl-menu__item mdl-color--red mdl-color-text--white" onclick={{action 'changeState' states.offline}}>
-              {{states.offline.name}}
-            </li>
-          </ul>
-        </span>
+<div class="app-chat-sidebar__user-info mdl-list">
+  <div class="mdl-list__item mdl-list__item--two-line">
+    <span class="mdl-list__item-primary-content">
+      <span class="mdl-list__item-avatar">
+        <img class="app--circularize app--full-width" src="/images/{{session.user.image}}" alt="User profile picture"/>
       </span>
-    </div>
-  </div>
+      <span>{{session.user.username}}</span>
+      <span class="mdl-list__item-sub-title">
+        <span id="app-chat-sidebar__state">
+          {{session.user.state.name}}
+        </span>
+        
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="app-chat-sidebar__state">
+          <li class="mdl-menu__item" onclick={{action 'changeState' states.online}}>
+            {{states.online.name}}
+          </li>
 
-  <div class="app-chat-sidebar__conversations">
-    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-      <div class="mdl-tabs__tab-bar">
-        <a href="#colleagues-panel" class="mdl-tabs__tab is-active">
-          <span class="mdl-badge mdl-badge--overlap">Colleagues</span>
-        </a>
-        <a href="#rooms-panel" class="mdl-tabs__tab">
-          <span class="mdl-badge mdl-badge--overlap">Rooms</span>
-        </a>
+          <li class="mdl-menu__item" onclick={{action 'changeState' states.away}}>
+            {{states.away.name}}
+          </li>
+
+          <li class="mdl-menu__item mdl-color--red mdl-color-text--white" onclick={{action 'changeState' states.offline}}>
+            {{states.offline.name}}
+          </li>
+        </ul>
+      </span>
+    </span>
+  </div>
+</div>
+
+<div class="app-chat-sidebar__conversations">
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+      <a href="#colleagues-panel" class="mdl-tabs__tab is-active">
+        <span class="mdl-badge mdl-badge--overlap">Colleagues</span>
+      </a>
+      <a href="#rooms-panel" class="mdl-tabs__tab">
+        <span class="mdl-badge mdl-badge--overlap">Rooms</span>
+      </a>
+    </div>
+
+    <div class="app-chat-sidebar__conversations-panels">
+      <div class="app-chat-sidebar__conversations-panel mdl-tabs__panel is-active" id="colleagues-panel">
+        {{chat-sidebar-colleagues-list users=users}}
       </div>
 
-      <div class="app-chat-sidebar__conversations-panels">
-        <div class="app-chat-sidebar__conversations-panel mdl-tabs__panel is-active" id="colleagues-panel">
-          {{chat-sidebar-colleagues-list users=users}}
-        </div>
-
-        <div class="app-chat-sidebar__conversations-panel mdl-tabs__panel" id="rooms-panel">
-          {{chat-sidebar-rooms-list rooms=rooms}}
-        </div>
+      <div class="app-chat-sidebar__conversations-panel mdl-tabs__panel" id="rooms-panel">
+        {{chat-sidebar-rooms-list rooms=rooms}}
       </div>
     </div>
   </div>
