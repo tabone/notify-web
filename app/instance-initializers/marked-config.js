@@ -2,12 +2,7 @@ export function initialize() {
   // Configure marked library
   marked.setOptions({
     sanitize: true,
-    langPrefix:'hljs ',
-    renderer: getRenderer(),
-    highlight (code, lang) {
-      if (lang === undefined) return hljs.highlightAuto(code).value
-      return hljs.highlight(lang, code).value
-    }
+    renderer: getRenderer()
   })
 
   /**
@@ -19,6 +14,13 @@ export function initialize() {
 
     renderer.heading = (text, level) => {
       return text
+    }
+
+    renderer.code = (code, language) => {
+      code = (language === undefined)
+        ? hljs.highlightAuto(code).value
+        : hljs.highlight(language, code).value
+      return `<pre><code class="hljs lang-${language}">${code}</code></pre>`
     }
 
     return renderer
