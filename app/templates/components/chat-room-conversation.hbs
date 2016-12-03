@@ -1,4 +1,4 @@
-<div class="app-chat-room__messages">
+<div class="app-chat-room-conversation__messages">
   {{#each messages as |message|}}
     <hr/>
     {{chat-message message=message}}
@@ -8,4 +8,4 @@
 {{textarea
   value=message
   key-down="submitMessage"
-  class="app-chat-room__message mdl-color--grey-50"}}
+  class="app-chat-room-conversation__message mdl-color--grey-50"}}

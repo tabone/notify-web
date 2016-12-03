@@ -1,8 +1,15 @@
-.app-chat-room__messages {
+.app-chat-room-conversation {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.app-chat-room-conversation__messages {
   overflow: scroll;
 }
 
-.app-chat-room__message {
+.app-chat-room-conversation__message {
   box-sizing: border-box;
   padding: 10px 16px;
   min-height: 100px;
