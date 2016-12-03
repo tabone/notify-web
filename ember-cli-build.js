@@ -8,6 +8,9 @@ module.exports = function(defaults) {
   });
 
   app.import('bower_components/material-design-lite/material.min.js')
+  app.import('bower_components/marked/marked.min.js')
+  app.import('bower_components/highlightjs/highlight.pack.min.js')
+  app.import('bower_components/highlightjs/styles/monokai-sublime.css')
   app.import('vendor/material-design-lite/style.css')
   app.import('vendor/material-design-lite/icons.css')
   app.import('vendor/fonts/roboto.css')

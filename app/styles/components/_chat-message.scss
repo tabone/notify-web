@@ -17,6 +17,12 @@ $image-message-margin: 16px;
   padding-top: 0.6em;
   margin-right: 0;
   margin-left: $image-message-margin;
+
+  pre {
+    margin: 0;
+    max-height: 30em;
+    overflow:scroll;
+  }
 }
 
 .app-chat-message--recieved {
