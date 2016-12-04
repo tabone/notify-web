@@ -1,7 +1,22 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  className: ['app-login-form'],
+  classNames: ['app-login-form'],
+
+  /**
+   * session will be used to authenticate the user with the provided
+   * credentials.
+   * @type {service:session}
+   */
+  session: Ember.inject.service(),
+
+  /**
+   * routing is used to redirect the user to the app on successful
+   * authentication.
+   * @type {service:-routing}
+   */
+  routing: Ember.inject.service('-routing'),
+
   /**
    * username is binded with the Username Input Field.
    * @type {String}
@@ -19,20 +34,6 @@ export default Ember.Component.extend({
    * @type {String}
    */
   error: null,
-
-  /**
-   * session will be used to authenticate the user with the provided
-   * credentials.
-   * @type {service:session}
-   */
-  session: Ember.inject.service(),
-
-  /**
-   * routing is used to redirect the user to the app on successful
-   * authentication.
-   * @type {service:-routing}
-   */
-  routing: Ember.inject.service('-routing'),
 
   actions: {
     /**
