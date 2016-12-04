@@ -18,7 +18,7 @@ export default Ember.Component.extend({
    * states which the user can choose from.
    * @type {Array{State}}
    */
-  states: {},
+  states: null,
 
   /**
    * panelsTopPosition is the position of the HTML Element containing the tab
@@ -76,10 +76,14 @@ export default Ember.Component.extend({
       Offline: 'offline'
     }
 
-    return this.get('store').peekAll('state')
+    const states = {}
+
+    this.get('store').peekAll('state')
       .forEach(state => {
-        this.set(`states.${stateMap[state.get('name')]}`, state)
+        states[stateMap[state.get('name')]] = state
       })
+
+    this.set('states', states)
   },
 
   handleTabPanelsHeight () {

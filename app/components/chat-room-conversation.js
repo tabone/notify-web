@@ -25,19 +25,25 @@ export default Ember.Component.extend({
    * limit is the total number of records to retrieve on each request
    * @type {Number}
    */
-  limit: 10,
+  limit: null,
 
   /**
    * messages being shown.
    * @type {Array}
    */
-  messages: [],
+  messages: null,
 
   /**
    * message to be sent.
    * @type {String}
    */
   message: null,
+
+  init (...args) {
+    this._super(...args)
+    this.set('limit', 10)
+    this.set('messages', [])
+  }
 
   /**
    * didInsertElement is called when the element of the view has been inserted
