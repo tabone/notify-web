@@ -1,0 +1,15 @@
+.app-chat-invite-dialog__users {
+  height: 220px !important;
+  overflow-y: scroll;
+}
+
+.app-chat-invite-dialog__user {
+  width: 100%;
+  position: relative;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+}
+
+.app-chat-invite-dialog__user:hover {
+  @extend .mdl-color--grey-300;
+}

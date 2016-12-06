@@ -2,6 +2,7 @@
 @import '../../bower_components/material-design-lite/src/_color-definitions';
 @import '../../bower_components/material-design-lite/src/palette/_palette';
 @import 'utils';
+@import 'shims';
 @import 'components/login-page';
 @import 'components/login-form';
 @import 'components/chat-sidebar';
@@ -10,3 +11,4 @@
 @import 'components/chat-message';
 @import 'components/chat-room-info';
 @import 'components/chat-room-conversation';
+@import 'components/chat-invite-dialog';

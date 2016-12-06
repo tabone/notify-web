@@ -1,0 +1,41 @@
+<dialog class="mdl-dialog">
+  <div class="mdl-dialog__content">
+    <div class="app-chat-invite-dialog__filter mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      {{input type="text"
+        id="app-chat-invite-dialog__filter-field"
+        class="mdl-textfield__input"
+        value=filter
+      }}
+
+      <label class="mdl-textfield__label" for="app-chat-invite-dialog__filter-field">Filter users...</label>
+    </div>
+
+    <div class="app-chat-invite-dialog__invites">
+      {{#each invites as |invite|}}
+        <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
+          <img class="mdl-chip__contact" src="/images/{{invite.image}}"/>
+          <span class="mdl-chip__text">{{invite.username}}</span>
+          <button type="button" class="mdl-chip__action">
+            <i class="material-icons" onclick={{action 'remove' invite}}>cancel</i>
+          </button>
+        </span>
+      {{/each}}
+    </div>
+
+    <ul class="app-chat-invite-dialog__users mdl-list">
+      {{#each users as |user|}}
+        <li class="app-chat-invite-dialog__user mdl-list__item" data-username="{{user.username}}" onclick={{action 'add' user}}>
+          <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">person</i>
+            {{user.username}}
+          </span>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="mdl-dialog__actions">
+    <button class="mdl-button" onclick={{action "invite"}}>Invite</button>
+    <button class="mdl-button" onclick={{action "closeDialog"}}>Close</button>
+  </div>
+</dialog>

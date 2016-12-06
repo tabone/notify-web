@@ -7,13 +7,20 @@ module.exports = function(defaults) {
     // Add options here
   });
 
+  // Material Design Lite
   app.import('bower_components/material-design-lite/material.min.js')
-  app.import('bower_components/marked/marked.min.js')
-  app.import('bower_components/highlightjs/highlight.pack.min.js')
-  app.import('bower_components/highlightjs/styles/monokai-sublime.css')
   app.import('vendor/material-design-lite/style.css')
   app.import('vendor/material-design-lite/icons.css')
   app.import('vendor/fonts/roboto.css')
+
+  // Markdown & Syntax Highlighter
+  app.import('bower_components/marked/marked.min.js')
+  app.import('bower_components/highlightjs/highlight.pack.min.js')
+  app.import('bower_components/highlightjs/styles/monokai-sublime.css')
+
+  // Dialog Polyfill
+  app.import('bower_components/dialog-polyfill/dialog-polyfill.js')
+  app.import('bower_components/dialog-polyfill/dialog-polyfill.css')
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
