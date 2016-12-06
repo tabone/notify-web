@@ -43,7 +43,7 @@ export default Ember.Component.extend({
     this._super(...args)
     this.set('limit', 10)
     this.set('messages', [])
-  }
+  },
 
   /**
    * didInsertElement is called when the element of the view has been inserted
