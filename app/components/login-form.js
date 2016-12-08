@@ -45,7 +45,7 @@ export default Ember.Component.extend({
 
       this.get('session').login(username, password)
         .then(() => {
-          this.get('routing').transitionTo('app')
+          this.get('routing').transitionTo('chat')
         })
         .catch((err) => {
           switch (err.status) {
