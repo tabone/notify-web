@@ -9,7 +9,7 @@ export default Ember.Route.extend({
 
   beforeModel () {
     // If the user is trying to access the login page while already
-    // authenticated, he should be redirected to the app.
-    if (this.get('session').isLoggedIn() === true) this.transitionTo('app')
+    // authenticated, he should be redirected to the chat.
+    if (this.get('session').isLoggedIn() === true) this.transitionTo('chat')
   }
 });
