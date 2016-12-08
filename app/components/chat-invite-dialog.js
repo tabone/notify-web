@@ -66,7 +66,6 @@ export default Ember.Component.extend({
   polyfillDialog () {
     const dialog = this.$('dialog')[0]
     if (dialog.showModal === undefined) dialogPolyfill.registerDialog(dialog)
-    dialog.showModal()
   },
 
   /**
