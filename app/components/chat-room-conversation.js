@@ -16,10 +16,10 @@ export default Ember.Component.extend({
   session: Ember.inject.service(),
 
   /**
-   * roomCache is used to cache messages by room.
-   * @type {service:roomCache}
+   * messageCache is used to cache messages by room.
+   * @type {service:messageCache}
    */
-  roomCache: Ember.inject.service(),
+  messageCache: Ember.inject.service(),
 
   /**
    * limit is the total number of records to retrieve on each request
@@ -72,7 +72,7 @@ export default Ember.Component.extend({
     const roomID = this.get('room.id')
 
     // First retrieve and display the cached messages.
-    const messages = this.get('roomCache').read(roomID)
+    const messages = this.get('messageCache').read(roomID)
     this.set('messages', messages)
 
     // Once we have displayed the cached messages, we will check if there is
@@ -97,7 +97,7 @@ export default Ember.Component.extend({
       }
     })
     .then(messages => {
-      this.get('roomCache').cache(roomID, ...messages.toArray())
+      this.get('messageCache').cache(roomID, ...messages.toArray())
     })
   },
 
@@ -132,7 +132,7 @@ export default Ember.Component.extend({
         })
         .save()
         .then((message) => {
-          this.get('roomCache').cache(this.get('room.id'), message)
+          this.get('messageCache').cache(this.get('room.id'), message)
           this.set('message', null)
         })
     }

@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('service:room-cache', 'Unit | Service | room cache', {
+moduleFor('service:message-cache', 'Unit | Service | message cache', {
   // Specify the other units that are required for this test.
   // needs: ['service:foo']
 });
