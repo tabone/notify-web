@@ -14,6 +14,12 @@ export default Ember.Route.extend({
    */
   socket: Ember.inject.service(),
 
+  /**
+   * privateRoomCache is used to cache private rooms by the friend id.
+   * @type {service:private-room-cache}
+   */
+  privateRoomCache: Ember.inject.service(),
+
   beforeModel () {
     // If the user is trying to access the app while not authenticated, he
     // should be redirected to the login page.
@@ -43,6 +49,10 @@ export default Ember.Route.extend({
             id: this.get('session').get('user').get('id')
           }
         }
+      }).then(rooms => {
+        // Store room if it is a private room.
+        rooms.forEach(room => this.get('privateRoomCache').cache(room))
+        return rooms
       })
     })
   }
