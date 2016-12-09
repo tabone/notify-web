@@ -44,14 +44,14 @@ export default DS.Model.extend({
     // In case the room hasn't got a name, the app should concatinate the
     // usernames of the members (excluding the logged in user) and use it as the
     // name for the room.
-    const session = this.get('session')
+    const user = this.get('session.user')
     name = []
 
-    const users = this.get('users')
+    const friends = this.get('users')
 
-    users.forEach(user => {
-      if (user === session.get('user')) return
-      name.push(user.get('username'))
+    friends.forEach(friend => {
+      if (friend === user) return
+      name.push(friend.get('username'))
     })
 
     return name.join(', ')
@@ -68,12 +68,12 @@ export default DS.Model.extend({
 
     // In case the room hasn't got an image, the app should use a random image
     // of a member (excluding the logged in user).
-    const session = this.get('session')
+    const user = this.get('session.user')
     const users = this.get('users')
 
     let userIndex = 0
-    if (users.objectAt(userIndex) === session.get('user')) userIndex++
-    console.log(users.objectAt(userIndex).get('image'))
+    if (users.objectAt(userIndex) === user) userIndex++
+    if (users.objectAt(userIndex) === undefined) return null
     return users.objectAt(userIndex).get('image')
   })
 });
