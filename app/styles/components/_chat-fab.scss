@@ -1,0 +1,12 @@
+.app-chat-fab {
+  position: fixed;
+  right: 2.5em;
+  bottom: 2em;
+  z-index: 1000;
+  opacity: .5;
+  transition: opacity 0.5s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}

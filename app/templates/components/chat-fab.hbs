@@ -1,0 +1,10 @@
+<button id="app-chat-fab__button" class="app-chat-fab__button mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect">
+  <i class="material-icons">view_list</i>
+</button>
+
+<ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
+    data-mdl-for="app-chat-fab__button">
+  <li class="mdl-menu__item" onclick={{action "openRoomCreationDialog"}}>Create Room</li>
+</ul>
+
+{{chat-room-creation-dialog}}
