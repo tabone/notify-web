@@ -11,13 +11,6 @@ export default Ember.Component.extend({
   session: Ember.inject.service(),
 
   /**
-   * routing is used to redirect the user to the app on successful
-   * authentication.
-   * @type {service:-routing}
-   */
-  routing: Ember.inject.service('-routing'),
-
-  /**
    * username is binded with the Username Input Field.
    * @type {String}
    */
@@ -45,7 +38,7 @@ export default Ember.Component.extend({
 
       this.get('session').login(username, password)
         .then(() => {
-          this.get('routing').transitionTo('chat')
+          this.get('router').transitionTo('chat')
         })
         .catch((err) => {
           switch (err.status) {
