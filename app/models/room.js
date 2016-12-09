@@ -39,7 +39,7 @@ export default DS.Model.extend({
     let name = this.get('name')
 
     // If the room has been assigned a name, use the assigned name.
-    if (name !== null) return name
+    if (name != null) return name
 
     // In case the room hasn't got a name, the app should concatinate the
     // usernames of the members (excluding the logged in user) and use it as the
@@ -64,7 +64,7 @@ export default DS.Model.extend({
     let image = this.get('image')
 
     // If the room has been assigned an image, use the assigned image.
-    if (image !== null) return image
+    if (image != null) return image
 
     // In case the room hasn't got an image, the app should use a random image
     // of a member (excluding the logged in user).
