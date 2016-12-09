@@ -1,5 +1,7 @@
 <div class="mdl-list">
   {{#each rooms as |room|}}
-    {{chat-room-item room=room}}
+    {{#unless room.isNew}}
+      {{chat-room-item room=room}}
+    {{/unless}}
   {{/each}}
 </div>
