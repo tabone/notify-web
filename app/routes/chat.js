@@ -43,13 +43,7 @@ export default Ember.Route.extend({
       }),
 
       // Retrieve all the rooms which the current logged in user is a member of.
-      rooms: this.get('store').query('room', {
-        filter: {
-          users: {
-            id: this.get('session').get('user').get('id')
-          }
-        }
-      }).then(rooms => {
+      rooms: this.get('store').findAll('room').then(rooms => {
         // Store room if it is a private room.
         rooms.forEach(room => this.get('privateRoomCache').cache(room))
         return rooms
