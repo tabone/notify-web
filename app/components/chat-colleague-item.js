@@ -10,26 +10,24 @@ export default Ember.Component.extend({
   /**
    * room is the private room of the user being displayed and the logged in
    * user.
-   * @type {[type]}
+   * @type {Record}
    */
   room: null,
 
-  init (...args) {
-    this._super(...args)
-
+  actions: {
     /**
-     * friendID is the user id of the friend clicked.
-     * @type {String}
+     * openRoom opens the private room between the user this component is
+     * representing and the logged in user.
      */
-    const friendID = this.get('user.id')
+    openRoom () {
+      let room = this.get('room')
 
-    /**
-     * room is the private room of the logged in user and the friend.
-     * @type {Record}
-     */
-    const room = this.get('privateRoomCache').read(friendID)
+      if (room === null) {
+        room = this.get('privateRoomCache').read(this.get('user.id'))
+      }
 
-    // Store private room.
-    this.set('room', room)
+      this.set('room', room)
+      this.get('router').transitionTo('chat.room', room)
+    }
   }
 });

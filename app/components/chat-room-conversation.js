@@ -68,6 +68,10 @@ export default Ember.Component.extend({
    *                         retrieved.
    */
   showMessages (offset = 0) {
+    // When the room is not persisted, flush any messages currently being
+    // displayed and do nothing.
+    if (this.get('room.isNew')) return this.set('messages', [])
+
     // The id of the room the user is in.
     const roomID = this.get('room.id')
 
@@ -117,20 +121,30 @@ export default Ember.Component.extend({
       // inside the message.
       event.preventDefault()
 
-      // submit the message
-      let content = this.get('message')
-
+      // Validate the message.
+      const content = this.get('message')
       if (content == null || content.length === 0) return null
 
-      // Create and persist message
-      return this.get('store')
-        .createRecord('message', {
-          content: content,
-          deleted: false,
-          user: this.get('session').get('user'),
-          room: this.get('room')
+      // Before submitting the message we need to make sure that the room the
+      // message is going to be written in is persisted.
+      const room = this.get('room')
+
+      const roomPersisted = (room.get('isNew'))
+        ? room.save()
+        : Promise.resolve()
+
+      // Create and persist message.
+      return roomPersisted
+        .then(() => {
+          return this.get('store')
+            .createRecord('message', {
+              content: content,
+              deleted: false,
+              user: this.get('session').get('user'),
+              room: this.get('room')
+            })
+            .save()
         })
-        .save()
         .then((message) => {
           this.get('messageCache').cache(this.get('room.id'), message)
           this.set('message', null)
