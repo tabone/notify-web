@@ -53,7 +53,8 @@ export default Ember.Service.extend({
   },
 
   /**
-   * read cached private room.
+   * read cached private room. When requesting a private room that does not
+   * exists a new one is created.
    * @param  {String} friendID The id of the friend.
    * @return {Record}          Private room instance.
    */
@@ -65,9 +66,13 @@ export default Ember.Service.extend({
     const user = this.get('session.user')
     const friend = store.peekRecord('user', friendID)
 
-    return store.createRecord('room', {
+    const room = store.createRecord('room', {
       private: true,
       users: [user, friend]
     })
+
+    this.cache(room)
+
+    return room
   }
 });
