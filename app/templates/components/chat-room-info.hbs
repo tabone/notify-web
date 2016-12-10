@@ -15,19 +15,19 @@
 </div>
 
 <div class="chat-room-info__section">
-  <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
-      <i class="material-icons" onclick={{action "showInviteDialog"}}>add</i>
+  <div class="app-room-info__actions">
+    <div class="app-room-info__action">
+      <i class="material-icons" tabindex="0" onclick={{action "showInviteDialog"}}>add</i>
     </div>
-    <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
-      <i class="material-icons">mic</i>
+    <div class="app-room-info__action">
+      <i class="material-icons" tabindex="0">mic</i>
     </div>
-    <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
-      <i class="material-icons">videocam</i>
+    <div class="app-room-info__action">
+      <i class="material-icons" tabindex="0">videocam</i>
     </div>
     {{#unless room.private}}
-      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
-        <i class="material-icons" onclick={{action "leaveRoom"}}>close</i>
+      <div class="app-room-info__action">
+        <i class="material-icons" tabindex="0" onclick={{action "leaveRoom"}}>close</i>
       </div>
     {{/unless}}
   </div>
