@@ -25,9 +25,11 @@
     <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
       <i class="material-icons">videocam</i>
     </div>
-    <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
-      <i class="material-icons">close</i>
-    </div>
+    {{#unless room.private}}
+      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone mdl-typography--text-center">
+        <i class="material-icons" onclick={{action "leaveRoom"}}>close</i>
+      </div>
+    {{/unless}}
   </div>
 </div>
 
