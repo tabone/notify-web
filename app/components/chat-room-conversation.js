@@ -68,12 +68,26 @@ export default Ember.Component.extend({
    *                         retrieved.
    */
   showMessages (offset = 0) {
-    // When the room is not persisted, flush any messages currently being
-    // displayed and do nothing.
-    if (this.get('room.isNew')) return this.set('messages', [])
+    /**
+     * room in which the message will be created in.
+     * @type {Record}
+     */
+    const room = this.get('room')
+
+    // When the record is new (i.e. id === null) there won't be the need to
+    // retrieve its messages. However when it gets persisted (ex. when the user
+    // submits a message) we need to reinvoke the showMessages to start caching
+    // the messages of the room inside the message-cache service.
+    if (room.get('id') === null) {
+      room.addObserver('id', this, this.showMessages)
+      return
+    }
+    
+    // Remove the showMessages observer from the id.
+    room.removeObserver('id', this, this.showMessages)
 
     // The id of the room the user is in.
-    const roomID = this.get('room.id')
+    const roomID = room.get('id')
 
     // First retrieve and display the cached messages.
     const messages = this.get('messageCache').read(roomID)
