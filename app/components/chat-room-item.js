@@ -1,5 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['app-chat-room-item']
+  /**
+   * tagName of the root element.
+   * @type {String}
+   */
+  tagName: 'li',
+
+  /**
+   * classNames of the root element.
+   * @type {Array}
+   */
+  classNames: ['app-chat-room-item'],
 });

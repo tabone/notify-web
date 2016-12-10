@@ -1,7 +1,7 @@
-<div class="mdl-list">
+<ul class="mdl-list">
   {{#each rooms as |room|}}
     {{#unless room.isNew}}
       {{chat-room-item room=room}}
     {{/unless}}
   {{/each}}
-</div>
+</ul>

@@ -1,7 +1,7 @@
-<div class="mdl-list">
+<ul class="mdl-list">
   {{#each users as |user|}}
     {{#unless user.bot}}
       {{chat-colleague-item user=user}}
     {{/unless}}
   {{/each}}
-</div>
+</ul>

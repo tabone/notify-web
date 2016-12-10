@@ -1,16 +1,14 @@
-<div class="mdl-list__item mdl-list__item--two-line" onclick={{action "openRoom"}}>
-  <span class="mdl-list__item-primary-content">
-    <span class="mdl-list__item-avatar">
-      <img
-        class="app--circularize app--full-width"
-        src="/images/{{user.image}}"
-        alt="{{user.username}} profile picture"/>
-    </span>
-    <span>{{user.username}}</span>
-    <span class="mdl-list__item-sub-title">
-      {{user.state.name}}
-    </span>
+<span class="mdl-list__item-primary-content">
+  <span class="mdl-list__item-avatar">
+    <img
+      class="app--circularize app--full-width"
+      src="/images/{{user.image}}"
+      alt="{{user.username}} profile picture"/>
   </span>
+  <span>{{user.username}}</span>
+  <span class="mdl-list__item-sub-title">
+    {{user.state.name}}
+  </span>
+</span>
 
-  {{yield}}
-</div>
+{{yield}}
