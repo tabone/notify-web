@@ -44,6 +44,20 @@ export default Ember.Component.extend({
    * into the DOM or after the view was re-rendered.
    */
   didInsertElement () {
+    this.doSetup()
+  },
+
+  /**
+   * didUpdateAttrs runs when the attributes of a component have changed.
+   */
+  didUpdateAttrs () {
+    this.doSetup()
+  },
+
+  /**
+   * doSetup sets up the dialog.
+   */
+  doSetup () {
     this.polyfillDialog()
     this.upgradeElements()
     this.setupObservers()
