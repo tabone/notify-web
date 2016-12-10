@@ -3,12 +3,12 @@
     <span class="mdl-list__item">
       <span class="mdl-list__item-primary-content">
         <span class="mdl-list__item-avatar">
-          <img class="app--circularize app--full-width" src="/images/{{room.uiImage}}" alt="User profile picture"/>
+          <img class="app--circularize app--full-width" src="/images/{{room.uiImage}}" alt="{{room.uiName}} room picture"/>
         </span>
         <span>{{room.uiName}}</span>
       </span>
       <span class="mdl-list__item-secondary-action">
-        {{#link-to 'chat'}}<i class="material-icons">close</i>{{/link-to}}
+        {{#link-to 'chat' title='Close room'}}<i class="material-icons">close</i>{{/link-to}}
       </span>
     </span>
   </div>

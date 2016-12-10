@@ -13,7 +13,7 @@
     <div class="app-chat-invite-dialog__invites">
       {{#each invites as |invite|}}
         <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
-          <img class="mdl-chip__contact" src="/images/{{invite.image}}"/>
+          <img class="mdl-chip__contact" src="/images/{{invite.image}}" alt="{{invite.username}} profile picture"/>
           <span class="mdl-chip__text">{{invite.username}}</span>
           <button type="button" class="mdl-chip__action">
             <i class="material-icons" onclick={{action 'remove' invite}}>cancel</i>

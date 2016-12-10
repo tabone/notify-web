@@ -1,7 +1,7 @@
-{{#link-to "chat.room" room class="app-chat-room-item__link mdl-list__item mdl-js-ripple-effect"}}
+{{#link-to "chat.room" room title="Open room" class="app-chat-room-item__link mdl-list__item mdl-js-ripple-effect"}}
   <span class="mdl-list__item-primary-content">
     <span class="mdl-list__item-avatar">
-      <img class="app--circularize app--full-width" src="/images/{{room.uiImage}}" alt="User profile picture"/>
+      <img class="app--circularize app--full-width" src="/images/{{room.uiImage}}" alt="{{room.uiName}} room picture"/>
     </span>
     <span>{{room.uiName}}</span>
   </span>

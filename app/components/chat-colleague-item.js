@@ -33,10 +33,27 @@ export default Ember.Component.extend({
   tabindex: '0',
 
   /**
-   * click opens the private room between the user this component is showing and
-   * the logged in user.
+   * click is invoked when the user clicks on the element.
    */
   click () {
+    this.openRoom()
+  },
+
+  /**
+   * keyDown is invoked when the user types something when he is focusing the
+   * element.
+   */
+  keyDown () {
+    // When the user hits the 'Enter' key, it should open the private room
+    // between the logged in user and the user this component is showing.
+    if (event.keyCode === 13) this.openRoom()
+  },
+
+  /**
+   * openRoom opens the private room between the user this component is showing
+   * and the logged in user.
+   */
+  openRoom () {
     let room = this.get('room')
 
     if (room === null) {
