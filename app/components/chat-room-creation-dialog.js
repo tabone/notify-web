@@ -3,10 +3,22 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNames: ['app-chat-room-creation-dialog'],
 
-  session: Ember.inject.service(),
-
+  /**
+   * store service to query the Ember Data Repository.
+   * @type {Store}
+   */
   store: Ember.inject.service(),
 
+  /**
+   * session is used to get the details of the current logged in user.
+   * @type {service:session}
+   */
+  session: Ember.inject.service(),
+
+  /**
+   * name of the new room.
+   * @type {String}
+   */
   name: null,
 
   /**
