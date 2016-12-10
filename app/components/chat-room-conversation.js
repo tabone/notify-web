@@ -80,6 +80,7 @@ export default Ember.Component.extend({
     // the messages of the room inside the message-cache service.
     if (room.get('id') === null) {
       room.addObserver('id', this, this.showMessages)
+      this.set('messages', null)
       return
     }
     
