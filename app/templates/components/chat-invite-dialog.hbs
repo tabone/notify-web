@@ -24,12 +24,14 @@
 
     <ul class="app-chat-invite-dialog__users mdl-list">
       {{#each users as |user|}}
-        <li class="app-chat-invite-dialog__user mdl-list__item" data-username="{{user.username}}" onclick={{action 'add' user}}>
-          <span class="mdl-list__item-primary-content">
-            <i class="material-icons mdl-list__item-icon">person</i>
-            {{user.username}}
-          </span>
-        </li>
+        {{#unless user.bot}}
+          <li class="app-chat-invite-dialog__user mdl-list__item" data-username="{{user.username}}" onclick={{action 'add' user}}>
+            <span class="mdl-list__item-primary-content">
+              <i class="material-icons mdl-list__item-icon">person</i>
+              {{user.username}}
+            </span>
+          </li>
+        {{/unless}}
       {{/each}}
     </ul>
   </div>
