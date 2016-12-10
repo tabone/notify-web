@@ -86,11 +86,13 @@ export default Ember.Component.extend({
     // Remove the showMessages observer from the id.
     room.removeObserver('id', this, this.showMessages)
 
-    // The id of the room the user is in.
-    const roomID = room.get('id')
-
     // First retrieve and display the cached messages.
-    const messages = this.get('messageCache').read(roomID)
+    const messages = this.get('messageCache').read(room)
+
+    // If nothing is read from the message cache, stop process.
+    if (messages === null) return
+
+    // Else store cached messages returned.
     this.set('messages', messages)
 
     // Once we have displayed the cached messages, we will check if there is
@@ -107,7 +109,7 @@ export default Ember.Component.extend({
 
     return this.get('store').query('message', {
       filter: {
-        room: roomID
+        room: room.get('id')
       },
       page: {
         limit,
@@ -115,7 +117,7 @@ export default Ember.Component.extend({
       }
     })
     .then(messages => {
-      this.get('messageCache').cache(roomID, ...messages.toArray())
+      this.get('messageCache').cache(room, ...messages.toArray())
     })
   },
 
@@ -160,7 +162,7 @@ export default Ember.Component.extend({
             .save()
         })
         .then((message) => {
-          this.get('messageCache').cache(this.get('room.id'), message)
+          this.get('messageCache').cache(this.get('room'), message)
           this.set('message', null)
         })
     }

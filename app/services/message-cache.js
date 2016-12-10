@@ -9,12 +9,12 @@ export default Ember.Service.extend({
 
   /**
    * cache messages for a room.
-   * @param  {String}     roomID    ID of the room the messages belong in.
+   * @param  {Record} room   The room to read the cached messages from.
    * @param  {...[Model]} messages  Message model to be cached.
    * @return {Array}      All cached messages of the room specified.
    */
-  cache (roomID, ...messages) {
-    const key = `messages.${roomID}`
+  cache (room, ...messages) {
+    const key = `messages.${room.get('id')}`
     if (this.get(key) === undefined) this.set(key, [])
     const cachedMessages = this.get(key)
 
@@ -27,12 +27,12 @@ export default Ember.Service.extend({
 
   /**
    * read cached messages of a room.
-   * @param  {String} roomID ID of the room to read the cached messages from.
+   * @param  {Record} room   The room to read the cached messages from.
    * @return {Array}         All cached messages of the room specified.
    */
-  read (roomID) {
-    const key = `messages.${roomID}`
+  read (room) {
+    const key = `messages.${room.get('id')}`
     if (this.get(key) === undefined) this.set(key, [])
-    return this.get(`messages.${roomID}`)
+    return this.get(key)
   }
 });
