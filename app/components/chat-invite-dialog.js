@@ -33,19 +33,10 @@ export default Ember.Component.extend({
    */
   filter: null,
 
-  /**
-   * binds contains binded functions.
-   * @type {Object}
-   */
-  binds: {
-    doFilter: null
-  },
-
   init (...args) {
     this._super(...args)
     this.set('invites', [])
     this.set('allUsers', this.get('store').peekAll('user'))
-    this.set('binds.doFilter', this.doFilter.bind(this))
   },
 
   /**
@@ -80,8 +71,8 @@ export default Ember.Component.extend({
    * of users who can be invited is updated.
    */
   setupObservers () {
-    this.addObserver('filter', this.get('binds.doFilter'))
-    this.addObserver('invites.[]', this.get('binds.doFilter'))
+    this.addObserver('filter', this, this.doFilter)
+    this.addObserver('invites.[]', this, this.doFilter)
   },
 
   /**
