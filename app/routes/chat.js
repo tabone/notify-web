@@ -36,11 +36,7 @@ export default Ember.Route.extend({
 
       // Retrieve all non bot users, the current logged in user can interact
       // with.
-      users: this.get('store').query('user', {
-        filter: {
-          bot: false
-        }
-      }),
+      users: this.get('store').findAll('user'),
 
       // Retrieve all the rooms which the current logged in user is a member of.
       rooms: this.get('store').findAll('room').then(rooms => {
