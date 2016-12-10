@@ -14,6 +14,9 @@ export default Ember.Service.extend({
    * @return {Array}      All cached messages of the room specified.
    */
   cache (room, ...messages) {
+    // Make sure that id is not null.
+    if (room.get('id') === null) return null
+
     const key = `messages.${room.get('id')}`
     if (this.get(key) === undefined) this.set(key, [])
     const cachedMessages = this.get(key)
@@ -31,6 +34,9 @@ export default Ember.Service.extend({
    * @return {Array}         All cached messages of the room specified.
    */
   read (room) {
+    // Make sure that id is not null.
+    if (room.get('id') === null) return null
+
     const key = `messages.${room.get('id')}`
     if (this.get(key) === undefined) this.set(key, [])
     return this.get(key)
