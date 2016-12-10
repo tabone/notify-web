@@ -130,13 +130,39 @@ export default Ember.Component.extend({
     },
 
     /**
-     * invite invites the selected users.
+     * invite invites the selected users. If an invitation is done from a
+     * private room, a new public room is created.
      */
     invite () {
-      if (this.get('invites.length') === 0) return
-      this.get('room.users').pushObjects(this.get('invites'))
-      this.get('room').save()
-      this.$('dialog')[0].close()
+      // Store invited users.
+      const invites = this.get('invites')
+      // If no invites were issued, do nothing.
+      if (invites.get('length') === 0) return
+
+      // Store the room the invites were done in.
+      const room = this.get('room')
+
+      // If the room is not a private room, include the invited users in the
+      // room.
+      if (room.get('private') === false) {
+        this.get('room.users').pushObjects(invites)
+        this.get('room').save()
+        this.$('dialog')[0].close()
+        return
+      }
+
+      // If the room is a private room, create a new public room with:
+      //   * The users of the private room.
+      //   * The invited users.
+      return this.get('store').createRecord('room', {
+        private: false,
+        users: invites.concat(this.get('room.users').toArray())
+      })
+      .save()
+      .then((newRoom) => {
+        this.$('dialog')[0].close()
+        this.get('router').transitionTo('chat.room', newRoom)
+      })
     }
   }
 });
