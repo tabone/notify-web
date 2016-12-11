@@ -26,6 +26,12 @@ export default Ember.Service.extend({
   messageCache: Ember.inject.service(),
 
   /**
+   * privateRoomCache is used to cache private rooms by the friend id.
+   * @type {service:private-room-cache}
+   */
+  privateRoomCache: Ember.inject.service(),
+
+  /**
    * connect to WebSocket server.
    */
   connect () {
@@ -39,6 +45,12 @@ export default Ember.Service.extend({
         // cache service.
         case 'message': {
           this.get('messageCache').cache(model.get('room'), model)
+          break
+        }
+        case 'room': {
+          if (model.get('private') === true) {
+            this.get('privateRoomCache').cache(model)
+          }
           break
         }
       }
