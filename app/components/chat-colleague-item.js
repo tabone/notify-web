@@ -11,7 +11,11 @@ export default Ember.Component.extend({
    * classNames of the root element.
    * @type {Array}
    */
-  classNames: ['mdl-list__item', 'mdl-list__item--two-line'],
+  classNames: [
+    'app-chat-colleague-item',
+    'mdl-list__item',
+    'mdl-list__item--two-line'
+  ],
 
   /**
    * attributeBindings binds the instance fields with the root element
