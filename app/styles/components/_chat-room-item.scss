@@ -2,9 +2,10 @@
   position: relative;
   text-decoration: none;
   transition: background-color 0.5s ease;
+  outline: none;
 }
 
-.app-chat-room-item__link:hover {
+.app-chat-room-item__link:hover, .app-chat-room-item__link:focus {
   @extend .mdl-color--grey-300;
 }
 
