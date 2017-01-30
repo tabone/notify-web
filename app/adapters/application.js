@@ -1,5 +1,8 @@
 import DS from 'ember-data';
 
+/**
+ * Extend the default JSONAPI Adapter.
+ */
 export default DS.JSONAPIAdapter.extend({
   /**
    * configuration object.
@@ -13,19 +16,12 @@ export default DS.JSONAPIAdapter.extend({
    */
   host: null,
 
+  /**
+   * init is invoked when the object is initialized.
+   */
   init (...args) {
-    this.set('host', this.get('config').get('api').url)
     this._super(...args)
-  },
-
-  // ajax is the method which the app will be using to request for JSONAPI
-  // resources.
-  ajax(url, method, hash) {
-    hash = hash || {}
-    hash.crossDomain = true
-    hash.xhrFields = {
-      withCredentials: true
-    }
-    return this._super(url, method, hash);
+    // Set the host of JSONAPI Server.
+    this.set('host', this.get('config.api.url'))
   }
 });
