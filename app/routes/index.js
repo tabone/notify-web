@@ -7,13 +7,16 @@ export default Ember.Route.extend({
    */
   session: Ember.inject.service(),
 
+  /**
+   * beforeModel hook is the first of the route entry validation hooks called.
+   */
   beforeModel () {
-    // If the user is trying to access the login page while already
-    // authenticated, he should be redirected to the chat.
+    // When the user enters the index page, if he is logged in, he should be
+    // redirected to the app, else to the login page.
     if (this.get('session').isLoggedIn() === true) {
       this.transitionTo('chat')
     } else {
-      window.location = '/login'
+      window.location.assign('/login')
     }
   }
 });

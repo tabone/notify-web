@@ -20,22 +20,23 @@ export default Ember.Route.extend({
    */
   privateRoomCache: Ember.inject.service(),
 
+  /**
+   * beforeModel hook is the first of the route entry validation hooks called.
+   */
   beforeModel () {
-    // If the user is trying to access the app while not authenticated, he
-    // should be redirected to the login page.
-    if (this.get('session').isLoggedIn() === false) this.transitionTo('index')
-
     // Connect with WebSocket server.
     return this.get('socket').connect()
   },
 
+  /**
+   * model hook is used to convert the url to a model.
+   */
   model () {
     return RSVP.hash({
       // Retrieve and cache all states.
       states: this.get('store').findAll('state'),
 
-      // Retrieve all non bot users, the current logged in user can interact
-      // with.
+      // Retrieve all users.
       users: this.get('store').findAll('user'),
 
       // Retrieve all the rooms which the current logged in user is a member of.

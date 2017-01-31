@@ -7,9 +7,13 @@ export default Ember.Route.extend({
    */
   session: Ember.inject.service(),
 
+  /**
+   * beforeModel hook is the first of the route entry validation hooks called.
+   */
   beforeModel () {
-    // Try to login using cookie (if any).
+    // Each time the user enters the app, the app should check if he is
+    // authorized. If he isn't he should be redirected to the login page.
     return this.get('session').login()
-      .catch(() => {})
+      .catch(() => { window.location.assign('/login') })
   }
 });
