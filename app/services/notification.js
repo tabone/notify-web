@@ -1,14 +1,21 @@
 import Ember from 'ember';
 
+/**
+ * Service used to push a notification to get displayed to the user.
+ */
 export default Ember.Service.extend({
   /**
-   * listeners to be invoked when a new notification is emitted.
+   * listeners to be notified on a new notification.
    * @type {Array}
    */
   listeners: null,
 
+  /**
+   * init is invoked when the object is initialized.
+   */
   init (...args) {
     this._super(...args)
+    // Initialize the listeners array.
     this.set('listeners', [])
   },
 

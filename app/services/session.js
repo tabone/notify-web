@@ -1,5 +1,8 @@
 import Ember from 'ember';
 
+/**
+ * Service used to manage the session.
+ */
 export default Ember.Service.extend({
   /**
    * configuration object.
@@ -8,13 +11,13 @@ export default Ember.Service.extend({
   config: Ember.inject.service(),
 
   /**
-   * store used to retrieve the user object of the logged in user.
+   * store service to query the Ember Data Repository.
    * @type {service:store}
    */
   store: Ember.inject.service(),
 
   /**
-   * user of the logged in user.
+   * user record of the logged in user.
    * @type {String}
    */
   user: null,
@@ -35,12 +38,9 @@ export default Ember.Service.extend({
    */
   login (username, password) {
     return $.ajax({
-      url: this.get('config').get('auth').url,
+      url: this.get('config.auth.url'),
       method: 'POST',
       dataType: 'json',
-      xhrFields: {
-        withCredentials: true
-      },
       data: {
         username: username,
         password: password
@@ -56,7 +56,6 @@ export default Ember.Service.extend({
 
   /**
    * logout the user.
-   * @return {[type]} [description]
    */
   logout () {
     this.set('user', null)

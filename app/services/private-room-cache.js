@@ -1,5 +1,8 @@
 import Ember from 'ember';
 
+/**
+ * This service is used to index the private rooms by the friend id.
+ */
 export default Ember.Service.extend({
   /**
    * session is used to get the details of the current logged in user.
@@ -20,10 +23,11 @@ export default Ember.Service.extend({
   rooms: {},
 
   /**
-   * cache room if it is a private room.
+   * cache room only if it is a private room.
    * @param  {Record} room The room to be cached.
    */
   cache (room) {
+    // Don't cache room if room to be cached is not a private room.
     if (room.get('private') !== true) return
 
     // A private room should only have 2 members.
@@ -49,28 +53,36 @@ export default Ember.Service.extend({
       ? users.get('lastObject')
       : users.get('firstObject')
 
+    // Cache room by the friend's id.
     this.set(`rooms.${friend.id}`, room)
   },
 
   /**
-   * read cached private room. When requesting a private room that does not
-   * exists a new one is created.
+   * read cached private room.
    * @param  {String} friendID The id of the friend.
    * @return {Record}          Private room instance.
    */
   read (friendID) {
     const key = `rooms.${friendID}`
+
+    // Return private room if it is cached.
     if (this.get(key) !== undefined) return this.get(key)
+
+    // If it isn't we need to create it
     const store = this.get('store')
 
+    // Retrieve looged in user.
     const user = this.get('session.user')
+    // Retrieved friend.
     const friend = store.peekRecord('user', friendID)
 
+    // Create room with logged in user & his friend.
     const room = store.createRecord('room', {
       private: true,
       users: [user, friend]
     })
 
+    // Cache the room created.
     this.cache(room)
 
     return room
