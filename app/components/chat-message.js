@@ -1,7 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  /**
+   * classNames to be added to the root element of the component.
+   * @type {Array}
+   */
   classNames: ['app-chat-message'],
+
   /**
    * content is the rendered markdown of the message.
    * @type {String}

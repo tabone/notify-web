@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   tagName: 'li',
 
   /**
-   * classNames of the root element.
+   * classNames to be added to the root element of the component.
    * @type {Array}
    */
   classNames: [

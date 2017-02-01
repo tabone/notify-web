@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  /**
+   * classNames to be added to the root element of the component.
+   * @type {Array}
+   */
   classNames: ['chat-room-info'],
 
   /**
