@@ -1,7 +1,5 @@
 <ul class="mdl-list">
-  {{#each users as |user|}}
-    {{#unless user.bot}}
-      {{chat-colleague-item user=user}}
-    {{/unless}}
+  {{#each friends as |user|}}
+    {{chat-colleague-item user=user}}
   {{/each}}
 </ul>
