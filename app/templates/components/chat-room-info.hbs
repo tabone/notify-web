@@ -40,11 +40,7 @@
 
   <hr/>
 
-  <ul class="mdl-list">
-    {{#each room.users as |user| }}
-      {{chat-colleague-item user=user}}
-    {{/each}}
-  </ul>
+  {{chat-sidebar-colleagues-list users=room.users}}
 </div>
 
 {{chat-invite-dialog room=room}}
