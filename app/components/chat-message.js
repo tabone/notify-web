@@ -13,6 +13,9 @@ export default Ember.Component.extend({
    */
   content: null,
 
+  /**
+   * init is invoked when the object is initialized.
+   */
   init (...args) {
     this._super(...args)
     // Render the markdown of the message.

@@ -43,6 +43,9 @@ export default Ember.Component.extend({
    */
   message: null,
 
+  /**
+   * init is invoked when the object is initialized.
+   */
   init (...args) {
     this._super(...args)
     this.set('limit', 10)

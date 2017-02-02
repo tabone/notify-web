@@ -54,6 +54,9 @@ export default Ember.Component.extend({
     resizePanels: null
   },
 
+  /**
+   * init is invoked when the object is initialized.
+   */
   init (...args) {
     this._super(args)
     // Setup states
