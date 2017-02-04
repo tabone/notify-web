@@ -61,6 +61,7 @@ export default DS.Model.extend({
    * uiImage is the image name used in the UI.
    */
   uiImage: Ember.computed('image', function () {
+    // Get room image
     let image = this.get('image')
 
     // If the room has been assigned an image, use the assigned image.
@@ -71,9 +72,24 @@ export default DS.Model.extend({
     const user = this.get('session.user')
     const users = this.get('users')
 
-    let userIndex = 0
-    if (users.objectAt(userIndex) === user) userIndex++
-    if (users.objectAt(userIndex) === undefined) return null
-    return users.objectAt(userIndex).get('image')
+    for (let index = 0; index < users.length; index++) {
+      // Ignore user if it is the logged in user.
+      if (users.objectAt(index) === user) continue
+
+      // Retrieve user image.
+      const userImage = users.objectAt(index).get('image')
+
+      // Ignore user if he doesn't have an image.
+      if (userImage == null) continue
+
+      // Set image.
+      image = userImage
+    }
+
+    // If there is a member who has an image, return his image.
+    if (image != null) retur image
+
+    // Else return the default image.
+    return 'no-conversation-image.png'
   })
 });

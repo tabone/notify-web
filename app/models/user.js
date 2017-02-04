@@ -42,5 +42,19 @@ export default DS.Model.extend({
    */
   unread: DS.hasMany('message', {
     inverse: 'unread'
+  }),
+
+  /**
+   * uiImage is the image name used in the UI.
+   */
+  uiImage: Ember.computed('image', function () {
+    // Retrive user image
+    let image = this.get('image')
+
+    // If the user does have an image, return the image name
+    if (image != null) return image
+
+    // Else return the default name.
+    return 'no-user-image.png'
   })
 });
