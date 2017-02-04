@@ -87,7 +87,7 @@ export default DS.Model.extend({
     }
 
     // If there is a member who has an image, return his image.
-    if (image != null) retur image
+    if (image != null) return image
 
     // Else return the default image.
     return 'no-conversation-image.png'
