@@ -49,8 +49,10 @@ export default Ember.Component.extend({
      *                   persisted.
      */
     create () {
+      // Close dialog.
       this.$('dialog')[0].close()
 
+      // Create new room.
       return this.get('store').createRecord('room', {
         name: this.get('name'),
         image: null,
@@ -58,6 +60,7 @@ export default Ember.Component.extend({
         users: [this.get('session.user')]
       })
       .save()
+      .then(() => { this.set('name', '') })
     },
 
     /**
@@ -65,6 +68,7 @@ export default Ember.Component.extend({
      */
     closeDialog () {
       this.$('dialog')[0].close()
+      this.set('name', '')
     }
   }
 });
