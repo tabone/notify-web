@@ -12,17 +12,15 @@ $image-message-margin: 16px;
   height: 40px;
 }
 
+.app-chat-message_info {
+  font-size: 0.8em;
+}
+
 .app-chat-message__content {
   flex: 1;
-  padding-top: 0.6em;
   margin-right: 0;
   margin-left: $image-message-margin;
-
-  pre {
-    margin: 0;
-    max-height: 30em;
-    overflow:scroll;
-  }
+  min-width: 0;
 }
 
 .app-chat-message--recieved {

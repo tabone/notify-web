@@ -12,9 +12,9 @@ export default DS.Model.extend({
   deleted: DS.attr('boolean'),
 
   /**
-   * created until.
+   * created.
    */
-  created:  DS.attr('date'),
+  created: DS.attr('date'),
 
   /**
    * user who created the message.
@@ -35,5 +35,126 @@ export default DS.Model.extend({
    */
   unread: DS.hasMany('user', {
     inverse: 'unread'
+  }),
+
+  /**
+   * uiCreated is the created date used in the UI
+   */
+  uiCreated: Ember.computed('created', function () {
+    // Retrieve the message age in seconds.
+    const diffSeconds = Math.floor((new Date() - this.get('created')) / 1000)
+
+    // 0 seconds to 1 minute.
+    if (diffSeconds > 0 && diffSeconds < 60) return handleSeconds()
+    // 1 minute to 1 hour.
+    if (diffSeconds >= 60 && diffSeconds < 3600) return handleMinutes()
+    // 1 hour to 1 day.
+    if (diffSeconds >= 3600 && diffSeconds < 86400) return handleHours()
+    // 1 day to 1 week.
+    if (diffSeconds >= 86400 && diffSeconds < 604800) return handleDays()
+    // 1 week to 1 month.
+    if (diffSeconds >= 604800 && diffSeconds < 18144000) return handleWeeks()
+    // 1 month onwards.
+    if (diffSeconds >= 18144000) handleYears()
+
+    /**
+     * handle difference in seconds.
+     * @return {String} The created date to be used in UI.
+     */
+    function handleSeconds () {
+      if (diffSeconds < 20) {
+        return `just now`
+      }
+
+      if (diffSeconds < 60) {
+        return `${diffSeconds} seconds ago`
+      }
+    }
+
+    /**
+     * handle difference in minutes.
+     * @return {String} The created date to be used in UI.
+     */
+    function handleMinutes () {
+      const diffMinutes = Math.floor(diffSeconds / 60)
+
+      if (diffMinutes === 1) {
+        return '1 minute ago'
+      }
+
+      if (diffMinutes < 60) {
+        return `${diffMinutes} minutes ago`
+      }
+    }
+
+    /**
+     * handle difference in hours.
+     * @return {String} The created date to be used in UI.
+     */
+    function handleHours () {
+      const diffHours = Math.floor(diffSeconds / 3600)
+
+      if (diffHours == 1) {
+        return '1 hour ago'
+      } else {
+        return `${diffHours} hours ago`
+      }
+    }
+
+    /**
+     * handle difference in days.
+     * @return {String} The created date to be used in UI.
+     */
+    function handleDays () {
+      const diffDays = Math.floor(diffSeconds / 86400)
+
+      if (diffDays == 1) {
+        return '1 day ago'
+      } else {
+        return `${diffDays} days ago`
+      }
+    }
+
+    /**
+     * handle difference in weeks.
+     * @return {String} The created date to be used in UI.
+     */
+    function handleWeeks () {
+      const diffWeeks = Math.floor(diffSeconds / 604800)
+
+      if (diffWeeks == 1) {
+        return '1 week ago'
+      } else {
+        return `${diffWeeks} weeks ago`
+      }
+    }
+
+    /**
+     * handle difference in months.
+     * @return {String} The created date to be used in UI.
+     */
+    function handleMonths () {
+      const diffMonths = Math.floor(diffSeconds / 604800)
+
+      if (diffMonths == 1) {
+        return '1 month ago'
+      } else {
+        return `${diffMonths} months ago`
+      }
+    }
+
+    /**
+     * handle difference in years.
+     * @return {String} The created date to be used in UI.
+     */
+    function handleYears () {
+      const diffYears = Math.floor(diffSeconds / 18144000)
+
+      if (diffYears == 1) {
+        return '1 year ago'
+      } else {
+        return `${diffYears} years ago`
+      }
+    }
   })
 });

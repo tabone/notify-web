@@ -1,4 +1,13 @@
 <div class="app-chat-message__image">
   <img class="app--full-width app--circularize" src="/images/{{message.user.uiImage}}" alt="{{message.user.username}} profile picture" />
 </div>
-<div class="app-chat-message__content">{{{content}}}</div>
+<div class="app-chat-message__content">
+  <div class="app-chat-message_info">
+    <span class="mdl-typography--font-bold">{{message.user.username}}</span>
+    <span>{{message.uiCreated}}</span>
+  </div>
+
+  <div class="app-chat-message_description">
+    {{{content}}}
+  </div>
+</div>
