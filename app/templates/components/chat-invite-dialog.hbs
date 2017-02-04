@@ -13,7 +13,7 @@
     <div class="app-chat-invite-dialog__invites">
       {{#each invites as |invite|}}
         <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
-          <img class="mdl-chip__contact" src="/images/{{invite.image}}" alt="{{invite.username}} profile picture"/>
+          <img class="mdl-chip__contact" src="/images/{{invite.uiImage}}" alt="{{invite.username}} profile picture"/>
           <span class="mdl-chip__text">{{invite.username}}</span>
           <button type="button" class="mdl-chip__action">
             <i class="material-icons" onclick={{action 'remove' invite}}>cancel</i>
@@ -27,7 +27,12 @@
         {{#unless user.bot}}
           <li class="app-chat-invite-dialog__user mdl-list__item" data-username="{{user.username}}" onclick={{action 'add' user}}>
             <span class="mdl-list__item-primary-content">
-              <i class="material-icons mdl-list__item-icon">person</i>
+              <span class="mdl-list__item-avatar">
+                <img
+                  class="app--circularize app--full-width mdl-typography--caption"
+                  src="/images/{{user.uiImage}}"
+                  alt="{{user.username}} profile picture"/>
+              </span>
               {{user.username}}
             </span>
           </li>
