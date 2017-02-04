@@ -5,19 +5,13 @@ export default Ember.Component.extend({
    * classNames to be added to the root element of the component.
    * @type {Array}
    */
-  classNames: ['app-chat-invitation-dialog'],
+  classNames: ['app-chat-invite-dialog'],
 
   /**
    * store service to query the Ember Data Repository.
    * @type {Store}
    */
   store: Ember.inject.service(),
-
-  /**
-   * users of the app.
-   * @type {Array}
-   */
-  allUsers: null,
 
   /**
    * users who can get invited.
@@ -43,7 +37,6 @@ export default Ember.Component.extend({
   init (...args) {
     this._super(...args)
     this.set('invites', [])
-    this.set('allUsers', this.get('store').peekAll('user'))
   },
 
   /**
@@ -103,7 +96,7 @@ export default Ember.Component.extend({
     const filter = this.get('filter') || ''
     const filterPattern = new RegExp(filter.toLowerCase())
 
-    const users = this.get('allUsers').filter(user => {
+    const users = this.get('store').peekAll('user').filter(user => {
       // Username must match the filter pattern.
       if (filterPattern.test(user.get('username')) === false) return false
 
@@ -148,6 +141,8 @@ export default Ember.Component.extend({
      */
     closeDialog () {
       this.$('dialog')[0].close()
+      this.set('filter', '')
+      this.set('invites', [])
     },
 
     /**
@@ -163,27 +158,33 @@ export default Ember.Component.extend({
       // Store the room the invites were done in.
       const room = this.get('room')
 
+      let invitePromise = null
+
       // If the room is not a private room, include the invited users in the
       // room.
       if (room.get('private') === false) {
         this.get('room.users').pushObjects(invites)
-        this.get('room').save()
-        this.$('dialog')[0].close()
-        return
+        invitePromise = this.get('room').save()
+      } else {
+        // If the room is a private room, create a new public room with:
+        //   * The users of the private room.
+        //   * The invited users.
+        invitePromise = this.get('store').createRecord('room', {
+          private: false,
+          users: invites.concat(this.get('room.users').toArray())
+        })
+        .save()
+        .then((newRoom) => {
+          this.get('router').transitionTo('chat.room', newRoom)
+        })
       }
 
-      // If the room is a private room, create a new public room with:
-      //   * The users of the private room.
-      //   * The invited users.
-      return this.get('store').createRecord('room', {
-        private: false,
-        users: invites.concat(this.get('room.users').toArray())
-      })
-      .save()
-      .then((newRoom) => {
-        this.$('dialog')[0].close()
-        this.get('router').transitionTo('chat.room', newRoom)
-      })
+      return invitePromise
+        .then(() => {
+          this.$('dialog')[0].close()
+          this.set('filter', '')
+          this.set('invites', [])
+        })
     }
   }
 });
