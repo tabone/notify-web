@@ -14,10 +14,13 @@ export default Ember.Service.extend({
   /**
    * cache messages for a room.
    * @param  {Record}     room      The room to read the cached messages from.
+   * @param  {Boolean}    pre       Indicates wether to append (indicates that
+   *                                the messages aren't new) or prepend
+   *                                (indicates that the messages are new).
    * @param  {...[Model]} messages  Message model to be cached.
    * @return {Array}      All cached messages of the room specified.
    */
-  cache (room, ...messages) {
+  cache (room, pre, ...messages) {
     // Make sure that id is not null.
     if (room.get('id') === null) return null
 
@@ -31,7 +34,15 @@ export default Ember.Service.extend({
 
     // Include the messages to be cached if they aren't cached already.
     messages.forEach(message => {
-      if (!~cachedMessages.indexOf(message)) cachedMessages.pushObject(message)
+      // If message already exists, ignore it.
+      if (cachedMessages.indexOf(message) === true) return
+
+      // If message isn't new, prepend it, else append it.
+      if (pre) {
+        cachedMessages.unshiftObject(message)
+      } else {
+        cachedMessages.pushObject(message)
+      }
     })
 
     return this.get(key)
