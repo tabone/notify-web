@@ -6,7 +6,7 @@ moduleFor('service:message-cache', 'Unit | Service | message cache', {
 })
 
 // Replace this with your real tests.
-test('it exists', function(assert) {
+test('it exists', function (assert) {
   let service = this.subject()
   assert.ok(service)
 })

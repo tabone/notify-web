@@ -11,5 +11,5 @@ export default Ember.Component.extend({
    * classNames to be added to the root element of the component.
    * @type {Array}
    */
-  classNames: ['app-chat-room-item'],
+  classNames: ['app-chat-room-item']
 })

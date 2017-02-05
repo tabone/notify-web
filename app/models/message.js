@@ -94,7 +94,7 @@ export default DS.Model.extend({
     function handleHours () {
       const diffHours = Math.floor(diffSeconds / 3600)
 
-      if (diffHours == 1) {
+      if (diffHours === 1) {
         return '1 hour ago'
       } else {
         return `${diffHours} hours ago`
@@ -108,7 +108,7 @@ export default DS.Model.extend({
     function handleDays () {
       const diffDays = Math.floor(diffSeconds / 86400)
 
-      if (diffDays == 1) {
+      if (diffDays === 1) {
         return '1 day ago'
       } else {
         return `${diffDays} days ago`
@@ -122,7 +122,7 @@ export default DS.Model.extend({
     function handleWeeks () {
       const diffWeeks = Math.floor(diffSeconds / 604800)
 
-      if (diffWeeks == 1) {
+      if (diffWeeks === 1) {
         return '1 week ago'
       } else {
         return `${diffWeeks} weeks ago`
@@ -136,7 +136,7 @@ export default DS.Model.extend({
     function handleMonths () {
       const diffMonths = Math.floor(diffSeconds / 604800)
 
-      if (diffMonths == 1) {
+      if (diffMonths === 1) {
         return '1 month ago'
       } else {
         return `${diffMonths} months ago`
@@ -150,7 +150,7 @@ export default DS.Model.extend({
     function handleYears () {
       const diffYears = Math.floor(diffSeconds / 18144000)
 
-      if (diffYears == 1) {
+      if (diffYears === 1) {
         return '1 year ago'
       } else {
         return `${diffYears} years ago`

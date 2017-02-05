@@ -6,8 +6,8 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL
 })
 
-Router.map(function() {
-  this.route('chat', {path: '/app'}, function() {
+Router.map(function () {
+  this.route('chat', {path: '/app'}, function () {
     this.route('room', { path: 'room/:room_id' })
   })
 })

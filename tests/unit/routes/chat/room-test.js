@@ -5,7 +5,7 @@ moduleFor('route:chat/room', 'Unit | Route | chat/room', {
   // needs: ['controller:foo']
 })
 
-test('it exists', function(assert) {
+test('it exists', function (assert) {
   let route = this.subject()
   assert.ok(route)
 })

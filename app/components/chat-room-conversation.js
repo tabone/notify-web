@@ -90,7 +90,7 @@ export default Ember.Component.extend({
       this.set('messages', null)
       return
     }
-    
+
     // Remove the showMessages observer from the id.
     room.removeObserver('id', this, this.showMessages)
 

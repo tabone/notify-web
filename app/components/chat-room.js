@@ -26,7 +26,7 @@ export default Ember.Component.extend({
     const fn = () => {
       rootElem.style.height = window.innerHeight + 'px'
     }
-    
+
     fn()
     this.set('listener', fn)
     window.addEventListener('resize', fn)

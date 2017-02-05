@@ -2,7 +2,7 @@
  * Instance initializer used to setup the markdown library used for chat
  * messages.
  */
-export function initialize() {
+export function initialize () {
   // Configure marked library
   marked.setOptions({
     sanitize: true,
@@ -28,7 +28,7 @@ export function initialize() {
         ? hljs.highlightAuto(code).value
         // Else highlight based on the language specified.
         : hljs.highlight(language, code).value
-      
+
       return `<pre><code class="hljs lang-${language}">${code}</code></pre>`
     }
 

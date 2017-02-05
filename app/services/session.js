@@ -37,7 +37,7 @@ export default Ember.Service.extend({
    * @return {[type]}          [description]
    */
   login (username, password) {
-    return $.ajax({
+    return Ember.$.ajax({
       url: this.get('config.auth.url'),
       method: 'POST',
       dataType: 'json',

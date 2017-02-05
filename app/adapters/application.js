@@ -24,4 +24,4 @@ export default DS.JSONAPIAdapter.extend({
     // Set the host of JSONAPI Server.
     this.set('host', this.get('config.api.url'))
   }
-});
+})

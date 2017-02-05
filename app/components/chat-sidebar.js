@@ -103,7 +103,7 @@ export default Ember.Component.extend({
     this.set('panelsTopPosition', panels.getBoundingClientRect().top)
 
     // Keep a reference of all the tab panels.
-    this.set('panels', $('.app-chat-sidebar__conversations-panel'))
+    this.set('panels', this.$('.app-chat-sidebar__conversations-panel'))
 
     // When the window is resized, it should update the height of the tab
     // panels.

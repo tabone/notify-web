@@ -5,9 +5,9 @@ moduleForComponent('chat-sidebar-rooms-list', 'Integration | Component | chat si
   integration: true
 })
 
-test('it renders', function(assert) {
+test('it renders', function (assert) {
   // Set any properties with this.set('myProperty', 'value')
-  // Handle any actions with this.on('myAction', function(val) { ... })
+  // Handle any actions with this.on('myAction', function (val) { ... })
 
   this.render(hbs`{{chat-sidebar-rooms-list}}`)
 

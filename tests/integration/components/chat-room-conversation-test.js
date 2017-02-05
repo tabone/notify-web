@@ -5,9 +5,9 @@ moduleForComponent('chat-room-conversation', 'Integration | Component | chat roo
   integration: true
 })
 
-test('it renders', function(assert) {
+test('it renders', function (assert) {
   // Set any properties with this.set('myProperty', 'value')
-  // Handle any actions with this.on('myAction', function(val) { ... })
+  // Handle any actions with this.on('myAction', function (val) { ... })
 
   this.render(hbs`{{chat-room-conversation}}`)
 

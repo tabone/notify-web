@@ -65,7 +65,7 @@ export default Ember.Service.extend({
    * @param {Function} listener The listener.
    */
   addListener (listener) {
-    if (typeof listener != 'function') return
+    if (typeof listener !== 'function') return
     this.get('listeners').pushObject(listener)
   }
 })
