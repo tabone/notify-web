@@ -28,7 +28,8 @@ export default Ember.Component.extend({
    * didInsertElement is called when the element of the view has been inserted
    * into the DOM or after the view was re-rendered.
    */
-  didInsertElement () {
+  didInsertElement (...args) {
+    this._super(...args)
     componentHandler.upgradeElements(this.$()[0])
     this.set('elem', this.$()[0])
     this.get('notification').addListener(this.onNotification.bind(this))

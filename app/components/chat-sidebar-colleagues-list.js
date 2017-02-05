@@ -43,7 +43,9 @@ export default Ember.Component.extend({
    * didRecieveAttrs runs after init hook, and it also runs on subsequent
    * re-renders.
    */
-  didReceiveAttrs () {
+  didReceiveAttrs (...args) {
+    this._super(...args)
+
     // Filter friends.
     const friends = this.get('users').filter(user => {
       return (user.get('bot') !== true) && (user !== this.get('session.user'))

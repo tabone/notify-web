@@ -17,7 +17,9 @@ export default Ember.Component.extend({
    * didInsertElement is called when the element of the view has been inserted
    * into the DOM or after the view was re-rendered.
    */
-  didInsertElement () {
+  didInsertElement (...args) {
+    this._super(...args)
+
     // The root element of the chat room component.
     const rootElem = this.$()[0]
 

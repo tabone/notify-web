@@ -43,14 +43,16 @@ export default Ember.Component.extend({
    * didInsertElement is called when the element of the view has been inserted
    * into the DOM or after the view was re-rendered.
    */
-  didInsertElement () {
+  didInsertElement (...args) {
+    this._super(...args)
     this.doSetup()
   },
 
   /**
    * didUpdateAttrs runs when the attributes of a component have changed.
    */
-  didUpdateAttrs () {
+  didUpdateAttrs (...args) {
+    this._super(...args)
     this.doSetup()
   },
 
