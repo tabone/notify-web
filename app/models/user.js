@@ -47,6 +47,13 @@ export default DS.Model.extend({
   }),
 
   /**
+   * grants of the user have.
+   */
+  grants: DS.hasMany('grant', {
+    inverse: 'users'
+  }),
+
+  /**
    * messages created by the user.
    */
   messages: DS.hasMany('message', {
