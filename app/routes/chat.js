@@ -36,6 +36,9 @@ export default Ember.Route.extend({
       // Retrieve and cache all states.
       states: this.get('store').findAll('state'),
 
+      // Retrieve and cache all grants.
+      grants: this.get('store').findAll('grant'),
+
       // Retrieve all users.
       users: this.get('store').findAll('user'),
 
