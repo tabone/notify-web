@@ -1,6 +1,10 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+  /**
+   * session is used to get the details of the current logged in user.
+   * @type {service:session}
+   */
   session: Ember.inject.service(),
 
   /**
