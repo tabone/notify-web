@@ -31,6 +31,22 @@ export default DS.Model.extend({
   }),
 
   /**
+   * creator of the user.
+   * @type {Array}
+   */
+  creator: DS.belongsTo('user', {
+    inverse: 'created'
+  }),
+
+  /**
+   * created users by the user himself.
+   * @type {Array}
+   */
+  created: DS.hasMany('user', {
+    inverse: 'creator'
+  }),
+
+  /**
    * messages created by the user.
    */
   messages: DS.hasMany('message', {
