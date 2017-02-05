@@ -51,7 +51,7 @@ export default Ember.Component.extend({
     // When a new user gets registered, we need to show him in the colleagues
     // list.
     this.addObserver('users.[]', () => {
-      this.filterFriends()
+      Ember.run.once(this, this.filterFriends)
     })
   },
 
