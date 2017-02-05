@@ -40,13 +40,26 @@ export default Ember.Component.extend({
   friends: null,
 
   /**
-   * didRecieveAttrs runs after init hook, and it also runs on subsequent
-   * re-renders.
+   * init is invoked when the object is initialized.
    */
-  didReceiveAttrs (...args) {
+  init (...args) {
     this._super(...args)
 
     // Filter friends.
+    this.filterFriends()
+
+    // When a new user gets registered, we need to show him in the colleagues
+    // list.
+    this.addObserver('users.[]', () => {
+      this.filterFriends()
+    })
+  },
+
+  /**
+   * filterFriends goes through all users and identify those with whome the
+   * logged in user can chat with.
+   */
+  filterFriends () {
     const friends = this.get('users').filter(user => {
       return (user.get('bot') !== true) && (user !== this.get('session.user'))
     })
