@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import DS from 'ember-data'
 
 export default DS.Model.extend({
   /**
@@ -57,4 +57,4 @@ export default DS.Model.extend({
     // Else return the default name.
     return 'no-user-image.png'
   })
-});
+})

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 /**
  * Service used to manage the session.
@@ -61,4 +61,4 @@ export default Ember.Service.extend({
     this.set('user', null)
     this.set('apiToken', null)
   }
-});
+})

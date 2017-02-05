@@ -39,4 +39,4 @@ export function initialize() {
 export default {
   name: 'marked-config',
   initialize
-};
+}

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 export default Ember.Route.extend({
   /**
@@ -16,4 +16,4 @@ export default Ember.Route.extend({
     return this.get('session').login()
       .catch(() => { window.location.assign('/login') })
   }
-});
+})

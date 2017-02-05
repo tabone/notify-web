@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 /**
  * Service used to cache room messages. This is mainly used to reduce the number
@@ -52,4 +52,4 @@ export default Ember.Service.extend({
     if (this.get(key) === undefined) this.set(key, [])
     return this.get(key)
   }
-});
+})

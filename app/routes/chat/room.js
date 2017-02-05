@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 export default Ember.Route.extend({
   /**
@@ -11,4 +11,4 @@ export default Ember.Route.extend({
     if (params['room_id'] === 'null') return this.transitionTo('chat')
     return this.get('store').findRecord('room', params['room_id'])
   }
-});
+})

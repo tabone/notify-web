@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 export default Ember.Component.extend({
   /**
@@ -39,4 +39,4 @@ export default Ember.Component.extend({
   willDestroyElement () {
     window.removeEventListener('resize', this.get('listener'))
   }
-});
+})

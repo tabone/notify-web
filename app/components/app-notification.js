@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 /**
  * Component used to display notifications. These notifications are displayed
@@ -46,6 +46,6 @@ export default Ember.Component.extend({
       timeout: 10000,
       actionText: 'Close',
       actionHandler: close
-    });
+    })
   }
-});
+})

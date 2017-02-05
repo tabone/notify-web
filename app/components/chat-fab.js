@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 export default Ember.Component.extend({
   /**
@@ -13,7 +13,7 @@ export default Ember.Component.extend({
    */
   didInsertElement (...args) {
     this._super(...args)
-    componentHandler.upgradeElements(this.$('[class*="mdl-js-"]'));
+    componentHandler.upgradeElements(this.$('[class*="mdl-js-"]'))
   },
 
   actions: {
@@ -24,4 +24,4 @@ export default Ember.Component.extend({
       this.$('.app-chat-room-creation-dialog dialog')[0].showModal()
     }
   }
-});
+})

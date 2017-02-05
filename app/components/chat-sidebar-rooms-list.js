@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 export default Ember.Component.extend({
   /**
@@ -25,4 +25,4 @@ export default Ember.Component.extend({
    * @type {String}
    */
   ariaLabel: 'List of Rooms'
-});
+})

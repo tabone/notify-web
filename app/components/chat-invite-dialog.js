@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 export default Ember.Component.extend({
   /**
@@ -79,7 +79,7 @@ export default Ember.Component.extend({
    * upgradeElements is used to register elements with Material Design lite.
    */
   upgradeElements () {
-    componentHandler.upgradeElements(this.$('[class*="mdl-js-"]'));
+    componentHandler.upgradeElements(this.$('[class*="mdl-js-"]'))
   },
 
   /**
@@ -189,4 +189,4 @@ export default Ember.Component.extend({
         })
     }
   }
-});
+})

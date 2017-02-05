@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 /**
  * This service is used to index the private rooms by the friend id.
@@ -87,4 +87,4 @@ export default Ember.Service.extend({
 
     return room
   }
-});
+})

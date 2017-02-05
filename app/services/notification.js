@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 /**
  * Service used to push a notification to get displayed to the user.
@@ -68,4 +68,4 @@ export default Ember.Service.extend({
     if (typeof listener != 'function') return
     this.get('listeners').pushObject(listener)
   }
-});
+})

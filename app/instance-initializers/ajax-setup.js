@@ -13,4 +13,4 @@ export function initialize() {
 export default {
   name: 'ajax-setup',
   initialize
-};
+}

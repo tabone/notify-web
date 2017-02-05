@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 /**
  * Service used to store common configuration used throughout the app.
@@ -14,4 +14,4 @@ export default Ember.Service.extend({
   ws: {
     url: 'ws://localhost:8282'
   }
-});
+})
