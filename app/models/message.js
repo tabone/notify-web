@@ -53,9 +53,11 @@ export default DS.Model.extend({
     // 1 day to 1 week.
     if (diffSeconds >= 86400 && diffSeconds < 604800) return handleDays()
     // 1 week to 1 month.
-    if (diffSeconds >= 604800 && diffSeconds < 18144000) return handleWeeks()
+    if (diffSeconds >= 604800 && diffSeconds < 2419200) return handleWeeks()
+    // 1 month to 1 year.
+    if (diffSeconds >= 2419200 && diffSeconds < 29030400) return handleMonths()
     // 1 month onwards.
-    if (diffSeconds >= 18144000) handleYears()
+    if (diffSeconds >= 29030400) handleYears()
 
     /**
      * handle difference in seconds.
@@ -80,9 +82,7 @@ export default DS.Model.extend({
 
       if (diffMinutes === 1) {
         return '1 minute ago'
-      }
-
-      if (diffMinutes < 60) {
+      } else {
         return `${diffMinutes} minutes ago`
       }
     }
@@ -134,7 +134,7 @@ export default DS.Model.extend({
      * @return {String} The created date to be used in UI.
      */
     function handleMonths () {
-      const diffMonths = Math.floor(diffSeconds / 604800)
+      const diffMonths = Math.floor(diffSeconds / 2419200)
 
       if (diffMonths === 1) {
         return '1 month ago'
@@ -148,7 +148,7 @@ export default DS.Model.extend({
      * @return {String} The created date to be used in UI.
      */
     function handleYears () {
-      const diffYears = Math.floor(diffSeconds / 18144000)
+      const diffYears = Math.floor(diffSeconds / 29030400)
 
       if (diffYears === 1) {
         return '1 year ago'
