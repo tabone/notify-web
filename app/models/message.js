@@ -45,7 +45,7 @@ export default DS.Model.extend({
     const diffSeconds = Math.floor((new Date() - this.get('created')) / 1000)
 
     // 0 seconds to 1 minute.
-    if (diffSeconds > 0 && diffSeconds < 60) return handleSeconds()
+    if (diffSeconds >= 0 && diffSeconds < 60) return handleSeconds()
     // 1 minute to 1 hour.
     if (diffSeconds >= 60 && diffSeconds < 3600) return handleMinutes()
     // 1 hour to 1 day.
@@ -57,7 +57,7 @@ export default DS.Model.extend({
     // 1 month to 1 year.
     if (diffSeconds >= 2419200 && diffSeconds < 29030400) return handleMonths()
     // 1 month onwards.
-    if (diffSeconds >= 29030400) handleYears()
+    if (diffSeconds >= 29030400) return handleYears()
 
     /**
      * handle difference in seconds.
