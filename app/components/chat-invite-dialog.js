@@ -45,7 +45,10 @@ export default Ember.Component.extend({
    */
   didInsertElement (...args) {
     this._super(...args)
-    this.doSetup()
+    this.polyfillDialog()
+    this.upgradeElements()
+    this.setupObservers()
+    this.doFilter()
   },
 
   /**
@@ -53,16 +56,6 @@ export default Ember.Component.extend({
    */
   didUpdateAttrs (...args) {
     this._super(...args)
-    this.doSetup()
-  },
-
-  /**
-   * doSetup sets up the dialog.
-   */
-  doSetup () {
-    this.polyfillDialog()
-    this.upgradeElements()
-    this.setupObservers()
     this.doFilter()
   },
 
