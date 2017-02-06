@@ -61,6 +61,13 @@ export default DS.Model.extend({
   }),
 
   /**
+   * token which the user uses to log in.
+   */
+  token: DS.belongsTo('token', {
+    inverse: 'user'
+  }),
+
+  /**
    * unread messages.
    */
   unread: DS.hasMany('message', {
