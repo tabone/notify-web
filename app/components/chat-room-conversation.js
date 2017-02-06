@@ -170,7 +170,8 @@ export default Ember.Component.extend({
     if (room.get('id') === null) {
       room.addObserver('id', this, this.showMessages)
       this.set('messages', null)
-      return
+      this.set('waiting', false)
+      return Promise.resolve()
     }
 
     // Remove the showMessages observer from the id.
