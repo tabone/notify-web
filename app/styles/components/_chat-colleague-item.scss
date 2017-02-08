@@ -1,12 +1,11 @@
 .app-chat-colleague-item {
-  transition: background-color 0.5s ease;
-  outline: none;
+  @include sidebar-item-style();
 }
 
 .app-chat-colleague-item:hover, .app-chat-colleague-item:focus {
-  @extend .mdl-color--grey-300;
+  @include sidebar-item-interaction-style();
 }
 
 .app-chat-colleague-item.active {
-  @extend .mdl-color--accent;
+  @include sidebar-item-active-style();
 }
