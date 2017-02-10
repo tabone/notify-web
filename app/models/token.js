@@ -12,6 +12,11 @@ export default DS.Model.extend({
   origin: DS.attr('string'),
 
   /**
+   * token value.
+   */
+  token: DS.attr('string'),
+
+  /**
    * user the token belong to.
    */
   user: DS.belongsTo('user', {
