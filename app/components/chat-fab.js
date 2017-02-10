@@ -68,6 +68,13 @@ export default Ember.Component.extend({
      */
     openRoomCreationDialog () {
       this.$('.app-chat-room-creation-dialog dialog')[0].showModal()
+    },
+
+    /**
+     * openBotManagementPage redirects the user to the Bot Management Page.
+     */
+    openBotManagementPage () {
+      this.get('router').transitionTo('chat.bots')
     }
   }
 })
