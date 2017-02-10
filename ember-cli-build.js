@@ -22,6 +22,9 @@ module.exports = function(defaults) {
   app.import('bower_components/dialog-polyfill/dialog-polyfill.js')
   app.import('bower_components/dialog-polyfill/dialog-polyfill.css')
 
+  // Isotope
+  app.import('bower_components/isotope/dist/isotope.pkgd.min.js')
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
