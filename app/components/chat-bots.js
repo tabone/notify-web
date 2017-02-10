@@ -42,7 +42,11 @@ export default Ember.Component.extend({
    */
   didInsertElement (...args) {
     this._super(...args)
+    this.upgradeElements()
+    this.setupIsotopeInstance()
+  },
 
+  setupIsotopeInstance () {
     // Create isotope instance.
     const iso = new Isotope(this.$('.app-chat-bots__list')[0], {
       itemSelector: '.app-chat-bots__list-item',
@@ -51,6 +55,13 @@ export default Ember.Component.extend({
 
     // Store isotope instance.
     this.set('isotope', iso)
+  },
+
+  /**
+   * upgradeElements register the DOM to mdl.
+   */
+  upgradeElements () {
+    componentHandler.upgradeElements(this.$('[class*="mdl-js-"]'))
   },
 
   /**

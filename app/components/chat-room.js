@@ -19,7 +19,18 @@ export default Ember.Component.extend({
    */
   didInsertElement (...args) {
     this._super(...args)
+    this.upgradeElements()
+    this.useWholeWindow()
+  },
 
+  /**
+   * upgradeElements register the DOM to mdl.
+   */
+  upgradeElements () {
+    componentHandler.upgradeElements(this.$('[class*="mdl-js-"]'))
+  },
+
+  useWholeWindow () {
     // The root element of the chat room component.
     const rootElem = this.$()[0]
 
