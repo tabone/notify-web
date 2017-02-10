@@ -1,11 +1,11 @@
 .app-chat-colleague-item {
-  @include sidebar-item-style();
+  @include list-item-style();
 }
 
 .app-chat-colleague-item:hover, .app-chat-colleague-item:focus {
-  @include sidebar-item-interaction-style();
+  @include list-item-interaction-style();
 }
 
 .app-chat-colleague-item.active {
-  @include sidebar-item-active-style();
+  @include list-item-active-style();
 }

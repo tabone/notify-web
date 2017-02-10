@@ -1,14 +1,14 @@
 .app-chat-room-item__link {
-  @include sidebar-item-style();
+  @include list-item-style();
   position: relative;
   text-decoration: none;
 }
 
 .app-chat-room-item__link:hover, .app-chat-room-item__link:focus {
-  @include sidebar-item-interaction-style();
+  @include list-item-interaction-style();
 }
 
 .app-chat-room-item__link.active {
-  @include sidebar-item-active-style();
+  @include list-item-active-style();
   color: #fff;
 }

@@ -1,12 +1,12 @@
-@mixin sidebar-item-style () {
+@mixin list-item-style () {
   transition: background-color 0.5s ease;
   outline: none;
 }
 
-@mixin sidebar-item-interaction-style () {
+@mixin list-item-interaction-style () {
   @extend .mdl-color--grey-300;
 }
 
-@mixin sidebar-item-active-style () {
+@mixin list-item-active-style () {
   @extend .mdl-color--accent;
 }
