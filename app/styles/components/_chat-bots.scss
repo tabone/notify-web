@@ -1,0 +1,17 @@
+.app-chat-bots__header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-chat-bots__list-item {
+  margin: .5em;
+  width: 200px;
+  text-decoration: none;
+  @include list-item-style();
+}
+
+.app-chat-bots__list-item:hover, .app-chat-bots__list-item:focus {
+  @include list-item-interaction-style();
+}

@@ -1,0 +1,32 @@
+<header class="app-chat-bots__header">
+  <div>
+    <h1 class="mdl-typography--headline">Bot Management</h1>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+    {{input
+      type='text'
+      value=filter
+      class='mdl-textfield__input'}}
+    <label class="mdl-textfield__label">Filter by name or origin...</label>
+  </div>
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Create</button>
+</header>
+
+<div class="app-chat-bots__list mdl-list">
+  {{#each bots as |bot|}}
+    <article data-filter="{{bot.username}},{{bot.token.origin}}"
+      class="app-chat-bots__list-item mdl-list__item mdl-list__item--two-line mdl-shadow--2dp"
+      onclick={{action 'view' bot}}>
+      <span class="mdl-list__item-primary-content">
+        <i class="material-icons mdl-list__item-avatar">person</i>
+        {{bot.username}}
+        <span class="mdl-list__item-sub-title">{{bot.token.origin}}</span>
+      </span>
+      <span class="mdl-list__item-secondary-action" onclick={{action 'remove' bot}}>
+        <button class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">delete_forever</i>
+        </button>
+      </span>
+    </article>
+  {{/each}}
+</div>
