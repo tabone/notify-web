@@ -52,7 +52,6 @@ export default Ember.Component.extend({
   didInsertElement (...args) {
     this._super(...args)
     this.polyfillDialog()
-    this.upgradeElements()
     this.setupObservers()
     this.doFilter()
   },
@@ -71,13 +70,6 @@ export default Ember.Component.extend({
    */
   polyfillDialog () {
     dialogPolyfill.registerDialog(this.element)
-  },
-
-  /**
-   * upgradeElements is used to register elements with Material Design lite.
-   */
-  upgradeElements () {
-    componentHandler.upgradeElements(this.$('[class*="mdl-js-"]'))
   },
 
   /**

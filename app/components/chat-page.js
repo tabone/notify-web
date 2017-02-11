@@ -7,6 +7,5 @@ export default Ember.Component.extend({
    */
   didInsertElement (...args) {
     this._super(...args)
-    componentHandler.upgradeElements(this.$('[class*="mdl-js-"]'))
   }
 })
