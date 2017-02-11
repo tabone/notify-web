@@ -5,7 +5,7 @@ export default Ember.Component.extend({
    * classNames to be added to the root element of the component.
    * @type {Array}
    */
-  classNames: ['chat-room-info'],
+  classNames: ['app-chat-room-info'],
 
   /**
    * session is used to get the details of the current logged in user.
