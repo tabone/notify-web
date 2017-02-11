@@ -132,7 +132,7 @@ export default Ember.Component.extend({
      * closeDialog closes the dialog.
      */
     closeDialog () {
-      this.$('dialog')[0].close()
+      this.element.close()
       this.set('filter', '')
       this.set('invites', [])
     },
@@ -173,7 +173,7 @@ export default Ember.Component.extend({
 
       return invitePromise
         .then(() => {
-          this.$('dialog')[0].close()
+          this.element.close()
           this.set('filter', '')
           this.set('invites', [])
         })

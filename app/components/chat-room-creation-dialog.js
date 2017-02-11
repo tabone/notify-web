@@ -56,7 +56,7 @@ export default Ember.Component.extend({
      */
     create () {
       // Close dialog.
-      this.$('dialog')[0].close()
+      this.element.close()
 
       // Create new room.
       return this.get('store').createRecord('room', {
@@ -73,7 +73,7 @@ export default Ember.Component.extend({
      * closeDialog closes the dialog
      */
     closeDialog () {
-      this.$('dialog')[0].close()
+      this.element.close()
       this.set('name', '')
     }
   }
