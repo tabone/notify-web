@@ -2,10 +2,16 @@ import Ember from 'ember'
 
 export default Ember.Component.extend({
   /**
+   * tagName of the root element.
+   * @type {String}
+   */
+  tagName: 'dialog',
+
+  /**
    * classNames to be added to the root element of the component.
    * @type {Array}
    */
-  classNames: ['app-chat-invite-dialog'],
+  classNames: ['app-chat-invite-dialog', 'mdl-dialog'],
 
   /**
    * store service to query the Ember Data Repository.
@@ -64,8 +70,7 @@ export default Ember.Component.extend({
    * Dialog.
    */
   polyfillDialog () {
-    const dialog = this.$('dialog')[0]
-    if (dialog.showModal === undefined) dialogPolyfill.registerDialog(dialog)
+    dialogPolyfill.registerDialog(this.element)
   },
 
   /**

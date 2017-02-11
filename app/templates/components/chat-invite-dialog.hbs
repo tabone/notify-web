@@ -1,48 +1,46 @@
-<dialog class="mdl-dialog">
-  <div class="mdl-dialog__content">
-    <div class="app-chat-invite-dialog__filter mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      {{input type="text"
-        id="app-chat-invite-dialog__filter-field"
-        class="mdl-textfield__input"
-        value=filter
-      }}
+<div class="mdl-dialog__content">
+  <div class="app-chat-invite-dialog__filter mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    {{input type="text"
+      id="app-chat-invite-dialog__filter-field"
+      class="mdl-textfield__input"
+      value=filter
+    }}
 
-      <label class="mdl-textfield__label" for="app-chat-invite-dialog__filter-field">Filter users...</label>
-    </div>
+    <label class="mdl-textfield__label" for="app-chat-invite-dialog__filter-field">Filter users...</label>
+  </div>
 
-    <div class="app-chat-invite-dialog__invites">
-      {{#each invites as |invite|}}
-        <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
-          <img class="mdl-chip__contact" src="/images/{{invite.uiImage}}" alt="{{invite.username}} profile picture"/>
-          <span class="mdl-chip__text">{{invite.username}}</span>
-          <button type="button" class="mdl-chip__action">
-            <i class="material-icons" onclick={{action 'remove' invite}}>cancel</i>
-          </button>
-        </span>
-      {{/each}}
-    </div>
+  <div class="app-chat-invite-dialog__invites">
+    {{#each invites as |invite|}}
+      <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
+        <img class="mdl-chip__contact" src="/images/{{invite.uiImage}}" alt="{{invite.username}} profile picture"/>
+        <span class="mdl-chip__text">{{invite.username}}</span>
+        <button type="button" class="mdl-chip__action">
+          <i class="material-icons" onclick={{action 'remove' invite}}>cancel</i>
+        </button>
+      </span>
+    {{/each}}
+  </div>
 
-    <ul class="app-chat-invite-dialog__users mdl-list">
-      {{#each users as |user|}}
-        {{#unless user.bot}}
-          <li class="app-chat-invite-dialog__user mdl-list__item" data-username="{{user.username}}" onclick={{action 'add' user}}>
-            <span class="mdl-list__item-primary-content">
-              <span class="mdl-list__item-avatar">
-                <img
-                  class="app--circularize app--full-width mdl-typography--caption"
-                  src="/images/{{user.uiImage}}"
-                  alt="{{user.username}} profile picture"/>
-              </span>
-              {{user.username}}
+  <ul class="app-chat-invite-dialog__users mdl-list">
+    {{#each users as |user|}}
+      {{#unless user.bot}}
+        <li class="app-chat-invite-dialog__user mdl-list__item" data-username="{{user.username}}" onclick={{action 'add' user}}>
+          <span class="mdl-list__item-primary-content">
+            <span class="mdl-list__item-avatar">
+              <img
+                class="app--circularize app--full-width mdl-typography--caption"
+                src="/images/{{user.uiImage}}"
+                alt="{{user.username}} profile picture"/>
             </span>
-          </li>
-        {{/unless}}
-      {{/each}}
-    </ul>
-  </div>
+            {{user.username}}
+          </span>
+        </li>
+      {{/unless}}
+    {{/each}}
+  </ul>
+</div>
 
-  <div class="mdl-dialog__actions">
-    <button class="mdl-button" onclick={{action "invite"}}>Invite</button>
-    <button class="mdl-button" onclick={{action "closeDialog"}}>Close</button>
-  </div>
-</dialog>
+<div class="mdl-dialog__actions">
+  <button class="mdl-button" onclick={{action "invite"}}>Invite</button>
+  <button class="mdl-button" onclick={{action "closeDialog"}}>Close</button>
+</div>

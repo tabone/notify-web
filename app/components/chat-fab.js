@@ -67,7 +67,7 @@ export default Ember.Component.extend({
      * openRoomCreationDialog opens the dialog used to create a new public room.
      */
     openRoomCreationDialog () {
-      this.$('.app-chat-room-creation-dialog dialog')[0].showModal()
+      this.$('.app-chat-room-creation-dialog')[0].showModal()
     },
 
     /**

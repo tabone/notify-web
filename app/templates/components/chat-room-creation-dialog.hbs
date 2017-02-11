@@ -1,17 +1,15 @@
-<dialog class="mdl-dialog">
-  <div class="mdl-dialog__content">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      {{input type="text"
-        id="app-chat-room-creation-dialog__name"
-        class="mdl-textfield__input"
-        value=name
-      }}
+<div class="mdl-dialog__content">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    {{input type="text"
+      id="app-chat-room-creation-dialog__name"
+      class="mdl-textfield__input"
+      value=name
+    }}
 
-      <label class="mdl-textfield__label" for="app-chat-room-creation-dialog__name">Room name</label>
-    </div>
+    <label class="mdl-textfield__label" for="app-chat-room-creation-dialog__name">Room name</label>
   </div>
-  <div class="mdl-dialog__actions">
-    <button class="mdl-button" onclick={{action "create"}}>Create</button>
-    <button class="mdl-button" onclick={{action "closeDialog"}}>Close</button>
-  </div>
-</dialog>
+</div>
+<div class="mdl-dialog__actions">
+  <button class="mdl-button" onclick={{action "create"}}>Create</button>
+  <button class="mdl-button" onclick={{action "closeDialog"}}>Close</button>
+</div>

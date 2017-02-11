@@ -18,7 +18,7 @@ export default Ember.Component.extend({
      * showInviteDialog shows the invitation dialog.
      */
     showInviteDialog () {
-      this.$('dialog')[0].showModal()
+      this.$('.app-chat-invite-dialog')[0].showModal()
     },
 
     /**
