@@ -42,15 +42,6 @@ export default Ember.Component.extend({
   },
 
   /**
-   * didInsertElement is called when the element of the view has been inserted
-   * into the DOM or after the view was re-rendered.
-   */
-  didInsertElement (...args) {
-    this._super(...args)
-    componentHandler.upgradeElements(this.$('[class*="mdl-js-"]'))
-  },
-
-  /**
    * canCreateBot determines whether the logged in user is allowed to create
    * bots.
    * @return {Boolean} True if the user can, false otherwise.
