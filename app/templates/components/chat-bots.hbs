@@ -9,7 +9,7 @@
       class='mdl-textfield__input'}}
     <label class="mdl-textfield__label">Filter by name or origin...</label>
   </div>
-  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Create</button>
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" onclick={{action 'create'}}>Create</button>
 </header>
 
 <div class="app-chat-bots__list mdl-list">
@@ -30,3 +30,8 @@
     </article>
   {{/each}}
 </div>
+
+{{chat-bot-dialog
+  bot=bot
+  save=saveListener
+}}
