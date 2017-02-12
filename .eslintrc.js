@@ -13,7 +13,8 @@ module.exports = {
     componentHandler: true,
     dialogPolyfill: true,
     marked: true,
-    hljs: true
+    hljs: true,
+    Isotope: true
   },
   rules: {
   }

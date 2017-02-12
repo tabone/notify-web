@@ -35,8 +35,8 @@ export default Ember.Route.extend({
     return RSVP.hash({
       // Retrieve tokens
       tokens: this.get('store').findAll('token'),
-      
-      // Retrieve bots 
+
+      // Retrieve bots
       bots: this.get('store').peekAll('user').filter(user => {
         const isBot = user.get('bot')
         const isChild = user.get('creator.id') === this.get('session.user.id')
