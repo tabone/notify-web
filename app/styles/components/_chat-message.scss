@@ -4,7 +4,8 @@ $image-message-margin: 16px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding: 0 1em;
+  padding: 1em;
+  border-top: solid 1px #e0e0e0;
 }
 
 .app-chat-message__image {
@@ -20,4 +21,8 @@ $image-message-margin: 16px;
   flex: 1;
   margin-left: $image-message-margin;
   min-width: 0;
+
+  p {
+    margin: 0;
+  }
 }
