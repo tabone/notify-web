@@ -49,7 +49,7 @@ export default Ember.Service.extend({
         // If the synced record is a message, cache it inside the message cache
         // service.
         case 'message': {
-          this.get('messageCache').cache(model.get('room'), model)
+          this.get('messageCache').cache(model.get('room'), false, model)
           break
         }
 
