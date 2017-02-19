@@ -41,6 +41,26 @@ export default Ember.Component.extend({
   panels: null,
 
   /**
+   * updates is the number of rooms which have unread updates by the logged in
+   * user.
+   */
+  updates: Ember.computed('session.user.unread', function () {
+    const roomIDs = []
+
+    this.get('session.user.unread').forEach(msg => {
+      const roomID = msg.get('room.id')
+      if (roomIDs.indexOf(roomID) !== -1) return
+      roomIDs.push(roomID)
+    })
+
+    const unread = roomIDs.length
+
+    if (unread === 0) return null
+    if (unread >= 100) return '99+'
+    return unread
+  }),
+
+  /**
    * listeners keeps references of any listener used within this component. This
    * is done so that when the component is destroyed it can remove them.
    * @type {Object}
