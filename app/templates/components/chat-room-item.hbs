@@ -8,8 +8,10 @@
     <span>{{room.uiName}}</span>
   </span>
   <span class="mdl-list__item-secondary-content">
-    <span class="mdl-list__item-secondary-action">
-      <i class="material-icons">chat_bubble</i>
+    <span class="mdl-list__item-secondary-action mdl-color-text--accent">
+      {{#if room.uiUnread}}
+        <i class="material-icons">chat_bubble</i>
+      {{/if}}
     </span>
   </span>
   <div class="mdl-ripple"></div>

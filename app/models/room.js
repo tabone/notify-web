@@ -95,5 +95,14 @@ export default DS.Model.extend({
 
     // Else return the default image.
     return 'no-conversation-image.png'
+  }),
+
+  /**
+   * uiUnread indicates whether there are unread messages within the room.
+   */
+  uiUnread: Ember.computed('session.user.unread', function () {
+    return this.get('session.user.unread').any(message => {
+      return message.get('room.id') === this.get('id')
+    })
   })
 })
