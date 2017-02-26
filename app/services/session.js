@@ -47,7 +47,7 @@ export default Ember.Service.extend({
       }
     })
     .then((data) => {
-      return this.get('store').findRecord('user', data.id)
+      return this.get('store').findRecord('user', data.id, { include: 'unread' })
     })
     .then((user) => {
       this.set('user', user)
