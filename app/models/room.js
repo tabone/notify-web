@@ -2,12 +2,6 @@ import DS from 'ember-data'
 
 export default DS.Model.extend({
   /**
-   * session is used to get the details of the current logged in user.
-   * @type {service:session}
-   */
-  session: Ember.inject.service(),
-
-  /**
    * name of the room.
    */
   name: DS.attr('string'),
@@ -95,14 +89,5 @@ export default DS.Model.extend({
 
     // Else return the default image.
     return 'no-conversation-image.png'
-  }),
-
-  /**
-   * uiUnread indicates whether there are unread messages within the room.
-   */
-  uiUnread: Ember.computed('session.user.unread', function () {
-    return this.get('session.user.unread').any(message => {
-      return message.get('room.id') === this.get('id')
-    })
   })
 })
