@@ -68,6 +68,13 @@ export default Ember.Component.extend({
     // checks whether it should scroll down or not. This is based on the current
     // scroll value.
     this.addObserver('messages.[]', () => {
+      // If messages list was reset, do nothing.
+      if (this.get('messages.length') === 0) return
+
+      // When the messages are updates, make sure to remove any unread updates
+      // related to this room.
+      Ember.run.scheduleOnce('sync', this, this.clearUpdates)
+
       // The check should happen once the messages have been rendered. This is
       // important since the check uses the messages container height.
       Ember.run.scheduleOnce('afterRender', this, this.handleScroll)
@@ -106,6 +113,38 @@ export default Ember.Component.extend({
       .then(() => {
         Ember.run.schedule('afterRender', this, this.scrollDown)
       })
+  },
+
+  /**
+   * clearUpdates removes any unread updates related to the room being viewed.
+   * @return {Promise} Resolved once the removal of unread updates have been
+   *                   persisted.
+   */
+  clearUpdates () {
+    /**
+     * Logged in user.
+     * @type {Record}
+     */
+    const loggedInUser = this.get('session.user')
+
+    /**
+     * Indicates whether there are changes to be persisted.
+     * @type {Boolean}
+     */
+    const isUpdated = false
+
+    // Filter out the unread messages within the room just opened.
+    loggedInUser.set('unread', loggedInUser.get('unread').filter(message => {
+      if (message.get('room.id') !== this.get('room.id')) {
+        isUpdated = true
+        return true
+      }
+
+      return false
+    }))
+
+    // Save changes.
+    return (isUpdated === true) ? loggedInUser.save() : Promise.resolve()
   },
 
   /**
