@@ -131,7 +131,7 @@ export default Ember.Component.extend({
      * Indicates whether there are changes to be persisted.
      * @type {Boolean}
      */
-    const isUpdated = false
+    let isUpdated = false
 
     // Filter out the unread messages within the room just opened.
     loggedInUser.set('unread', loggedInUser.get('unread').filter(message => {
