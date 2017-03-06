@@ -83,11 +83,18 @@ export default Ember.Component.extend({
    * doFilter filters the finder items.
    */
   doFilter () {
+    const filter = this.get('filter')
+
+    if (filter.length === 0) {
+      this.set('items', [])
+      return
+    }
+
     /**
      * Pattern used to filter the finder items.
      * @type {RegExp}
      */
-    const pattern = new RegExp(this.get('filter').toLowerCase())
+    const pattern = new RegExp(filter.toLowerCase())
 
     this.set('items', this.filterActions(pattern)
       .concat(this.filterUsers(pattern))
