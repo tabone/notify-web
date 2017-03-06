@@ -9,9 +9,11 @@
     <label class="mdl-textfield__label" for="app-chat-filter-dialog__filter-field">Search...</label>
   </div>
 
-  <ul class="mdl-list">
-    {{#each items as |item|}}
-      {{component item.component data=item.data}}
-    {{/each}}
-  </ul>
+  {{#if items}}
+    <ul class="mdl-list app-chat-filter-dialog__items">
+      {{#each items as |item|}}
+        {{component item.component data=item.data}}
+      {{/each}}
+    </ul>
+  {{/if}}
 </div>
