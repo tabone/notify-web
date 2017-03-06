@@ -4,14 +4,18 @@
 
 <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
     data-mdl-for="app-chat-fab__button">
+  <li class="mdl-menu__item" onclick={{action "openFinderDialog"}}>
+    Open Finder <kbd>CTRL + F</kbd>
+  </li>
   <li class="mdl-menu__item" onclick={{action "openRoomCreationDialog"}}>
-    Create Room <kbd>CTRL + M</kbd>
+    Create Room <kbd>CTRL + R</kbd>
   </li>
   {{#if grants.createBot}}
     <li class="mdl-menu__item" onclick={{action "openBotManagementPage"}}>
-      Manage Bots <kbd>CTRL + M</kbd>
+      Manage Bots <kbd>CTRL + B</kbd>
     </li>
   {{/if}}
 </ul>
 
+{{chat-finder-dialog}}
 {{chat-room-creation-dialog}}

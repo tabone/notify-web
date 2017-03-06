@@ -55,6 +55,13 @@ export default Ember.Component.extend({
 
   actions: {
     /**
+     * openFinderDialog opens the dialog used to create a new public room.
+     */
+    openFinderDialog () {
+      this.$('.app-chat-finder-dialog')[0].showModal()
+    },
+
+    /**
      * openRoomCreationDialog opens the dialog used to create a new public room.
      */
     openRoomCreationDialog () {
