@@ -1,4 +1,16 @@
 .app-chat-filter-dialog__items {
   max-height: 260px;
   overflow-y: scroll;
+
+  .mdl-list__item {
+    @include list-item-style();
+  }
+
+  .mdl-list__item:hover, .mdl-list__item:focus {
+    @include list-item-interaction-style();
+  }
+
+  .mdl-list__item.active {
+    @include list-item-active-style();
+  }
 }

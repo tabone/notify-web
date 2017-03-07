@@ -10,7 +10,7 @@
   </div>
 
   {{#if items}}
-    <ul class="mdl-list app-chat-filter-dialog__items">
+    <ul class="app-chat-filter-dialog__items mdl-list">
       {{#each items as |item|}}
         {{component item.component data=item.data}}
       {{/each}}
