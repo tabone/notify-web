@@ -41,6 +41,6 @@ export default Ember.Component.extend({
    * @param  {Object} ev KeyDown event object
    */
   keyDown (ev) {
-    this.click()
+    if (ev.keyCode === 13) this.click()
   }
 })
