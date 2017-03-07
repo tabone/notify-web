@@ -37,6 +37,19 @@ export default Ember.Component.extend({
   tabindex: '0',
 
   /**
+   * privateRoomCache is used to cache private rooms by the friend id.
+   * @type {service:private-room-cache}
+   */
+  privateRoomCache: Ember.inject.service(),
+
+  /**
+   * room is the private room of the user being displayed and the logged in
+   * user.
+   * @type {Record}
+   */
+  room: null,
+
+  /**
    * click is invoked when the user clicks on the element.
    */
   click () {
@@ -66,18 +79,5 @@ export default Ember.Component.extend({
 
     this.set('room', room)
     this.get('router').transitionTo('chat.room', room)
-  },
-
-  /**
-   * privateRoomCache is used to cache private rooms by the friend id.
-   * @type {service:private-room-cache}
-   */
-  privateRoomCache: Ember.inject.service(),
-
-  /**
-   * room is the private room of the user being displayed and the logged in
-   * user.
-   * @type {Record}
-   */
-  room: null
+  }
 })
