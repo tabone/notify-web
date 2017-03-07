@@ -39,12 +39,6 @@ export default Ember.Component.extend({
   items: null,
 
   /**
-   * actions available to the user.
-   * @type {[type]}
-   */
-  actions: null,
-
-  /**
    * init is invoked when the object is initialized.
    */
   init (...args) {
@@ -96,25 +90,8 @@ export default Ember.Component.extend({
      */
     const pattern = new RegExp(filter.toLowerCase())
 
-    this.set('items', this.filterActions(pattern)
-      .concat(this.filterUsers(pattern))
+    this.set('items', this.filterUsers(pattern)
       .concat(this.filterRooms(pattern)))
-  },
-
-  /**
-   * filterActions is used to filter the actions by their name.
-   * @param  {RegExp} pattern Pattern used to filter the actions.
-   * @return {Array} List of actions that match the provided pattern.
-   */
-  filterActions (pattern) {
-    return this.get('actions').filter(action => {
-      return pattern.test(action.toLowerCase())
-    }).map(action => {
-      return {
-        data: action,
-        component: 'chat-finder-action-item'
-      }
-    })
   },
 
   /**
