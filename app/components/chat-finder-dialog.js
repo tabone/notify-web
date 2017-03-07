@@ -109,7 +109,9 @@ export default Ember.Component.extend({
   filterUsers (pattern) {
     return this.get('store').peekAll('user').filter(user => {
       const username = user.get('username').toLowerCase()
-      return pattern.test(username) && this.get('session.user') !== user
+      return pattern.test(username) &&
+        this.get('session.user') !== user &&
+        user.get('bot') === false
     }).map(user => {
       return {
         close: this.close.bind(this),
