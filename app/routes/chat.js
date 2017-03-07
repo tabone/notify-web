@@ -40,13 +40,18 @@ export default Ember.Route.extend({
       grants: this.get('store').findAll('grant'),
 
       // Retrieve all users.
-      users: this.get('store').findAll('user'),
-
+      users: this.get('store').findAll('user')
+    }).then(hash => {
       // Retrieve all the rooms which the current logged in user is a member of.
-      rooms: this.get('store').findAll('room').then(rooms => {
+      // Since there are times when rooms use user info (when room doesn't have
+      // a name), rooms should be retrieved once all users are retrieved.
+      return this.get('store').findAll('room').then(rooms => {
         // Store room if it is a private room.
         rooms.forEach(room => this.get('privateRoomCache').cache(room))
         return rooms
+      }).then((rooms) => {
+        hash.rooms = rooms
+        return hash
       })
     })
   }
