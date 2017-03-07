@@ -95,6 +95,13 @@ export default Ember.Component.extend({
   },
 
   /**
+   * close filter dialog
+   */
+  close () {
+    this.element.close()
+  },
+
+  /**
    * filterUsers is used to filter the users by their username.
    * @param  {RegExp} pattern Pattern used to filter the users.
    * @return {Array} List of users that match the provided pattern.
@@ -105,6 +112,7 @@ export default Ember.Component.extend({
       return pattern.test(username) && this.get('session.user') !== user
     }).map(user => {
       return {
+        close: this.close.bind(this),
         data: user,
         component: 'chat-finder-colleague-item'
       }
@@ -122,6 +130,7 @@ export default Ember.Component.extend({
       return pattern.test(roomName) && room.get('private') === false
     }).map(room => {
       return {
+        close: this.close.bind(this),
         data: room,
         component: 'chat-finder-room-item'
       }

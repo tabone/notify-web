@@ -12,7 +12,7 @@
   {{#if items}}
     <ul class="app-chat-filter-dialog__items mdl-list">
       {{#each items as |item|}}
-        {{component item.component data=item.data}}
+        {{component item.component data=item.data ready=item.close}}
       {{/each}}
     </ul>
   {{/if}}

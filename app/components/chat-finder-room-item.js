@@ -32,6 +32,7 @@ export default Ember.Component.extend({
    */
   click () {
     this.get('router').transitionTo('chat.room', this.get('data'))
+    this.get('ready')()
   },
 
   /**

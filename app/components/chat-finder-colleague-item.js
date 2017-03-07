@@ -42,6 +42,7 @@ export default Ember.Component.extend({
   click () {
     const room = this.get('privateRoomCache').read(this.get('data.id'))
     this.get('router').transitionTo('chat.room', room)
+    this.get('ready')()
   },
 
   /**
