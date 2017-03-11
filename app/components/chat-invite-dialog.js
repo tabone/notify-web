@@ -91,7 +91,9 @@ export default Ember.Component.extend({
     const filterPattern = new RegExp(filterValue.toLowerCase())
 
     // Username must match the filter pattern.
-    if (filterPattern.test(user.get('username')) === false) return false
+    if (filterPattern.test(user.get('username').toLowerCase()) === false) {
+      return false
+    }
 
     // User should not be a bot.
     if (user.get('bot') === true) return false
