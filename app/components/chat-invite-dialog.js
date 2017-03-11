@@ -78,7 +78,13 @@ export default Ember.Component.extend({
   },
 
   /**
-   * doFilter updates the list of users who can be invited.
+   * doFilter will be invoked by 'app-select' for each selectable user with the
+   * current filter value to determine whether it should display the user or
+   * not.
+   * @param  {String} filterValue  Current filter value.
+   * @param  {Record} user         User to be checked.
+   * @return {Boolean}             True if the user should be displayed as a
+   *                               selectable option, false otherwise.
    */
   doFilter (filterValue, user) {
     // Create filter RegExp.
