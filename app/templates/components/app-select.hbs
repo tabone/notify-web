@@ -1,1 +1,20 @@
-{{yield}}
+<div class="app-select__filter mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  {{input
+    type="text"
+    class="mdl-textfield__input"
+    value=filterValue
+  }}
+  <label class='mdl-textfield__label'>Filter options...</label>
+</div>
+
+<div class="app-select__selected">
+  {{#each selected as |item|}}
+    {{component chipComponent item=item unselect=unselect}}
+  {{/each}}
+</div>
+
+<ul class="app-select__list mdl-list">
+  {{#each visibleItems as |item|}}
+    {{component itemComponent item=item select=select}}
+  {{/each}}
+</ul>
