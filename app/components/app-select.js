@@ -58,7 +58,6 @@ export default Ember.Component.extend({
    */
   init (...args) {
     this._super(...args)
-    console.log('initialized')
     this.set('filterValue', '')
     this.set('visibleItems', [])
     this.set('select', this.doSelect.bind(this))
