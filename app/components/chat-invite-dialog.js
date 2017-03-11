@@ -20,7 +20,7 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
 
   /**
-   * users who can get invited.
+   * users that can be invited.
    * @type {Array}
    */
   users: null,
@@ -32,8 +32,10 @@ export default Ember.Component.extend({
   invites: null,
 
   /**
-   * filter used to filter the users by username.
-   * @type {Array}
+   * filter is the function to be used by app-select to filter the users that
+   * should be displayed.
+   * @this {ChatInviteDialog}
+   * @type {Function}
    */
   filter: null,
 
@@ -43,6 +45,8 @@ export default Ember.Component.extend({
   init (...args) {
     this._super(...args)
     this.set('invites', [])
+    this.set('filter', this.doFilter.bind(this))
+    this.set('users', this.get('store').peekAll('user'))
   },
 
   /**
@@ -52,16 +56,6 @@ export default Ember.Component.extend({
   didInsertElement (...args) {
     this._super(...args)
     this.polyfillDialog()
-    this.setupObservers()
-    this.doFilter()
-  },
-
-  /**
-   * didUpdateAttrs runs when the attributes of a component have changed.
-   */
-  didUpdateAttrs (...args) {
-    this._super(...args)
-    this.doFilter()
   },
 
   /**
@@ -73,61 +67,34 @@ export default Ember.Component.extend({
   },
 
   /**
-   * setupObservers observe changes in the filter and invites so that the list
-   * of users who can be invited is updated.
-   */
-  setupObservers () {
-    this.addObserver('filter', this, this.doFilter)
-    this.addObserver('invites.[]', this, this.doFilter)
-  },
-
-  /**
    * doFilter updates the list of users who can be invited.
    */
-  doFilter () {
-    const filter = this.get('filter') || ''
-    const filterPattern = new RegExp(filter.toLowerCase())
+  doFilter (filterValue, user) {
+    // Create filter RegExp.
+    const filterPattern = new RegExp(filterValue.toLowerCase())
 
-    const users = this.get('store').peekAll('user').filter(user => {
-      // Username must match the filter pattern.
-      if (filterPattern.test(user.get('username')) === false) return false
+    // Username must match the filter pattern.
+    if (filterPattern.test(user.get('username')) === false) return false
 
-      // User should not be already a member
-      const isAlreadyMember = this.get('room.users')
-        .any(memberUser => memberUser.get('id') === user.get('id'))
+    // User should not be a bot.
+    if (user.get('bot') === true) return false
 
-      if (isAlreadyMember === true) return false
+    // User should not be already a member.
+    const isAlreadyMember = this.get('room.users')
+      .any(memberUser => memberUser.get('id') === user.get('id'))
 
-      // User should not be already invited.
-      const isAlreadyInvited = this.get('invites')
-        .any(invitedUser => invitedUser.get('id') === user.get('id'))
+    if (isAlreadyMember === true) return false
 
-      if (isAlreadyInvited === true) return false
+    // User should not be already invited.
+    const isAlreadyInvited = this.get('invites')
+      .any(invitedUser => invitedUser.get('id') === user.get('id'))
 
-      return true
-    })
+    if (isAlreadyInvited === true) return false
 
-    this.set('users', users)
+    return true
   },
 
   actions: {
-    /**
-     * add user to the invitation list.
-     * @param {Record} user User to be invited.
-     */
-    add (user) {
-      const invites = this.get('invites')
-      if (!~invites.indexOf(user)) invites.pushObject(user)
-    },
-
-    /**
-     * remove user from the invitation list.
-     * @param  {Record} user User to be removed.
-     */
-    remove (user) {
-      this.get('invites').removeObject(user)
-    },
-
     /**
      * closeDialog closes the dialog.
      */
@@ -174,7 +141,6 @@ export default Ember.Component.extend({
       return invitePromise
         .then(() => {
           this.element.close()
-          this.set('filter', '')
           this.set('invites', [])
         })
     }

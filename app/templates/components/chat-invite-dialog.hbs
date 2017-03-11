@@ -1,5 +1,13 @@
 <div class="mdl-dialog__content">
-  <div class="app-chat-invite-dialog__filter mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  {{app-select
+    items=users
+    filter=filter
+    selected=invites
+    itemComponent="app-select-item-invite-user"
+    chipComponent="app-select-chip-invite-user"
+  }}
+
+  {{!-- <div class="app-chat-invite-dialog__filter mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     {{input type="text"
       id="app-chat-invite-dialog__filter-field"
       class="mdl-textfield__input"
@@ -8,6 +16,7 @@
 
     <label class="mdl-textfield__label" for="app-chat-invite-dialog__filter-field">Filter users...</label>
   </div>
+
 
   <div class="app-chat-invite-dialog__invites">
     {{#each invites as |invite|}}
@@ -37,7 +46,7 @@
         </li>
       {{/unless}}
     {{/each}}
-  </ul>
+  </ul> --}}
 </div>
 
 <div class="mdl-dialog__actions">
