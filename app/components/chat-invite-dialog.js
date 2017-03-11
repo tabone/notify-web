@@ -100,7 +100,6 @@ export default Ember.Component.extend({
      */
     closeDialog () {
       this.element.close()
-      this.set('filter', '')
       this.set('invites', [])
     },
 
