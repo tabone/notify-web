@@ -59,6 +59,17 @@ export default Ember.Component.extend({
   },
 
   /**
+   * didUpdateAttrs runs when the attributes of a component have changed.
+   */
+  didUpdateAttrs (...args) {
+    this._super(...args)
+    // Whenever the user changes the room, without destorying the component, we
+    // need to clear the invites. This will in turn notify the app-select
+    // component do the filtering for the newly selected room.
+    this.set('invites', [])
+  },
+
+  /**
    * polyfillDialog polyfills the dialog for browsers who don't support HTML5
    * Dialog.
    */

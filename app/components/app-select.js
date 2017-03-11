@@ -58,11 +58,20 @@ export default Ember.Component.extend({
    */
   init (...args) {
     this._super(...args)
+    console.log('initialized')
     this.set('filterValue', '')
     this.set('visibleItems', [])
     this.set('select', this.doSelect.bind(this))
     this.set('unselect', this.doUnselect.bind(this))
     this.setupObservers()
+    this.doFilter()
+  },
+
+  /**
+   * didUpdateAttrs runs when the attributes of a component have changed.
+   */
+  didUpdateAttrs (...args) {
+    this._super(...args)
     this.doFilter()
   },
 
