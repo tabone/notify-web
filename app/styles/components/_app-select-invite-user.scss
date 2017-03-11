@@ -1,0 +1,10 @@
+.app-select-item-invite-user {
+  width: 100%;
+  position: relative;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+
+  &:hover {
+    @extend .mdl-color--grey-300;
+  }
+}

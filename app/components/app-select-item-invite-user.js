@@ -17,7 +17,7 @@ export default Ember.Component.extend({
    * classNames to be added to the root element of the component.
    * @type {Array}
    */
-  classNames: ['mdl-list__item'],
+  classNames: ['app-select-item-invite-user', 'mdl-list__item'],
 
   /**
    * click is invoked when the user clicks on the component. When clicked the
