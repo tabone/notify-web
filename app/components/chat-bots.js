@@ -133,7 +133,8 @@ export default Ember.Component.extend({
       const newBot = this.get('store').createRecord('user', {
         username: dialogBot.get('username'),
         bot: true,
-        creator: this.get('session.user')
+        creator: this.get('session.user'),
+        rooms: dialogBot.get('rooms')
       })
 
       // New token.
@@ -154,6 +155,7 @@ export default Ember.Component.extend({
       const bot = this.get('bot')
       const token = this.get('store').peekRecord('token', bot.get('token.id'))
 
+      bot.set('rooms', dialogBot.get('rooms'))
       bot.set('username', dialogBot.get('username'))
       token.set('origin', dialogBot.get('origin'))
 

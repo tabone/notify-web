@@ -1,36 +1,48 @@
-<div class="mdl-dialog__content">
-  <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label">
-    {{input
-      type="text"
-      class="mdl-textfield__input"
-      value=tempBot.username
-    }}
+<div class="mdl-dialog__content mdl-grid">
+  <div class="app-chat-bot-dialog__info mdl-cell mdl-cell--6-col">
+    <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label">
+      {{input
+        type="text"
+        class="mdl-textfield__input"
+        value=tempBot.username
+      }}
 
-    <label class="mdl-textfield__label">Name</label>
+      <label class="mdl-textfield__label">Name</label>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      {{input
+        type="text"
+        class="mdl-textfield__input"
+        value=tempBot.origin
+      }}
+
+      <label class="mdl-textfield__label">Origin</label>
+    </div>
+
+    {{#unless bot.isNew}}
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      {{input
+        type="text"
+        disabled="disabled"
+        class="mdl-textfield__input"
+        value=tempBot.token
+      }}
+
+      <label class="mdl-textfield__label">Token value</label>
+    </div>
+    {{/unless}}
   </div>
 
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    {{input
-      type="text"
-      class="mdl-textfield__input"
-      value=tempBot.origin
+  <div class="app-chat-bot-dialog__rooms mdl-cell mdl-cell--6-col">
+    {{app-select
+      items=rooms
+      filter=filter
+      selected=tempBot.rooms
+      itemComponent="app-select-item-bot-room"
+      chipComponent="app-select-chip-bot-room"
     }}
-
-    <label class="mdl-textfield__label">Origin</label>
   </div>
-
-  {{#unless bot.isNew}}
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    {{input
-      type="text"
-      disabled="disabled"
-      class="mdl-textfield__input"
-      value=tempBot.token
-    }}
-
-    <label class="mdl-textfield__label">Token value</label>
-  </div>
-  {{/unless}}
 </div>
 
 <div class="mdl-dialog__actions">

@@ -1,0 +1,14 @@
+.app-chat-bot-dialog {
+  width: 700px;
+
+  .mdl-textfield {
+    width: 100%;
+  }
+}
+
+.app-chat-bot-dialog__rooms {
+  .app-select__list {
+    overflow: scroll;
+    height: 250px;
+  }
+}
