@@ -11,7 +11,7 @@ export default Ember.Component.extend({
    * classNames to be added to the root element of the component.
    * @type {Array}
    */
-  classNames: ['app-chat-invite-dialog', 'mdl-dialog'],
+  classNames: ['mdl-dialog'],
 
   /**
    * store service to query the Ember Data Repository.
