@@ -66,7 +66,10 @@ export default Ember.Component.extend({
         users: [this.get('session.user')]
       })
       .save()
-      .then(() => { this.set('name', '') })
+      .then(room => {
+        this.set('name', '')
+        this.get('router').transitionTo('chat.room', room)
+      })
     },
 
     /**
