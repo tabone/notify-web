@@ -49,7 +49,7 @@ export default DS.Model.extend({
     // concatination of the room member's usernames (excluding the logged in
     // user).
     return this.get('users')
-      .filter(friend => friend !== this.get('session.user'))
+      .filter(user => user !== this.get('session.user'))
       .map(friend => friend.get('username'))
       .join(', ') || 'New Room'
   }),
