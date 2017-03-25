@@ -68,11 +68,14 @@ export default DS.Model.extend({
     const users = this.get('users')
 
     for (let index = 0; index < users.get('length'); index++) {
+      // User being traversed.
+      const user = users.objectAt(index)
+
       // Ignore user if it is the logged in user.
-      if (users.objectAt(index) === this.get('session.user')) continue
+      if (user === this.get('session.user')) continue
 
       // Retrieve user image.
-      const userImage = users.objectAt(index).get('image')
+      const userImage = user.get('image')
 
       // Ignore user if he doesn't have an image.
       if (userImage == null) continue
