@@ -17,7 +17,10 @@ moduleFor('adapter:application', 'Unit | Adapter | application', {
   }
 })
 
-// Replace this with your real tests.
+/**
+ * When initializing the JSON-API Adapter, its host should be the same as the
+ * host provided by the Config Service.
+ */
 test('When initialized it should set the host from the config service', function (assert) {
   assert.expect(1)
   const adapter = this.subject()
