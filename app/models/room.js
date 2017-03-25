@@ -42,7 +42,7 @@ export default DS.Model.extend({
    * (excluding the logged in user).
    */
   uiName: Ember.computed('name', function () {
-    // If the room has been assigned a name, use the assigned name.
+    // Use assigned name, if room has one.
     if (this.get('name') != null) return this.get('name')
 
     // In case the room hasn't got a name, the name of the room should be the
@@ -59,11 +59,8 @@ export default DS.Model.extend({
    * one assigned, else use the image of a user
    */
   uiImage: Ember.computed('image', function () {
-    // Get room image
-    const image = this.get('image')
-
-    // If the room has been assigned an image, use the assigned image.
-    if (image != null) return image
+    // Use assigned image, if room has one.
+    if (this.get('image') != null) return this.get('image')
 
     // In case the room hasn't got an image:
     //   > First try to use the image of a random member.
