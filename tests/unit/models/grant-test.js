@@ -6,6 +6,7 @@ moduleForModel('grant', 'Unit | Model | grant', {
 })
 
 test('it exists', function (assert) {
+  assert.expect(1)
   let model = this.subject()
   // let store = this.store()
   assert.ok(!!model)

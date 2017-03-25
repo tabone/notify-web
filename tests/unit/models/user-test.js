@@ -12,11 +12,13 @@ moduleForModel('user', 'Unit | Model | user', {
 })
 
 test('Image for a user who does not have a image', function (assert) {
+  assert.expect(1)
   let model = this.subject({ image: null })
   assert.strictEqual(model.get('uiImage'), 'no-user-image.png')
 })
 
 test('Image for a user who does have a image', function (assert) {
+  assert.expect(1)
   const userImage = 'user.png'
   let model = this.subject({ image: userImage })
   assert.strictEqual(model.get('uiImage'), userImage)
