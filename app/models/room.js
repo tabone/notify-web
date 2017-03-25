@@ -18,7 +18,7 @@ export default DS.Model.extend({
   image: DS.attr('string'),
 
   /**
-   * private room or not.
+   * indicates whether the room is a private room.
    */
   private: DS.attr('boolean'),
 
@@ -37,48 +37,42 @@ export default DS.Model.extend({
   }),
 
   /**
-   * uiName is the room name used in the UI.
+   * uiName is the room name used in the UI. Show the room's name if it has one
+   * assigned, else use the concatination of the usernames of its members
+   * (excluding the logged in user).
    */
   uiName: Ember.computed('name', function () {
-    let name = this.get('name')
-
     // If the room has been assigned a name, use the assigned name.
-    if (name != null) return name
+    if (this.get('name') != null) return this.get('name')
 
-    // In case the room hasn't got a name, the app should concatinate the
-    // usernames of the members (excluding the logged in user) and use it as the
-    // name for the room.
-    const user = this.get('session.user')
-    name = []
-
-    const friends = this.get('users')
-
-    friends.forEach(friend => {
-      if (friend === user) return
-      name.push(friend.get('username'))
-    })
-
-    return name.join(', ')
+    // In case the room hasn't got a name, the name of the room should be the
+    // concatination of the room member's usernames (excluding the logged in
+    // user).
+    return this.get('users')
+      .filter(friend => friend !== this.get('session.user'))
+      .map(friend => friend.get('username'))
+      .join(', ') || 'New Room'
   }),
 
   /**
-   * uiImage is the image name used in the UI.
+   * uiImage is the image name used in the UI. Show the room's image if it has
+   * one assigned, else use the image of a user
    */
   uiImage: Ember.computed('image', function () {
     // Get room image
-    let image = this.get('image')
+    const image = this.get('image')
 
     // If the room has been assigned an image, use the assigned image.
     if (image != null) return image
 
-    // In case the room hasn't got an image, the app should use a random image
-    // of a member (excluding the logged in user).
-    const user = this.get('session.user')
+    // In case the room hasn't got an image:
+    //   > First try to use the image of a random member.
+    //   > If no member has an image, display the default image.
     const users = this.get('users')
 
-    for (let index = 0; index < users.length; index++) {
+    for (let index = 0; index < users.get('length'); index++) {
       // Ignore user if it is the logged in user.
-      if (users.objectAt(index) === user) continue
+      if (users.objectAt(index) === this.get('session.user')) continue
 
       // Retrieve user image.
       const userImage = users.objectAt(index).get('image')
@@ -87,11 +81,8 @@ export default DS.Model.extend({
       if (userImage == null) continue
 
       // Set image.
-      image = userImage
+      return userImage
     }
-
-    // If there is a member who has an image, return his image.
-    if (image != null) return image
 
     // Else return the default image.
     return 'no-conversation-image.png'
