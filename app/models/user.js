@@ -75,7 +75,8 @@ export default DS.Model.extend({
   }),
 
   /**
-   * uiImage is the image name used in the UI.
+   * uiImage is the image name used in the UI. Use the user's image if he has
+   * one, else show the defualt image.
    */
   uiImage: Ember.computed('image', function () {
     // Retrive user image
