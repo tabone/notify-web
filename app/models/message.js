@@ -38,7 +38,7 @@ export default DS.Model.extend({
   }),
 
   /**
-   * uiCreated is the created date used in the UI
+   * uiCreated is the age of the message.
    */
   uiCreated: Ember.computed('created', function () {
     // Retrieve the message age in seconds.
