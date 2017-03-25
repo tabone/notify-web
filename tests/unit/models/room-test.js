@@ -25,10 +25,10 @@ moduleForModel('room', 'Unit | Model | room', {
 })
 
 /**
- * When a room has been assigned a name, when displaying the room name, it
+ * When a room has been assigned a name, when displaying the room's name, it
  * should display the assigned name.
  */
-test('Name of a room when room has been assigned a name', function (assert) {
+test('Name of a room which has been assigned a name', function (assert) {
   assert.expect(1)
   const name = 'my room'
   const room = this.subject({ name: name })
@@ -36,11 +36,11 @@ test('Name of a room when room has been assigned a name', function (assert) {
 })
 
 /**
- * When a room has not been assigned a name, when displaying the room name,
- * it should display the usernames of the members (excl the logged in user)
- * seperated by a comma.
+ * When a room has not been assigned a name, when displaying the room's name,
+ * it should display the usernames of the members (excl. the logged in user)
+ * seperated by comma.
  */
-test('Name of the room when room has not been assigned a name', function (assert) {
+test('Name of a room which has not been assigned a name', function (assert) {
   assert.expect(1)
 
   Ember.run(() => {
@@ -64,9 +64,9 @@ test('Name of the room when room has not been assigned a name', function (assert
 
 /**
  * When a room has not been assigned a name, and its only member is the logged
- * in user, when display the room's name, it should display "New Room".
+ * in user, when displaying the room's name, it should display "New Room".
  */
-test('Name of the room when room has not been assigned a name and it only has the logged in user as a member', function (assert) {
+test('Name of a room which has not been assigned a name and the only member is the logged in user', function (assert) {
   assert.expect(1)
 
   Ember.run(() => {
@@ -90,7 +90,7 @@ test('Name of the room when room has not been assigned a name and it only has th
  * When a room has been assigned an image, when displaying the room's image, it
  * should display the assigned image.
  */
-test('Image of the room when room has been assigned an image', function (assert) {
+test('Image of a room which has been assigned an image', function (assert) {
   assert.expect(1)
   const roomImage = 'room.png'
   const room = this.subject({ image: roomImage })
@@ -103,7 +103,7 @@ test('Image of the room when room has been assigned an image', function (assert)
  * of a random member (excl. the logged in user) that has an image assigned to
  * him.
  */
-test('Image of the room when room has not been assigned an image and but it has members (excl. logged in user) that have been', function (assert) {
+test('Image of a room which has not been assigned an image and has members (excl. logged in user) that have been assigned one', function (assert) {
   assert.expect(1)
 
   Ember.run(() => {
@@ -135,7 +135,7 @@ test('Image of the room when room has not been assigned an image and but it has 
  * When a room and all its members have not been assigned an image, when display
  * the image of the room, it should display the default image.
  */
-test('Image of the room when the room and all the members (excl the logged in user) of the room have not been assigned an image', function (assert) {
+test('Image of a room which has not been assigned an image, and has no members (excl. logged in user) who have been assigned one', function (assert) {
   assert.expect(1)
 
   Ember.run(() => {
@@ -165,7 +165,7 @@ test('Image of the room when the room and all the members (excl the logged in us
  * user as a member, when display the image, it should display the default
  * image.
  */
-test('Image of the room when the room have not been assigned an image and it only has the logged in user as a member', function (assert) {
+test('Image of the room who has not been assigned an image and the only member is the logged in user', function (assert) {
   assert.expect(1)
 
   Ember.run(() => {
