@@ -2,12 +2,12 @@ import DS from 'ember-data'
 
 export default DS.Model.extend({
   /**
-   * created.
+   * date when the token created.
    */
   created: DS.attr('date'),
 
   /**
-   * created.
+   * origin of the token.
    */
   origin: DS.attr('string'),
 
@@ -17,7 +17,7 @@ export default DS.Model.extend({
   token: DS.attr('string'),
 
   /**
-   * user the token belong to.
+   * user the token belongs to.
    */
   user: DS.belongsTo('user', {
     inverse: 'token'

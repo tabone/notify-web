@@ -7,12 +7,12 @@ export default DS.Model.extend({
   content: DS.attr('string'),
 
   /**
-   * deleted state.
+   * indicates whether the message has been deleted.
    */
   deleted: DS.attr('boolean'),
 
   /**
-   * created.
+   * date when the message was created.
    */
   created: DS.attr('date'),
 
@@ -31,14 +31,14 @@ export default DS.Model.extend({
   }),
 
   /**
-   * unread by the users listed.
+   * users who have still not read the message.
    */
   unread: DS.hasMany('user', {
     inverse: 'unread'
   }),
 
   /**
-   * uiCreated is the created date used in the UI
+   * age of the message.
    */
   uiCreated: Ember.computed('created', function () {
     // Retrieve the message age in seconds.
@@ -64,13 +64,7 @@ export default DS.Model.extend({
      * @return {String} The created date to be used in UI.
      */
     function handleSeconds () {
-      if (diffSeconds < 20) {
-        return `just now`
-      }
-
-      if (diffSeconds < 60) {
-        return `${diffSeconds} seconds ago`
-      }
+      return (diffSeconds < 20) ? 'just now' : `${diffSeconds} seconds ago`
     }
 
     /**
@@ -79,12 +73,7 @@ export default DS.Model.extend({
      */
     function handleMinutes () {
       const diffMinutes = Math.floor(diffSeconds / 60)
-
-      if (diffMinutes === 1) {
-        return '1 minute ago'
-      } else {
-        return `${diffMinutes} minutes ago`
-      }
+      return (diffMinutes === 1) ? '1 minute ago' : `${diffMinutes} minutes ago`
     }
 
     /**
@@ -93,12 +82,7 @@ export default DS.Model.extend({
      */
     function handleHours () {
       const diffHours = Math.floor(diffSeconds / 3600)
-
-      if (diffHours === 1) {
-        return '1 hour ago'
-      } else {
-        return `${diffHours} hours ago`
-      }
+      return (diffHours === 1) ? '1 hour ago' : `${diffHours} hours ago`
     }
 
     /**
@@ -107,12 +91,7 @@ export default DS.Model.extend({
      */
     function handleDays () {
       const diffDays = Math.floor(diffSeconds / 86400)
-
-      if (diffDays === 1) {
-        return '1 day ago'
-      } else {
-        return `${diffDays} days ago`
-      }
+      return (diffDays === 1) ? '1 day ago' : `${diffDays} days ago`
     }
 
     /**
@@ -121,12 +100,7 @@ export default DS.Model.extend({
      */
     function handleWeeks () {
       const diffWeeks = Math.floor(diffSeconds / 604800)
-
-      if (diffWeeks === 1) {
-        return '1 week ago'
-      } else {
-        return `${diffWeeks} weeks ago`
-      }
+      return (diffWeeks === 1) ? '1 week ago' : `${diffWeeks} weeks ago`
     }
 
     /**
@@ -135,12 +109,7 @@ export default DS.Model.extend({
      */
     function handleMonths () {
       const diffMonths = Math.floor(diffSeconds / 2419200)
-
-      if (diffMonths === 1) {
-        return '1 month ago'
-      } else {
-        return `${diffMonths} months ago`
-      }
+      return (diffMonths === 1) ? '1 month ago' : `${diffMonths} months ago`
     }
 
     /**
@@ -149,12 +118,7 @@ export default DS.Model.extend({
      */
     function handleYears () {
       const diffYears = Math.floor(diffSeconds / 29030400)
-
-      if (diffYears === 1) {
-        return '1 year ago'
-      } else {
-        return `${diffYears} years ago`
-      }
+      return (diffYears === 1) ? '1 year ago' : `${diffYears} years ago`
     }
   })
 })
