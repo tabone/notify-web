@@ -64,7 +64,7 @@ export default DS.Model.extend({
      * @return {String} The created date to be used in UI.
      */
     function handleSeconds () {
-      return (diffSeconds < 20) ? `just now` : `${diffSeconds} seconds ago`
+      return (diffSeconds < 20) ? 'just now' : `${diffSeconds} seconds ago`
     }
 
     /**
