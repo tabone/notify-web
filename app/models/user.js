@@ -12,7 +12,7 @@ export default DS.Model.extend({
   image: DS.attr('string'),
 
   /**
-   * bot or not.
+   * indicates whether the user is a bot.
    */
   bot: DS.attr('boolean'),
 
@@ -39,7 +39,7 @@ export default DS.Model.extend({
   }),
 
   /**
-   * created users by the user himself.
+   * other users which this user has created.
    * @type {Array}
    */
   created: DS.hasMany('user', {
@@ -47,7 +47,7 @@ export default DS.Model.extend({
   }),
 
   /**
-   * grants of the user have.
+   * grants of the user.
    */
   grants: DS.hasMany('grant', {
     inverse: 'users'
@@ -79,13 +79,7 @@ export default DS.Model.extend({
    * one, else show the defualt image.
    */
   uiImage: Ember.computed('image', function () {
-    // Retrive user image
-    let image = this.get('image')
-
-    // If the user does have an image, return the image name
-    if (image != null) return image
-
-    // Else return the default name.
-    return 'no-user-image.png'
+    // Use user image if he has one, else use the default one.
+    return this.get('image') || 'no-user-image.png'
   })
 })
