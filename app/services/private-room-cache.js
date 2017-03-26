@@ -23,7 +23,7 @@ export default Ember.Service.extend({
   rooms: {},
 
   /**
-   * cache room only if it is a private room.
+   * cache private room by the friends ID.
    * @param  {Record} room The room to be cached.
    */
   cache (room) {
@@ -34,14 +34,8 @@ export default Ember.Service.extend({
     if (room.get('users.length') !== 2) return
 
     /**
-     * user is the logged in user.
-     * @type {Record}
-     */
-    const user = this.get('session.user')
-
-    /**
-     * users are the users who are a member of the room to be added.
-     * @type {[type]}
+     * Members of the room to be added.
+     * @type {Array}
      */
     const users = room.get('users')
 
@@ -49,7 +43,7 @@ export default Ember.Service.extend({
      * friend is the other user inside the private room.
      * @type {Record}
      */
-    const friend = (user === users.get('firstObject'))
+    const friend = (this.get('session.user') === users.get('firstObject'))
       ? users.get('lastObject')
       : users.get('firstObject')
 
@@ -58,7 +52,7 @@ export default Ember.Service.extend({
   },
 
   /**
-   * read cached private room.
+   * read cached private room by friend ID.
    * @param  {String} friendID The id of the friend.
    * @return {Record}          Private room instance.
    */
@@ -71,15 +65,13 @@ export default Ember.Service.extend({
     // If it isn't we need to create it
     const store = this.get('store')
 
-    // Retrieve looged in user.
-    const user = this.get('session.user')
     // Retrieved friend.
     const friend = store.peekRecord('user', friendID)
 
     // Create room with logged in user & his friend.
     const room = store.createRecord('room', {
       private: true,
-      users: [user, friend]
+      users: [ this.get('session.user'), friend ]
     })
 
     // Cache the room created.
