@@ -30,7 +30,7 @@ test('Cache a public room', function (assert) {
   assert.expect(1)
 
   // Private Room Cache instance.
-  const roomCache = this.subject({ rooms: {} })
+  const roomCache = this.subject()
 
   // Public room to be cached.
   const room = Ember.Object.create({
@@ -53,7 +53,7 @@ test('Cache a private room which does not have 2 members', function (assert) {
   assert.expect(1)
 
   // Private Room Cache instance.
-  const roomCache = this.subject({ rooms: {} })
+  const roomCache = this.subject()
 
   // Invalid private room to be cached.
   const room = Ember.Object.create({
@@ -81,7 +81,7 @@ test('Cache a valid private room', function (assert) {
   const friend = Ember.Object.create({ id: 2 })
 
   // Private Room Cache instance.
-  const roomCache = this.subject({ rooms: {} })
+  const roomCache = this.subject()
 
   // Store logged in user in Session Service.
   roomCache.set('session.user', user)
@@ -108,7 +108,7 @@ test('Read a cached private room', function (assert) {
   assert.expect(1)
 
   // Private Room Cache instance.
-  const roomCache = this.subject({ rooms: {} })
+  const roomCache = this.subject()
 
   // The ID of the friend which the room is indexed with.
   const friendID = 1
@@ -137,7 +137,7 @@ test('Read a non-cached private room', function (assert) {
   const friend = Ember.Object.create({ id: 2 })
 
   // Private Room Cache instance.
-  const roomCache = this.subject({ rooms: {} })
+  const roomCache = this.subject()
 
   // Store logged in user in Session Service.
   roomCache.set('session.user', user)

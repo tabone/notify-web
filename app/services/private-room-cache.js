@@ -20,7 +20,15 @@ export default Ember.Service.extend({
    * rooms cached by the friend ID.
    * @type {Object}
    */
-  rooms: {},
+  rooms: null,
+
+  /**
+   * init is invoked when the object is initialized.
+   */
+  init (...args) {
+    this._super(...args)
+    this.set('rooms', {})
+  },
 
   /**
    * cache private room by the friends ID.
