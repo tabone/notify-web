@@ -2,12 +2,6 @@ import Ember from 'ember'
 
 export default Ember.Service.extend({
   /**
-   * WebSocket instance.
-   * @type {Object}
-   */
-  socket: null,
-
-  /**
    * configuration object.
    * @type {service:config}
    */
@@ -30,6 +24,12 @@ export default Ember.Service.extend({
    * @type {service:private-room-cache}
    */
   privateRoomCache: Ember.inject.service(),
+
+  /**
+   * WebSocket instance.
+   * @type {Object}
+   */
+  socket: null,
 
   /**
    * connect to WebSocket server.
