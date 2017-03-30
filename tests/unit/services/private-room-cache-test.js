@@ -1,20 +1,20 @@
 import Ember from 'ember'
 import { moduleFor, test } from 'ember-qunit'
 
-/**
- * Stubbing the Session Service.
- * @type {service}
- */
-const sessionStub = Ember.Service.extend({})
-
-/**
- * Stubbing the Store Service.
- * @type {service}
- */
-const storeStub = Ember.Service.extend({})
-
 moduleFor('service:private-room-cache', 'Unit | Service | private room cache', {
   beforeEach: function beforeEach () {
+    /**
+     * Stubbing the Session Service.
+     * @type {service}
+     */
+    const sessionStub = Ember.Service.extend({})
+
+    /**
+     * Stubbing the Store Service.
+     * @type {service}
+     */
+
+    const storeStub = Ember.Service.extend({})
     this.register('service:session', sessionStub)
     this.register('service:store', storeStub)
 

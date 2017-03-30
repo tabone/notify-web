@@ -1,8 +1,7 @@
 import { moduleFor, test } from 'ember-qunit'
 import sinon from 'sinon'
 
-moduleFor('service:notification', 'Unit | Service | notification', {
-})
+moduleFor('service:notification', 'Unit | Service | notification', {})
 
 /**
  * When adding an invalid listener (i.e. listener is not function), it should
