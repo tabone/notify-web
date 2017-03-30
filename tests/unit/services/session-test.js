@@ -56,7 +56,7 @@ test('Checking if user is logged in', function (assert) {
  * Service.
  */
 test('Successfully logging in', function (assert) {
-  // assert.expect(3)
+  assert.expect(5)
   // Create Session Service instance.
   const sessionInst = this.subject()
 
