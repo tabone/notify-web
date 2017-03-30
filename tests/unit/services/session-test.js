@@ -100,7 +100,7 @@ test('Successfully logging in', function (assert) {
 
     // Should store the user model requested in the Session Service.
     assert.strictEqual(sessionInst.get('user'), mockUser)
-  }).catch(err => {
+  }).catch(() => {
     assert.ok(false)
   }).then(xhr.restore.bind(xhr))
 })
@@ -131,7 +131,7 @@ test('Unsuccessfully logging in', function (assert) {
   // Do Assertions.
   return loginPromise.then(() => {
     assert.ok(false)
-  }).catch(err => {
+  }).catch(() => {
     // Did 1 request
     assert.strictEqual(requests.length, 1)
     // Session Service does not have a reference to a user.
