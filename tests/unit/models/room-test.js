@@ -1,14 +1,6 @@
 import Ember from 'ember'
 import { moduleForModel, test } from 'ember-qunit'
 
-/**
- * Stubbing the Session Service.
- * @type {service}
- */
-const sessionStub = Ember.Service.extend({
-  user: null
-})
-
 moduleForModel('room', 'Unit | Model | room', {
   needs: [
     'model:user',
@@ -20,6 +12,14 @@ moduleForModel('room', 'Unit | Model | room', {
     'model:token'
   ],
   beforeEach: function beforeEach () {
+    /**
+     * Stubbing the Session Service.
+     * @type {service}
+     */
+    const sessionStub = Ember.Service.extend({
+      user: null
+    })
+
     this.register('service:session', sessionStub)
     this.inject.service('session')
   }
