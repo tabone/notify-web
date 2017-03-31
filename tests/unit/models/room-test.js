@@ -5,12 +5,12 @@ moduleForModel('room', 'Unit | Model | room', {
   needs: [
     'model:user',
     'model:message',
-    'service:session',
     'model:state',
     'model:grant',
     'model:message',
     'model:token'
   ],
+
   beforeEach: function beforeEach () {
     /**
      * Stubbing the Session Service.
