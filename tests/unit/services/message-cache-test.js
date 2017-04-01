@@ -1,3 +1,4 @@
+import Ember from 'ember'
 import { moduleFor, test } from 'ember-qunit'
 
 moduleFor('service:message-cache', 'Unit | Service | message cache', {})
