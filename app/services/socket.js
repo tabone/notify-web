@@ -1,5 +1,9 @@
 import Ember from 'ember'
 
+/**
+ * Service used to keep up-to-date the Ember Data Store via a WebSocket
+ * connection.
+ */
 export default Ember.Service.extend({
   /**
    * configuration object.
@@ -36,7 +40,7 @@ export default Ember.Service.extend({
    */
   connect () {
     // Create a WebSocket connection.
-    const socket = new WebSocket(this.get('config.ws.url'))
+    const socket = new window.WebSocket(this.get('config.ws.url'))
 
     // Store WebSocket connection.
     this.set('socket', socket)
