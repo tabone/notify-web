@@ -1,7 +1,7 @@
 import Ember from 'ember'
 
 /**
- * Service used to push a notification to get displayed to the user.
+ * Service used to push a notification to be displayed to the user.
  */
 export default Ember.Service.extend({
   /**
@@ -20,16 +20,16 @@ export default Ember.Service.extend({
   },
 
   /**
-   * info emits a info notification.
-   * @param  {String} message The message to be displayed
+   * info emits an info notification.
+   * @param  {String} message The message to be displayed.
    */
   info (message) {
     this.emit('info', message)
   },
 
   /**
-   * error emits a error notification.
-   * @param  {String} message The message to be displayed
+   * error emits an error notification.
+   * @param  {String} message The message to be displayed.
    */
   error (message) {
     this.emit('error', message)
@@ -37,7 +37,7 @@ export default Ember.Service.extend({
 
   /**
    * warning emits a warning notification.
-   * @param  {String} message The message to be displayed
+   * @param  {String} message The message to be displayed.
    */
   warning (message) {
     this.emit('warning', message)
@@ -45,7 +45,7 @@ export default Ember.Service.extend({
 
   /**
    * success emits a success notification.
-   * @param  {String} message The message to be displayed
+   * @param  {String} message The message to be displayed.
    */
   success (message) {
     this.emit('success', message)

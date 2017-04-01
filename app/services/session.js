@@ -1,4 +1,5 @@
 import Ember from 'ember'
+import RSVP from 'rsvp'
 
 /**
  * Service used to manage the session.
@@ -34,23 +35,22 @@ export default Ember.Service.extend({
    * login the user.
    * @param  {String} username The username of the user.
    * @param  {String} password The password of the user.
-   * @return {[type]}          [description]
+   * @return {Promise}         Resolved when authentication is successful,
+   *                           rejected otherwise.
    */
-  login (username, password) {
-    return Ember.$.ajax({
-      url: this.get('config.auth.url'),
-      method: 'POST',
-      dataType: 'json',
-      data: {
-        username: username,
-        password: password
-      }
-    })
-    .then((data) => {
-      return this.get('store').findRecord('user', data.id, { include: 'unread' })
-    })
-    .then((user) => {
-      this.set('user', user)
+  login () {
+    return new RSVP.Promise((resolve, reject) => {
+      Ember.$.ajax({
+        url: this.get('config.auth.url'),
+        method: 'POST',
+        dataType: 'json'
+      }).then((data) => {
+        return this.get('store')
+          .findRecord('user', data.id, { include: 'unread' })
+      }).then((user) => {
+        this.set('user', user)
+        resolve()
+      }).fail(reject)
     })
   },
 
@@ -59,6 +59,5 @@ export default Ember.Service.extend({
    */
   logout () {
     this.set('user', null)
-    this.set('apiToken', null)
   }
 })
