@@ -75,6 +75,7 @@ moduleFor('service:socket', 'Unit | Service | socket', {
  * the service.
  */
 test('Establishing a WebSocket Connection', function (assert) {
+  assert.expect(3)
   // Mocks the WebSocket instance. This is the instance returned when invoking
   // WebSocket constructor using the new keyword.
   const socketMock = {}
@@ -103,6 +104,7 @@ test('Establishing a WebSocket Connection', function (assert) {
  * Room Cache Service.
  */
 test('Retrieving an update about a private room', function (assert) {
+  assert.expect(4)
   // Mocks the WebSocket instance. This is the instance returned when invoking
   // WebSocket constructor using the new keyword.
   const socketMock = {}
@@ -147,6 +149,7 @@ test('Retrieving an update about a private room', function (assert) {
  * updating Ember Data Store.
  */
 test('Retrieving an update about a public room', function (assert) {
+  assert.expect(3)
   // Mocks the WebSocket instance. This is the instance returned when invoking
   // WebSocket constructor using the new keyword.
   const socketMock = {}
@@ -190,6 +193,7 @@ test('Retrieving an update about a public room', function (assert) {
  * Ember Data Store, it should also update the Message Cache Service.
  */
 test('Retrieving an update about a message', function (assert) {
+  assert.expect(6)
   // Mocks the WebSocket instance. This is the instance returned when invoking
   // WebSocket constructor using the new keyword.
   const socketMock = {}
