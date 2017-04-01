@@ -42,7 +42,7 @@ export default Ember.Service.extend({
     // Include the messages to be cached if they aren't cached already.
     messages.forEach(message => {
       // If message already exists, ignore it.
-      if (cachedMessages.indexOf(message) === true) return
+      if (cachedMessages.indexOf(message) !== -1) return
 
       // If message isn't new, prepend it, else append it.
       cachedMessages[ (pre === true) ? 'unshiftObject' : 'pushObject' ](message)
