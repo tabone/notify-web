@@ -1,5 +1,10 @@
 import Ember from 'ember'
 
+/**
+ * This is the main route of the app. It is the first route that gets invoked
+ * when a user enters the app. Here checks are made to verify that a user is
+ * only allowed inside the app if he is authenticated.
+ */
 export default Ember.Route.extend({
   /**
    * session service is used to manage the session info.
