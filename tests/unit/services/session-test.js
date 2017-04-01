@@ -24,6 +24,7 @@ moduleFor('service:session', 'Unit | Service | session', {
 
     this.register('service:store', storeStub)
     this.register('service:config', configStub)
+
     this.inject.service('store')
     this.inject.service('config')
   }

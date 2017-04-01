@@ -1,7 +1,7 @@
 import Ember from 'ember'
 
 /**
- * Service used to push a notification to get displayed to the user.
+ * Service used to push a notification to be displayed to the user.
  */
 export default Ember.Service.extend({
   /**

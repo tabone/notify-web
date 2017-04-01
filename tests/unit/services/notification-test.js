@@ -53,7 +53,7 @@ test('Emitting an info notification', function (assert) {
   // Emit notification
   notification[type](msg)
 
-  // Do Assertions
+  // Verify that all listeners have been invoked once with the type and message.
   ;[listenerOne, listenerTwo, listenerThree].forEach(listener => {
     assert.strictEqual(listener.callCount, 1)
     assert.strictEqual(listener.firstCall.args[0].type, type)
@@ -89,7 +89,7 @@ test('Emitting an error notification', function (assert) {
   // Emit notification
   notification[type](msg)
 
-  // Do Assertions
+  // Verify that all listeners have been invoked once with the type and message.
   ;[listenerOne, listenerTwo, listenerThree].forEach(listener => {
     assert.strictEqual(listener.callCount, 1)
     assert.strictEqual(listener.firstCall.args[0].type, type)
@@ -125,7 +125,7 @@ test('Emitting a warning notification', function (assert) {
   // Emit notification
   notification[type](msg)
 
-  // Do Assertions
+  // Verify that all listeners have been invoked once with the type and message.
   ;[listenerOne, listenerTwo, listenerThree].forEach(listener => {
     assert.strictEqual(listener.callCount, 1)
     assert.strictEqual(listener.firstCall.args[0].type, type)
@@ -161,7 +161,7 @@ test('Emitting a success notification', function (assert) {
   // Emit notification
   notification[type](msg)
 
-  // Do Assertions
+  // Verify that all listeners have been invoked once with the type and message.
   ;[listenerOne, listenerTwo, listenerThree].forEach(listener => {
     assert.strictEqual(listener.callCount, 1)
     assert.strictEqual(listener.firstCall.args[0].type, type)
@@ -197,7 +197,7 @@ test('Emitting a non-standard notification', function (assert) {
   // Emit notification
   notification.emit(type, msg)
 
-  // Do Assertions
+  // Verify that all listeners have been invoked once with the type and message.
   ;[listenerOne, listenerTwo, listenerThree].forEach(listener => {
     assert.strictEqual(listener.callCount, 1)
     assert.strictEqual(listener.firstCall.args[0].type, type)

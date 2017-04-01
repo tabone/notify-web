@@ -13,8 +13,8 @@ moduleFor('service:private-room-cache', 'Unit | Service | private room cache', {
      * Stubbing the Store Service.
      * @type {service}
      */
-
     const storeStub = Ember.Service.extend({})
+
     this.register('service:session', sessionStub)
     this.register('service:store', storeStub)
 
@@ -28,7 +28,6 @@ moduleFor('service:private-room-cache', 'Unit | Service | private room cache', {
  */
 test('Cache a public room', function (assert) {
   assert.expect(1)
-
   // Private Room Cache instance.
   const roomCache = this.subject()
 
@@ -41,7 +40,7 @@ test('Cache a public room', function (assert) {
   // Try caching the public room.
   roomCache.cache(room)
 
-  // Do Assertions.
+  // Verify that the room has not been cached.
   assert.strictEqual(Object.keys(roomCache.get('rooms')).length, 0)
 })
 
@@ -51,11 +50,10 @@ test('Cache a public room', function (assert) {
  */
 test('Cache a private room which does not have 2 members', function (assert) {
   assert.expect(1)
-
   // Private Room Cache instance.
   const roomCache = this.subject()
 
-  // Invalid private room to be cached.
+  // Private room that does not have 2 members
   const room = Ember.Object.create({
     private: true,
     users: [ Ember.Object.create({}) ]
@@ -64,7 +62,7 @@ test('Cache a private room which does not have 2 members', function (assert) {
   // Try caching the invalid private room.
   roomCache.cache(room)
 
-  // Do Assertions.
+  // Verify that the room has not been cached.
   assert.strictEqual(Object.keys(roomCache.get('rooms')).length, 0)
 })
 
@@ -95,8 +93,10 @@ test('Cache a valid private room', function (assert) {
   // Cache Private Room.
   roomCache.cache(room)
 
-  // Do Assertions.
+  // Verify that only one entry has been added to the cached rooms list.
   assert.strictEqual(Object.keys(roomCache.get('rooms')).length, 1)
+
+  // Verify that the private room has been cached by the friend's id.
   assert.strictEqual(roomCache.get(`rooms.${friend.id}`), room)
 })
 
@@ -106,7 +106,6 @@ test('Cache a valid private room', function (assert) {
  */
 test('Read a cached private room', function (assert) {
   assert.expect(1)
-
   // Private Room Cache instance.
   const roomCache = this.subject()
 
@@ -119,18 +118,17 @@ test('Read a cached private room', function (assert) {
   // Cache Room.
   roomCache.set(`rooms.${friendID}`, cachedRoom)
 
-  // Do Assertion.
+  // Verify that when reading a cached private room by the friends ID it returns
+  // the same cached room instance.
   assert.strictEqual(roomCache.read(friendID), cachedRoom)
 })
 
 /**
- * When trying to read a cached private room, if the room is not cached, it
- * should create and return a new private room with the logged in user and the
- * friend as members.
+ * When trying to read a non-cached private room, it should create, cache and
+ * return a new room instance with the logged in user and the friend as members.
  */
 test('Read a non-cached private room', function (assert) {
-  assert.expect(4)
-
+  assert.expect(5)
   // Logged in user.
   const user = Ember.Object.create({ id: 1 })
   // Friend ID.
@@ -142,12 +140,14 @@ test('Read a non-cached private room', function (assert) {
   // Store logged in user in Session Service.
   roomCache.set('session.user', user)
 
-  // Mock peekRecord function.
+  // Mock peekRecord function. This function will be invoked when the Service
+  // tries to retrieve the friends model.
   roomCache.get('store').peekRecord = (type, id) => {
     return (type === 'user' && id === friend.get('id')) ? friend : null
   }
 
-  // Mock createRecord function.
+  // Mock createRecord function. This function will be invokde when the Service
+  // tries to create the new room model.
   roomCache.get('store').createRecord = (type, obj) => {
     return (type === 'room') ? Ember.Object.create(obj) : null
   }
@@ -155,9 +155,15 @@ test('Read a non-cached private room', function (assert) {
   // Read non-cached private room.
   const newRoom = roomCache.read(friend.get('id'))
 
-  // Do Assertions
+  // Verify that the returned room has been cached by the friend's id.
   assert.strictEqual(roomCache.get(`rooms.${friend.get('id')}`), newRoom)
+
+  // Verify that the returned room is a private room.
   assert.strictEqual(newRoom.get('private'), true)
+
+  // Verify that the returned room has only got the logged in user and the
+  // friend ID as members
+  assert.strictEqual(newRoom.get('users.length'), 2)
   assert.strictEqual(newRoom.get('users')[0], user)
   assert.strictEqual(newRoom.get('users')[1], friend)
 })
