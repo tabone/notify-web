@@ -4,6 +4,10 @@ import sinon from 'sinon'
 
 moduleFor('route:application', 'Unit | Route | application', {
   beforeEach: function beforeEach () {
+    /**
+     * Stubbing the Session Service.
+     * @type {service}
+     */
     const sessionStub = Ember.Service.extend({ login: sinon.stub() })
     this.register('service:session', sessionStub)
     this.inject.service('session')
