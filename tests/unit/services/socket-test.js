@@ -85,24 +85,48 @@ test('Establishing a WebSocket Connection', function (assert) {
   const socketInst = this.subject()
 
   // Try to establish a connection.
-  socketInst.connect()
+  return socketInst.connect().then(() => {
+    // Verify that WebSocket has been invoked with a new keyword.
+    assert.ok(window.WebSocket.calledWithNew())
 
-  // Verify that WebSocket has been invoked with a new keyword.
-  assert.ok(window.WebSocket.calledWithNew())
+    // Verify that it tried to connect with Notify's WebSocket server.
+    assert.strictEqual(window.WebSocket.firstCall.args[0],
+      socketInst.get('config.ws.url'))
 
-  // Verify that it tried to connect with Notify's WebSocket server.
-  assert.strictEqual(window.WebSocket.firstCall.args[0],
-    socketInst.get('config.ws.url'))
-
-  // Verify that WebSocket instance has been stored in the Service.
-  assert.strictEqual(socketInst.get('socket'), socketMock)
+    // Verify that WebSocket instance has been stored in the Service.
+    assert.strictEqual(socketInst.get('socket'), socketMock)
+  })
 })
 
 /**
- * When retrieving a WebSocket payload about a private room, apart from updating
- * Ember Data Store we need to also store the private message inside the Private
- * Room Cache Service.
+ * When failing to establish a WebSocket connection, the connect function should
+ * return a rejected promise.
  */
+test('Failing to establishing a WebSocket Connection', function (assert) {
+  assert.expect(1)
+  // Mocks the WebSocket instance. This is the instance returned when invoking
+  // WebSocket constructor using the new keyword.
+  const socketMock = {}
+  window.WebSocket.returns(socketMock)
+
+  // Create Socket Service instance.
+  const socketInst = this.subject()
+
+  // Stub the WebSocket constructor to throw an error when invoked.
+  window.WebSocket.throws()
+
+  // Try to establish a connection.
+  return socketInst.connect().catch(() => {
+    // Verify that WebSocket instance has not been stored in the Service.
+    assert.strictEqual(socketInst.get('socket'), null)
+  })
+})
+
+// /**
+//  * When retrieving a WebSocket payload about a private room, apart from updating
+//  * Ember Data Store we need to also store the private message inside the Private
+//  * Room Cache Service.
+//  */
 test('Retrieving an update about a private room', function (assert) {
   assert.expect(4)
   // Mocks the WebSocket instance. This is the instance returned when invoking
@@ -114,40 +138,40 @@ test('Retrieving an update about a private room', function (assert) {
   const socketInst = this.subject()
 
   // Establish a connection.
-  socketInst.connect()
+  return socketInst.connect().then(() => {
+    // Mocks the model to be returned when pushing the retrieved payload. For this
+    // test it should be of type 'room' and should have its 'private' attribute
+    // set to 'true'.
+    const modelMock = Ember.Object.create({
+      private: true,
+      constructor: { modelName: 'room' }
+    })
+    socketInst.get('store.push').returns(modelMock)
 
-  // Mocks the model to be returned when pushing the retrieved payload. For this
-  // test it should be of type 'room' and should have its 'private' attribute
-  // set to 'true'.
-  const modelMock = Ember.Object.create({
-    private: true,
-    constructor: { modelName: 'room' }
+    // Mocks the payload to be retrieved from WebSocket server.
+    const payloadMock = { id: 'abc123' }
+
+    // Invoke the onmessage function of the socket instance. This will be
+    // invoked on retrieval of a payload sent by the WebSocket server.
+    socketMock.onmessage({ data: JSON.stringify(payloadMock) })
+
+    // Verify that the updated payload has been pushed to Ember Data Store.
+    const pushStub = socketInst.get('store.push')
+    assert.strictEqual(pushStub.callCount, 1)
+    assert.strictEqual(pushStub.firstCall.args[0].id, payloadMock.id)
+
+    // Verify that the updated room has been cached in the Private Room Cache
+    // Service.
+    const privateRoomCacheStub = socketInst.get('privateRoomCache.cache')
+    assert.strictEqual(privateRoomCacheStub.callCount, 1)
+    assert.strictEqual(privateRoomCacheStub.firstCall.args[0], modelMock)
   })
-  socketInst.get('store.push').returns(modelMock)
-
-  // Mocks the payload to be retrieved from WebSocket server.
-  const payloadMock = { id: 'abc123' }
-
-  // Invoke the onmessage function of the socket instance. This will be invoked
-  // on retrieval of a payload sent by the WebSocket server.
-  socketMock.onmessage({ data: JSON.stringify(payloadMock) })
-
-  // Verify that the updated payload has been pushed to Ember Data Store.
-  const pushStub = socketInst.get('store.push')
-  assert.strictEqual(pushStub.callCount, 1)
-  assert.strictEqual(pushStub.firstCall.args[0].id, payloadMock.id)
-
-  // Verify that the updated room has been cached in the Private Room Cache
-  // Service.
-  const privateRoomCacheStub = socketInst.get('privateRoomCache.cache')
-  assert.strictEqual(privateRoomCacheStub.callCount, 1)
-  assert.strictEqual(privateRoomCacheStub.firstCall.args[0], modelMock)
 })
 
-/**
- * When retrieving a WebSocket payload about a public room, all we have to do is
- * updating Ember Data Store.
- */
+// /**
+//  * When retrieving a WebSocket payload about a public room, all we have to do is
+//  * updating Ember Data Store.
+//  */
 test('Retrieving an update about a public room', function (assert) {
   assert.expect(3)
   // Mocks the WebSocket instance. This is the instance returned when invoking
@@ -159,39 +183,39 @@ test('Retrieving an update about a public room', function (assert) {
   const socketInst = this.subject()
 
   // Establish a connection.
-  socketInst.connect()
+  return socketInst.connect().then(() => {
+    // Mocks the model to be returned when pushing the retrieved payload. For
+    // this test it should be of type 'room' and should have its 'private'
+    // attribute set to 'false'.
+    const modelMock = Ember.Object.create({
+      private: false,
+      constructor: { modelName: 'room' }
+    })
+    socketInst.get('store.push').returns(modelMock)
 
-  // Mocks the model to be returned when pushing the retrieved payload. For this
-  // test it should be of type 'room' and should have its 'private' attribute
-  // set to 'false'.
-  const modelMock = Ember.Object.create({
-    private: false,
-    constructor: { modelName: 'room' }
+    // Mocks the payload to be retrieved from WebSocket server.
+    const payloadMock = { id: 'abc123' }
+
+    // Invoke the onmessage function of the socket instance. This will be invoked
+    // on retrieval of a payload sent by the WebSocket server.
+    socketMock.onmessage({ data: JSON.stringify(payloadMock) })
+
+    // Verify that the updated payload has been pushed to Ember Data Store.
+    const pushStub = socketInst.get('store.push')
+    assert.strictEqual(pushStub.callCount, 1)
+    assert.strictEqual(pushStub.firstCall.args[0].id, payloadMock.id)
+
+    // Verify that the updated room has not been cached in the Private Room Cache
+    // Service.
+    const privateRoomCacheStub = socketInst.get('privateRoomCache.cache')
+    assert.strictEqual(privateRoomCacheStub.callCount, 0)
   })
-  socketInst.get('store.push').returns(modelMock)
-
-  // Mocks the payload to be retrieved from WebSocket server.
-  const payloadMock = { id: 'abc123' }
-
-  // Invoke the onmessage function of the socket instance. This will be invoked
-  // on retrieval of a payload sent by the WebSocket server.
-  socketMock.onmessage({ data: JSON.stringify(payloadMock) })
-
-  // Verify that the updated payload has been pushed to Ember Data Store.
-  const pushStub = socketInst.get('store.push')
-  assert.strictEqual(pushStub.callCount, 1)
-  assert.strictEqual(pushStub.firstCall.args[0].id, payloadMock.id)
-
-  // Verify that the updated room has not been cached in the Private Room Cache
-  // Service.
-  const privateRoomCacheStub = socketInst.get('privateRoomCache.cache')
-  assert.strictEqual(privateRoomCacheStub.callCount, 0)
 })
 
-/**
- * When retrieving a WebSocket payload about a message, apart from updating
- * Ember Data Store, it should also update the Message Cache Service.
- */
+// /**
+//  * When retrieving a WebSocket payload about a message, apart from updating
+//  * Ember Data Store, it should also update the Message Cache Service.
+//  */
 test('Retrieving an update about a message', function (assert) {
   assert.expect(6)
   // Mocks the WebSocket instance. This is the instance returned when invoking
@@ -203,33 +227,34 @@ test('Retrieving an update about a message', function (assert) {
   const socketInst = this.subject()
 
   // Establish a connection.
-  socketInst.connect()
+  return socketInst.connect().then(() => {
+    // Mocks the model to be returned when pushing the retrieved payload. For
+    // this test it should be of type 'message' and should have a 'room'
+    // attribute.
+    const modelMock = Ember.Object.create({
+      constructor: { modelName: 'message' },
+      room: {}
+    })
+    socketInst.get('store.push').returns(modelMock)
 
-  // Mocks the model to be returned when pushing the retrieved payload. For this
-  // test it should be of type 'message' and should have a 'room' attribute.
-  const modelMock = Ember.Object.create({
-    constructor: { modelName: 'message' },
-    room: {}
+    // Mocks the payload to be retrieved from WebSocket server.
+    const payloadMock = { id: 'abc123' }
+
+    // Invoke the onmessage function of the socket instance. This will be invoked
+    // on retrieval of a payload sent by the WebSocket server.
+    socketMock.onmessage({ data: JSON.stringify(payloadMock) })
+
+    // Verify that the updated payload has been pushed to Ember Data Store.
+    const pushStub = socketInst.get('store.push')
+    assert.strictEqual(pushStub.callCount, 1)
+    assert.strictEqual(pushStub.firstCall.args[0].id, payloadMock.id)
+
+    // Verify that the updated message has also been cached in Message Cache
+    // Service.
+    const messageCacheStub = socketInst.get('messageCache.cache')
+    assert.strictEqual(messageCacheStub.callCount, 1)
+    assert.strictEqual(messageCacheStub.firstCall.args[0], modelMock.get('room'))
+    assert.strictEqual(messageCacheStub.firstCall.args[1], false)
+    assert.strictEqual(messageCacheStub.firstCall.args[2], modelMock)
   })
-  socketInst.get('store.push').returns(modelMock)
-
-  // Mocks the payload to be retrieved from WebSocket server.
-  const payloadMock = { id: 'abc123' }
-
-  // Invoke the onmessage function of the socket instance. This will be invoked
-  // on retrieval of a payload sent by the WebSocket server.
-  socketMock.onmessage({ data: JSON.stringify(payloadMock) })
-
-  // Verify that the updated payload has been pushed to Ember Data Store.
-  const pushStub = socketInst.get('store.push')
-  assert.strictEqual(pushStub.callCount, 1)
-  assert.strictEqual(pushStub.firstCall.args[0].id, payloadMock.id)
-
-  // Verify that the updated message has also been cached in Message Cache
-  // Service.
-  const messageCacheStub = socketInst.get('messageCache.cache')
-  assert.strictEqual(messageCacheStub.callCount, 1)
-  assert.strictEqual(messageCacheStub.firstCall.args[0], modelMock.get('room'))
-  assert.strictEqual(messageCacheStub.firstCall.args[1], false)
-  assert.strictEqual(messageCacheStub.firstCall.args[2], modelMock)
 })
