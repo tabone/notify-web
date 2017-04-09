@@ -39,9 +39,9 @@ moduleFor('route:chat', 'Unit | Route | chat', {
 })
 
 /**
- * When accessing the Chat Route, before it retrieves the model of the route it
- * tries to establish a a WebSocket connection. If the connection is established
- * the beforeModel model hook should return a fulfilled promise.
+ * When accessing the 'chat' route, before it retrieves the model of the route
+ * it tries to establish a a WebSocket connection. If the connection is
+ * established the beforeModel model hook should return a fulfilled promise.
  */
 test('Successfully establishing a WebSocket Connection', function (assert) {
   assert.expect(1)
@@ -60,8 +60,8 @@ test('Successfully establishing a WebSocket Connection', function (assert) {
 })
 
 /**
- * When accessing the Chat Route, before it retrieves the model of the route it
- * tries to establish a a WebSocket connection. If the connection is not
+ * When accessing the 'chat' route, before it retrieves the model of the route
+ * it tries to establish a a WebSocket connection. If the connection is not
  * established the beforeModel model hook should return a rejected promise.
  */
 test('Successfully establishing a WebSocket Connection', function (assert) {
@@ -81,7 +81,7 @@ test('Successfully establishing a WebSocket Connection', function (assert) {
 })
 
 /**
- * When accessing the Chat Route before it renders the DOM the app retrieves
+ * When accessing the 'chat' route before it renders the DOM the app retrieves
  * info about the USERS, GRANTS, STATES and the ROOMS which the logged in user
  * is a member of.
  */
@@ -153,8 +153,8 @@ test('Retrieving the route model successfully', function (assert) {
 })
 
 /**
- * When the Chat Route fails to retrieve the model, it should return a rejected
- * Promise.
+ * When the 'chat' route fails to retrieve the model, it should return a
+ * rejected Promise.
  */
 test('Retrieving the route model unsuccessfully', function (assert) {
   assert.expect(1)

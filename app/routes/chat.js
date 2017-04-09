@@ -2,9 +2,9 @@ import Ember from 'ember'
 import RSVP from 'rsvp'
 
 /**
- * This is the main route for the chat application. In this route before
- * rendering the DOM, a new WebSocket connection is established & the following
- * info is retrieved:
+ * This is the 'chat' route of the application. In this route before rendering
+ * the DOM, a new WebSocket connection is established & the following info is
+ * retrieved:
  *   > List of all STATES.
  *   > List of all GRANTS.
  *   > List of all USERS.
