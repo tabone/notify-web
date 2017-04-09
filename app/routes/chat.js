@@ -1,13 +1,19 @@
 import Ember from 'ember'
 import RSVP from 'rsvp'
 
+/**
+ * This route gets invoked when the user enters the chat route. In this route
+ * before rendering the DOM, a new WebSocket connection is established & the
+ * following info is retrieved:
+ *   > List of all STATES.
+ *   > List of all GRANTS.
+ *   > List of all USERS.
+ *   > List of all ROOMS which the logged in user is a member of.
+ * Note that since rooms are dependent on the users (when a room does not have a
+ * name it uses the members usernames as its name), the rooms are retrieved
+ * after the retrieval users info.
+ */
 export default Ember.Route.extend({
-  /**
-   * session service is used to manage the session info.
-   * @type {service:session}
-   */
-  session: Ember.inject.service(),
-
   /**
    * socket service is used to communicate with the WebSocket server.
    * @type {service:socket}
@@ -49,7 +55,7 @@ export default Ember.Route.extend({
         // Store room if it is a private room.
         rooms.forEach(room => this.get('privateRoomCache').cache(room))
         return rooms
-      }).then((rooms) => {
+      }).then(rooms => {
         hash.rooms = rooms
         return hash
       })
