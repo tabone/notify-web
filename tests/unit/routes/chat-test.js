@@ -3,7 +3,7 @@ import RSVP from 'rsvp'
 import { moduleFor, test } from 'ember-qunit'
 import sinon from 'sinon'
 
-moduleFor('route:chat', 'Unit | Route | chatZ', {
+moduleFor('route:chat', 'Unit | Route | chat', {
   beforeEach: function beforeEach () {
     /**
      * Stubbing the Socket Service.
