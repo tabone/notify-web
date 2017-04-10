@@ -34,7 +34,7 @@ test('Accessing the `room` route with an invalid room id', function (assert) {
 
   // Verify that the transition function has been invoked once.
   assert.strictEqual(transitionToStub.callCount, 1)
-  //Verify that the user is redirected to the chat route.
+  // Verify that the user is redirected to the chat route.
   assert.strictEqual(transitionToStub.getCall(0).args[0], 'chat')
   // Verify that no requests are done to retrieve teh model of the route.
   assert.strictEqual(route.get('store.findRecord').callCount, 0)
