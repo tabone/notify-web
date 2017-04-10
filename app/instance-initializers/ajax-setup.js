@@ -1,3 +1,5 @@
+import Ember from 'ember'
+
 /**
  * Instance Initializer used to setup default config for all ajax calls.
  */

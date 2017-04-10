@@ -1,3 +1,4 @@
+import Ember from 'ember'
 import RSVP from 'rsvp'
 import { moduleFor, test } from 'ember-qunit'
 import sinon from 'sinon'
