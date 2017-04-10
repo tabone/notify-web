@@ -1,8 +1,7 @@
 import { moduleFor, test } from 'ember-qunit'
 import sinon from 'sinon'
 
-moduleFor('route:index', 'Unit | Route | index', {
-})
+moduleFor('route:index', 'Unit | Route | index', {})
 
 /**
  * When accessing the 'index' route, the user should be immediately redirected
