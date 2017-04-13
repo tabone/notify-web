@@ -1,4 +1,4 @@
-import Ember from 'Ember'
+import Ember from 'ember'
 import { moduleFor, test } from 'ember-qunit'
 import sinon from 'sinon'
 
