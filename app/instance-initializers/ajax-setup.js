@@ -1,12 +1,12 @@
 import Ember from 'ember'
 
 /**
- * Instance Initializer used to setup default config for all ajax calls.
+ * Instance Initializer used to setup default config for all AJAX Request.
  */
 export function initialize () {
   Ember.$.ajaxSetup({
     xhrFields: {
-      // Send cookies with ajax requests.
+      // Send cookies with AJAX Requests.
       withCredentials: true
     }
   })
