@@ -8,7 +8,7 @@ export default DS.Model.extend({
   content: DS.attr('string'),
 
   /**
-   * deleted state. It indicates whether the message has been deleted.
+   * deleted flag indicates whether the message has been deleted.
    */
   deleted: DS.attr('boolean'),
 
