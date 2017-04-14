@@ -80,6 +80,8 @@ test('Accessing the `chat/bots` route without having the `CREATE_BOT` grant', fu
   // Verify that the user has been redirected to the 'chat' route.
   assert.strictEqual(transitionToStub.callCount, 1)
   assert.strictEqual(transitionToStub.getCall(0).args[0], 'chat')
+
+  transitionToStub.restore()
 })
 
 /**
@@ -178,5 +180,7 @@ test('Accessing the `chat/bots` route when having the `CREATE_BOT` grant', funct
     assert.strictEqual(model.bots.length, 2)
     assert.ok(model.bots.indexOf(botsArray[0]) !== -1)
     assert.ok(model.bots.indexOf(botsArray[1]) !== -1)
+
+    transitionToStub.restore()
   })
 })

@@ -74,7 +74,7 @@ moduleFor('service:socket', 'Unit | Service | socket', {
  * connection with Notify's WebSocket server and store the WebSocket instance in
  * the service.
  */
-test('Establishing a WebSocket Connection', function (assert) {
+test('Successfully establishing a WebSocket Connection', function (assert) {
   assert.expect(3)
   // Mocks the WebSocket instance. This is the instance returned when invoking
   // WebSocket constructor using the new keyword.
