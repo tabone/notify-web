@@ -7,7 +7,7 @@ import RSVP from 'rsvp'
  */
 export default Ember.Service.extend({
   /**
-   * config is used to get info about the Web socket server.
+   * config is used to get info about the WebSocket server.
    * @type {service:config}
    */
   config: Ember.inject.service(),
@@ -25,13 +25,13 @@ export default Ember.Service.extend({
   messageCache: Ember.inject.service(),
 
   /**
-   * Service used to cache private rooms by the friend id.
+   * privateRoomCache is used to cache private rooms by the friend id.
    * @type {service:private-room-cache}
    */
   privateRoomCache: Ember.inject.service(),
 
   /**
-   * WebSocket instance.
+   * socket is the WebSocket instance.
    * @type {Object}
    */
   socket: null,
@@ -53,8 +53,8 @@ export default Ember.Service.extend({
           const model = this.get('store').push(JSON.parse(message.data))
 
           switch (model.constructor.modelName) {
-            // If the synced record is a message, cache it inside the message cache
-            // service.
+            // If the synced record is a message, cache it inside the message
+            // cache service.
             case 'message': {
               this.get('messageCache').cache(model.get('room'), false, model)
               break
