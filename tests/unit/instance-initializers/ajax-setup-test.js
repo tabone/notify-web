@@ -3,6 +3,7 @@ import { initialize } from 'notify/instance-initializers/ajax-setup'
 import { module, test } from 'qunit'
 import destroyApp from '../../helpers/destroy-app'
 import sinon from 'sinon'
+import $ from 'jquery'
 
 module('Unit | Instance Initializer | ajax setup', {
   beforeEach () {
