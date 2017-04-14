@@ -23,6 +23,7 @@ moduleFor('route:chat/room', 'Unit | Route | chat/room', {
  * it should redirect the user to the 'chat' route.
  */
 test('Accessing the `room` route with an invalid room id', function (assert) {
+  assert.expect(3)
   // Create a route instance.
   const route = this.subject()
 
@@ -48,6 +49,7 @@ test('Accessing the `room` route with an invalid room id', function (assert) {
  * to retrieve the model of the route.
  */
 test('Accessing the `room` route with an valid room id', function (assert) {
+  assert.expect(4)
   // Create a route instance.
   const route = this.subject()
 

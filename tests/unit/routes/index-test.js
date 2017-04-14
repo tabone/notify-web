@@ -8,6 +8,7 @@ moduleFor('route:index', 'Unit | Route | index', {})
  * to the 'chat' route immediately.
  */
 test('Accessing the index route', function (assert) {
+  assert.expect(1)
   // Create Index Route instance.
   const route = this.subject()
 

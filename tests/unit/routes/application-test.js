@@ -20,6 +20,7 @@ moduleFor('route:application', 'Unit | Route | application', {
  * redirected to the login page.
  */
 test('Accessing the app without being authenticated', function (assert) {
+  assert.expect(1)
   // Create route instance.
   let route = this.subject()
 
@@ -41,6 +42,7 @@ test('Accessing the app without being authenticated', function (assert) {
  * to enter the app.
  */
 test('Accessing the app while being authenticated', function (assert) {
+  assert.expect(1)
   // Create route instance.
   let route = this.subject()
 
