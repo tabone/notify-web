@@ -2,7 +2,7 @@ import DS from 'ember-data'
 
 export default DS.Model.extend({
   /**
-   * date when the token created.
+   * created is the date when the token was created.
    */
   created: DS.attr('date'),
 

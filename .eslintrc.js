@@ -9,7 +9,6 @@ module.exports = {
     browser: true
   },
   globals: {
-    Ember: true,
     componentHandler: true,
     dialogPolyfill: true,
     marked: true,

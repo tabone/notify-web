@@ -1,3 +1,4 @@
+import Ember from 'ember'
 import DS from 'ember-data'
 
 export default DS.Model.extend({
@@ -7,12 +8,12 @@ export default DS.Model.extend({
   content: DS.attr('string'),
 
   /**
-   * indicates whether the message has been deleted.
+   * deleted flag indicates whether the message has been deleted.
    */
   deleted: DS.attr('boolean'),
 
   /**
-   * date when the message was created.
+   * created is the date when the message was created.
    */
   created: DS.attr('date'),
 
@@ -31,14 +32,14 @@ export default DS.Model.extend({
   }),
 
   /**
-   * users who have still not read the message.
+   * unread is the list of users who have still not read the message.
    */
   unread: DS.hasMany('user', {
     inverse: 'unread'
   }),
 
   /**
-   * age of the message.
+   * uiCreated is the age of the message.
    */
   uiCreated: Ember.computed('created', function () {
     // Retrieve the message age in seconds.

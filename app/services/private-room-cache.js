@@ -11,7 +11,7 @@ export default Ember.Service.extend({
   session: Ember.inject.service(),
 
   /**
-   * store service to query the Ember Data Repository.
+   * store is used to query the Ember Data Repository.
    * @type {Store}
    */
   store: Ember.inject.service(),

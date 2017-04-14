@@ -1,3 +1,4 @@
+import Ember from 'ember'
 import DS from 'ember-data'
 
 export default DS.Model.extend({
@@ -8,22 +9,22 @@ export default DS.Model.extend({
   session: Ember.inject.service(),
 
   /**
-   * name of the room.
+   * name of room.
    */
   name: DS.attr('string'),
 
   /**
-   * image name.
+   * image of room.
    */
   image: DS.attr('string'),
 
   /**
-   * indicates whether the room is a private room.
+   * private flag indicates whether the room is a private room.
    */
   private: DS.attr('boolean'),
 
   /**
-   * users who are inside the room.
+   * users who are members of the room.
    */
   users: DS.hasMany('user', {
     inverse: 'rooms'
@@ -37,9 +38,9 @@ export default DS.Model.extend({
   }),
 
   /**
-   * uiName is the room name used in the UI. Show the room's name if it has one
-   * assigned, else use the concatination of the usernames of its members
-   * (excluding the logged in user).
+   * uiName is the rooms name to be used in the UI. Show the room's name if it
+   * has one assigned, else use the concatination of the usernames of its
+   * members (excluding the logged in user).
    */
   uiName: Ember.computed('name', function () {
     // Use assigned name, if room has one.
@@ -55,8 +56,9 @@ export default DS.Model.extend({
   }),
 
   /**
-   * uiImage is the image name used in the UI. Show the room's image if it has
-   * one assigned, else use the image of a user
+   * uiImage is the room's image to be used in the UI. Show the room's image if
+   * it has one assigned, else use the image of a random user who is not the
+   * logged in user.
    */
   uiImage: Ember.computed('image', function () {
     // Use assigned image, if room has one.

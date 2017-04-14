@@ -5,7 +5,7 @@ import Ember from 'ember'
  */
 export default Ember.Service.extend({
   /**
-   * store service to query the Ember Data Repository.
+   * store is used to query the Ember Data Repository.
    * @type {Store}
    */
   store: Ember.inject.service(),

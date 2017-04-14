@@ -1,35 +1,48 @@
 import Ember from 'ember'
 import RSVP from 'rsvp'
 
+/**
+ * This is the route of the chat app. When the user access this route, a new
+ * WebSocket connection is established and the following info is retrieved:
+ *   > List of all STATES.
+ *   > List of all GRANTS.
+ *   > List of all USERS.
+ *   > List of all ROOMS which the logged in user is a member of.
+ *
+ * Note that since rooms are dependent on the users (ex. when a room does not
+ * have a name it uses the members usernames for its name), the rooms are
+ * retrieved after the retrieval of the user info.
+ */
 export default Ember.Route.extend({
   /**
-   * session service is used to manage the session info.
-   * @type {service:session}
-   */
-  session: Ember.inject.service(),
-
-  /**
-   * socket service is used to communicate with the WebSocket server.
+   * session is used to establish a WebSocket connection.
    * @type {service:socket}
    */
   socket: Ember.inject.service(),
 
   /**
-   * privateRoomCache is used to cache private rooms by the friend id.
+   * privateRoomCache is used to cache the private rooms retrieved by the friend
+   * id.
    * @type {service:private-room-cache}
    */
   privateRoomCache: Ember.inject.service(),
 
   /**
-   * beforeModel hook is the first of the route entry validation hooks called.
+   * Before trying to retrieve the route's model, a WebSocket connection should
+   * be established.
    */
   beforeModel () {
-    // Connect with WebSocket server.
     return this.get('socket').connect()
   },
 
   /**
    * model hook is used to convert the url to a model.
+   * Before rendering the route's template, the following info should be
+   * retrieved:
+   *   > List of all STATES.
+   *   > List of all GRANTS.
+   *   > List of all USERS.
+   *   > List of all ROOMS which the logged in user is a member of.
    */
   model () {
     return RSVP.hash({
@@ -49,7 +62,7 @@ export default Ember.Route.extend({
         // Store room if it is a private room.
         rooms.forEach(room => this.get('privateRoomCache').cache(room))
         return rooms
-      }).then((rooms) => {
+      }).then(rooms => {
         hash.rooms = rooms
         return hash
       })
