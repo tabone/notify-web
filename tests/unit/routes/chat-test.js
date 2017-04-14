@@ -41,81 +41,45 @@ moduleFor('route:chat', 'Unit | Route | chat', {
 /**
  * When accessing the 'chat' route, before it retrieves the model of the route
  * it tries to establish a a WebSocket connection. If the connection is
- * established the beforeModel model hook should return a fulfilled promise.
+ * established the app should retrieve info about the USERS, GRANTS, STATES &
+ * ROOMS which the logged in user is a member of.
  */
-test('Successfully establishing a WebSocket Connection', function (assert) {
-  assert.expect(1)
-  // Create Chat Route instance.
-  const route = this.subject()
-
-  // Stub the function used to establish a WebSocket connection to return a
-  // fulfilled promise.
-  route.get('socket.connect').returns(RSVP.Promise.resolve())
-
-  // Invoke function to be tested.
-  return route.beforeModel().then(() => {
-    // Verify that an attempt has been done to establish a WebSocket connection.
-    assert.strictEqual(route.get('socket').connect.callCount, 1)
-  })
-})
-
-/**
- * When accessing the 'chat' route, before it retrieves the model of the route
- * it tries to establish a a WebSocket connection. If the connection is not
- * established the beforeModel model hook should return a rejected promise.
- */
-test('Successfully establishing a WebSocket Connection', function (assert) {
-  assert.expect(1)
-  // Create Chat Route instance.
-  const route = this.subject()
-
-  // Stub the function used to establish a WebSocket connection to return a
-  // rejected promise.
-  route.get('socket.connect').returns(RSVP.Promise.reject())
-
-  // Invoke function to be tested.
-  return route.beforeModel().catch(() => {
-    // Verify that an attempt has been done to establish a WebSocket connection.
-    assert.strictEqual(route.get('socket').connect.callCount, 1)
-  })
-})
-
-/**
- * When accessing the 'chat' route before it renders the DOM the app retrieves
- * info about the USERS, GRANTS, STATES and the ROOMS which the logged in user
- * is a member of.
- */
-test('Retrieving the route model successfully', function (assert) {
-  assert.expect(13)
-  // Create Chat Route instance.
+test('Succeeding in establishing a WebSocket Connection', function (assert) {
+  assert.expect(14)
+  // Create route instance.
   const route = this.subject()
 
   /**
-   * List of users to be retrieved
+   * List of users to be retrieved.
    * @type {Array}
    */
   const users = []
 
   /**
-   * List of states to be retrieved
+   * List of states to be retrieved.
    * @type {Array}
    */
   const states = []
 
   /**
-   * List of grants to be retrieved
+   * List of grants to be retrieved.
    * @type {Array}
    */
   const grants = []
 
   /**
-   * List of grants to be retrieved
+   * List of rooms to be retrieved.
    * @type {Array}
    */
   const rooms = [ Ember.Object.create(), Ember.Object.create() ]
 
+  // Stub the function used to establish a WebSocket connection to return a
+  // fulfilled promise.
+  route.get('socket.connect').returns(RSVP.Promise.resolve())
+
   // Get a reference for the store.findAll stub.
   const findAllStub = route.get('store.findAll')
+
   // Get a reference for the privateRoomCache.cache stub.
   const cacheStub = route.get('privateRoomCache.cache')
 
@@ -126,7 +90,11 @@ test('Retrieving the route model successfully', function (assert) {
   findAllStub.withArgs('room').returns(RSVP.Promise.resolve(rooms))
 
   // Invoke function to be tested.
-  return route.model().then(model => {
+  return route.beforeModel().then(() => {
+    // Verify that an attempt has been done to establish a WebSocket connection.
+    assert.strictEqual(route.get('socket').connect.callCount, 1)
+    return route.model()
+  }).then(model => {
     // Verify that the findAll stub has been invoked 4 times.
     assert.strictEqual(findAllStub.callCount, 4)
     // Verify that the findAll stub has been invoked with the expected
@@ -153,22 +121,22 @@ test('Retrieving the route model successfully', function (assert) {
 })
 
 /**
- * When the 'chat' route fails to retrieve the model, it should return a
- * rejected Promise.
+ * When accessing the 'chat' route, before it retrieves the model of the route
+ * it tries to establish a a WebSocket connection. If the connection is not
+ * established the beforeModel model hook should return a rejected promise.
  */
-test('Retrieving the route model unsuccessfully', function (assert) {
+test('Failing to establish a WebSocket Connection', function (assert) {
   assert.expect(1)
-  // Create Chat Route instance.
+  // Create route instance.
   const route = this.subject()
 
-  // Get a reference for the store.findAll stub.
-  const findAllStub = route.get('store.findAll')
+  // Stub the function used to establish a WebSocket connection to return a
+  // rejected promise.
+  route.get('socket.connect').returns(RSVP.Promise.reject())
 
-  // Configure the store.findAll stub to return the expected values.
-  findAllStub.withArgs('user').returns(RSVP.Promise.resolve())
-  findAllStub.withArgs('state').returns(RSVP.Promise.resolve())
-  findAllStub.withArgs('grant').returns(RSVP.Promise.reject()) // Will Fail.
-
-  // Verify that the model function returns a rejected promise.
-  return route.model().catch(model => assert.ok(true))
+  // Invoke function to be tested.
+  return route.beforeModel().catch(() => {
+    // Verify that an attempt has been done to establish a WebSocket connection.
+    assert.strictEqual(route.get('socket').connect.callCount, 1)
+  })
 })
