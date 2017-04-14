@@ -39,10 +39,10 @@ export default Ember.Route.extend({
    * model hook is used to convert the url to a model.
    * Before rendering the route's template, the following info should be
    * retrieved:
- *   > List of all STATES.
- *   > List of all GRANTS.
- *   > List of all USERS.
- *   > List of all ROOMS which the logged in user is a member of.
+   *   > List of all STATES.
+   *   > List of all GRANTS.
+   *   > List of all USERS.
+   *   > List of all ROOMS which the logged in user is a member of.
    */
   model () {
     return RSVP.hash({

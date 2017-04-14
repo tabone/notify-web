@@ -31,6 +31,7 @@ test('Accessing the app without being authenticated', function (assert) {
   // Stub the function used to redirect the user.
   sinon.stub(route, 'redirectToLogin')
 
+  // Invoke the function to be tested.
   return route.beforeModel().then(() => {
     // Verify that the user has been redirected.
     assert.strictEqual(route.redirectToLogin.callCount, 1)
@@ -53,6 +54,7 @@ test('Accessing the app while being authenticated', function (assert) {
   // Stub the function used to redirect the user.
   sinon.stub(route, 'redirectToLogin')
 
+  // Invoke the function to be tested.
   return route.beforeModel().then(() => {
     // Verify that the user has not been redirected.
     assert.strictEqual(route.redirectToLogin.callCount, 0)

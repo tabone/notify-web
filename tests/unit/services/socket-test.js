@@ -122,11 +122,11 @@ test('Failing to establishing a WebSocket Connection', function (assert) {
   })
 })
 
-// /**
-//  * When retrieving a WebSocket payload about a private room, apart from updating
-//  * Ember Data Store we need to also store the private message inside the Private
-//  * Room Cache Service.
-//  */
+/**
+ * When retrieving a WebSocket payload about a private room, apart from updating
+ * Ember Data Store we need to also store the private message inside the Private
+ * Room Cache Service.
+ */
 test('Retrieving an update about a private room', function (assert) {
   assert.expect(4)
   // Mocks the WebSocket instance. This is the instance returned when invoking
@@ -168,10 +168,10 @@ test('Retrieving an update about a private room', function (assert) {
   })
 })
 
-// /**
-//  * When retrieving a WebSocket payload about a public room, all we have to do is
-//  * updating Ember Data Store.
-//  */
+/**
+ * When retrieving a WebSocket payload about a public room, all we have to do is
+ * updating Ember Data Store.
+ */
 test('Retrieving an update about a public room', function (assert) {
   assert.expect(3)
   // Mocks the WebSocket instance. This is the instance returned when invoking
@@ -212,10 +212,10 @@ test('Retrieving an update about a public room', function (assert) {
   })
 })
 
-// /**
-//  * When retrieving a WebSocket payload about a message, apart from updating
-//  * Ember Data Store, it should also update the Message Cache Service.
-//  */
+/**
+ * When retrieving a WebSocket payload about a message, apart from updating
+ * Ember Data Store, it should also update the Message Cache Service.
+ */
 test('Retrieving an update about a message', function (assert) {
   assert.expect(6)
   // Mocks the WebSocket instance. This is the instance returned when invoking

@@ -6,7 +6,7 @@ import DS from 'ember-data'
  */
 export default DS.JSONAPIAdapter.extend({
   /**
-   * configuration object.
+   * config is used to retrieve details about the API Server.
    * @type {service:config}
    */
   config: Ember.inject.service(),
