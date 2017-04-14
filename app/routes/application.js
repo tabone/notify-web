@@ -7,7 +7,7 @@ import Ember from 'ember'
  */
 export default Ember.Route.extend({
   /**
-   * sesison is used to check whether the user is authenticated.
+   * session is used to check whether the user is authenticated.
    * @type {service:session}
    */
   session: Ember.inject.service(),

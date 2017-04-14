@@ -13,7 +13,7 @@ export default DS.Model.extend({
   image: DS.attr('string'),
 
   /**
-   * bot indicates whether the user is a bot.
+   * bot flag indicates whether the user is a bot.
    */
   bot: DS.attr('boolean'),
 
