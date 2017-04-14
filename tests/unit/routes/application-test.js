@@ -28,14 +28,11 @@ test('Accessing the app without being authenticated', function (assert) {
   route.get('session.login').returns(RSVP.Promise.reject())
 
   // Stub the function used to redirect the user.
-  sinon.stub(window.location, 'assign')
+  sinon.stub(route, 'redirectToLogin')
 
   return route.beforeModel().then(() => {
     // Verify that the user has been redirected.
-    assert.strictEqual(window.location.assign.callCount, 1)
-
-    // Verify that the user has been redirected to the login page.
-    assert.strictEqual(window.location.assign.firstCall.args[0], '/login')
+    assert.strictEqual(route.redirectToLogin.callCount, 1)
   })
 })
 
@@ -52,10 +49,10 @@ test('Accessing the app while being authenticated', function (assert) {
   route.get('session.login').returns(RSVP.Promise.resolve())
 
   // Stub the function used to redirect the user.
-  sinon.stub(window.location, 'assign')
+  sinon.stub(route, 'redirectToLogin')
 
   return route.beforeModel().then(() => {
     // Verify that the user has not been redirected.
-    assert.strictEqual(window.location.assign.callCount, 0)
+    assert.strictEqual(route.redirectToLogin.callCount, 0)
   })
 })

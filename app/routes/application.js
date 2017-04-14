@@ -17,7 +17,13 @@ export default Ember.Route.extend({
    * user is authenticated. If not the user is redirected to the login page.
    */
   beforeModel () {
-    return this.get('session').login()
-      .catch(() => { window.location.assign('/login') })
+    return this.get('session').login().catch(() => this.redirectToLogin())
+  },
+
+  /**
+   * redirectToLogin redirects the user to the login page.
+   */
+  redirectToLogin () {
+    window.location.assign('/login')
   }
 })
