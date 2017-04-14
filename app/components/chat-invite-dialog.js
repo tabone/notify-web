@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   classNames: ['app-chat-invite-dialog', 'mdl-dialog'],
 
   /**
-   * store service to query the Ember Data Repository.
+   * store is used to query the Ember Data Repository.
    * @type {Store}
    */
   store: Ember.inject.service(),

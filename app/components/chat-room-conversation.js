@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   classNames: ['app-chat-room-conversation'],
 
   /**
-   * store service to query the Ember Data Repository.
+   * store is used to query the Ember Data Repository.
    * @type {Store}
    */
   store: Ember.inject.service(),

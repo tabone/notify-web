@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   classNames: ['app-chat-fab'],
 
   /**
-   * configuration object.
+   * config is used to get the 'CREATE_BOT' grant.
    * @type {service:config}
    */
   config: Ember.inject.service(),
@@ -20,7 +20,7 @@ export default Ember.Component.extend({
   session: Ember.inject.service(),
 
   /**
-   * store service to query the Ember Data Repository.
+   * store is used to query the Ember Data Repository.
    * @type {Store}
    */
   store: Ember.inject.service(),

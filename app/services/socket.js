@@ -7,13 +7,13 @@ import RSVP from 'rsvp'
  */
 export default Ember.Service.extend({
   /**
-   * configuration object.
+   * config is used to get info about the Web socket server.
    * @type {service:config}
    */
   config: Ember.inject.service(),
 
   /**
-   * store service to query the Ember Data Repository.
+   * store is used to query the Ember Data Repository.
    * @type {service:store}
    */
   store: Ember.inject.service(),
@@ -25,7 +25,7 @@ export default Ember.Service.extend({
   messageCache: Ember.inject.service(),
 
   /**
-   * privateRoomCache is used to cache private rooms by the friend id.
+   * Service used to cache private rooms by the friend id.
    * @type {service:private-room-cache}
    */
   privateRoomCache: Ember.inject.service(),

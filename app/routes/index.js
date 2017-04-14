@@ -6,7 +6,7 @@ import Ember from 'ember'
  */
 export default Ember.Route.extend({
   /**
-   * beforeModel hook is the first of the route entry validation hooks called.
+   * The user should be immediately redirected to the 'chat' route.
    */
   beforeModel () {
     this.transitionTo('chat')

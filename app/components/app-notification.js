@@ -12,7 +12,7 @@ export default Ember.Component.extend({
   classNames: ['app-notification', 'mdl-js-snackbar', 'mdl-snackbar'],
 
   /**
-   * notification is used to listen for messages that should be notified to the
+   * notification is used to listen for messages that should be shown to the
    * user.
    * @type {service:notification}
    */

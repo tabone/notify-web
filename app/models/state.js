@@ -7,7 +7,7 @@ export default DS.Model.extend({
   name: DS.attr('string'),
 
   /**
-   * users which have the current state set to the model instance.
+   * users who have the current state set to the model instance.
    */
   users: DS.hasMany('user', {
     inverse: 'state'

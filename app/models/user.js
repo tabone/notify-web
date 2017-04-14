@@ -8,12 +8,12 @@ export default DS.Model.extend({
   username: DS.attr('string'),
 
   /**
-   * image name.
+   * image of the user.
    */
   image: DS.attr('string'),
 
   /**
-   * indicates whether the user is a bot.
+   * bot indicates whether the user is a bot.
    */
   bot: DS.attr('boolean'),
 
@@ -40,7 +40,7 @@ export default DS.Model.extend({
   }),
 
   /**
-   * other users which this user has created.
+   * created is the list of Users/Bots which the user has created.
    * @type {Array}
    */
   created: DS.hasMany('user', {
@@ -69,14 +69,14 @@ export default DS.Model.extend({
   }),
 
   /**
-   * unread messages.
+   * unread is the list of messages that have still not been read by the user.
    */
   unread: DS.hasMany('message', {
     inverse: 'unread'
   }),
 
   /**
-   * uiImage is the image name used in the UI. Use the user's image if he has
+   * uiImage is the user's image used in the UI. Use the user's image if he has
    * one, else show the defualt image.
    */
   uiImage: Ember.computed('image', function () {
