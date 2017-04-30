@@ -20,7 +20,7 @@ module('Unit | Instance Initializer | ajax setup', {
 
 // When making a AJAX Request, it should by default include the
 // 'withCredentials' header set to 'true'.
-test('it works', function (assert) {
+test('Doing an AJAX Request', function (assert) {
   assert.expect(2)
   // Initialize app.
   initialize(this.appInstance)
