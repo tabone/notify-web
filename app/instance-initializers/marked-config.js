@@ -35,7 +35,7 @@ export function initialize () {
      */
     renderer.code = (code, language) => {
       // Highlight code.
-      code = (language == undefined) ? hljs.highlightAuto(code).value
+      code = (language == null) ? hljs.highlightAuto(code).value
         : hljs.highlight(language, code).value
 
       return `<pre><code class="hljs">${code}</code></pre>`
